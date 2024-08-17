@@ -23,7 +23,12 @@ private int currentCombo = 0;
 private float lastAttackTime = 0;
 private bool isAttacking = false;
 
-private Rigidbody2D rb;
+    [Header("Camera Shake Settings")]
+    public CameraShake cameraShake;  
+    public float shakeIntensity = 0.5f;
+    public float shakeDuration = 0.2f;
+
+    private Rigidbody2D rb;
 private SpriteRenderer spriteRenderer;
 private PlayerMovement playerMovement;
 
@@ -36,7 +41,7 @@ void Start()
 
 void Update()
 {
-    // Comenzar el ataque cuando se presiona el botón de ataque
+    
     if (Input.GetButtonDown("Fire1") && !isAttacking)
     {
         if (Time.time - lastAttackTime <= comboWindow && currentCombo < maxCombo)
@@ -57,19 +62,16 @@ private IEnumerator PerformAttack()
 {
     isAttacking = true;
 
-    // Detener el movimiento durante el ataque
+
     rb.velocity = new Vector2(0, rb.velocity.y);
 
-    // Determinar el ataque del combo actual
+
     comboStep = currentCombo - 1;
 
-    // Ejecutar el ataque
     DoAttack();
 
-    // Asignar la animación correcta
     animator.SetTrigger("Attack" + currentCombo);
 
-    // Esperar la duración del ataque antes de permitir el movimiento de nuevo
     yield return new WaitForSeconds(attackDurations[comboStep]);
 
     isAttacking = false;
@@ -88,6 +90,7 @@ void DoAttack()
     foreach (Collider2D enemy in hitEnemies)
     {
         enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-    }
+            cameraShake.Shake(shakeIntensity, shakeDuration);
+        }
 }
 }
