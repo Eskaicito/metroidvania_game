@@ -13,8 +13,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump Settings")]
     public float jumpForce = 12f;
+    public float maxJumpTime = 0.35f; // Tiempo máximo que puedes mantener el salto
     public float coyoteTime = 0.2f;
     public float jumpBufferTime = 0.2f;
+    public float airControlFactor = 0.5f; // Control en el aire
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float jumpTimeCounter;
 
     private void Start()
     {
@@ -43,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        
         if (horizontalInput > 0 && !isFacingRight)
         {
             Flip();
@@ -53,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
-        
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -75,8 +76,20 @@ public class PlayerMovement : MonoBehaviour
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             isJumping = true;
+            jumpTimeCounter = maxJumpTime; // Comienza a contar el tiempo de salto
             jumpBufferCounter = 0f;
             coyoteTimeCounter = 0f;
+        }
+
+        if (Input.GetButton("Jump") && isJumping && jumpTimeCounter > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpTimeCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
         }
 
         // Crouching logic
@@ -95,20 +108,29 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-
-        if (isJumping)
-        {
-            Jump();
-        }
     }
 
     private void MovePlayer()
     {
         float targetSpeed = horizontalInput * moveSpeed;
         float speedDiff = targetSpeed - rb.velocity.x;
-        float movement = Mathf.Pow(Mathf.Abs(speedDiff) * acceleration, velocityPower) * Mathf.Sign(speedDiff);
 
+        // Ajuste para evitar que el jugador cambie bruscamente de dirección en el aire
+        if (!IsGrounded() && Mathf.Abs(rb.velocity.x) > 0.1f)
+        {
+            // Si está en el aire, solo permite un cambio gradual de dirección
+            targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, Time.fixedDeltaTime * 2f);
+        }
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDiff) * acceleration, velocityPower) * Mathf.Sign(speedDiff);
         rb.AddForce(movement * Vector2.right);
+
+        // Ajuste para control de movimiento en el aire
+        if (isJumping)
+        {
+            float airControl = Mathf.Lerp(1f, airControlFactor, 1f - (jumpTimeCounter / maxJumpTime));
+            rb.velocity = new Vector2(horizontalInput * moveSpeed * airControl, rb.velocity.y);
+        }
 
         if (Mathf.Abs(horizontalInput) < 0.01f)
         {
@@ -116,12 +138,6 @@ public class PlayerMovement : MonoBehaviour
             friction *= Mathf.Sign(rb.velocity.x);
             rb.AddForce(Vector2.right * -friction, ForceMode2D.Impulse);
         }
-    }
-
-    private void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        isJumping = false;
     }
 
     private void Flip()
