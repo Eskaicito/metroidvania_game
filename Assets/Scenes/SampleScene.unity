@@ -607,20 +607,19 @@ MonoBehaviour:
   moveSpeed: 4
   acceleration: 10
   deceleration: 10
-  velocityPower: 0.77
-  frictionAmount: 0.27
-  jumpForce: 3
-  maxJumpTime: 0.37
+  airControlMultiplier: 0.8
+  jumpHeight: 3
+  maxJumpHeight: 5
+  maxFallSpeed: -20
+  fallMultiplier: 3
+  lowJumpMultiplier: 4
   coyoteTime: 0.2
   jumpBufferTime: 0.2
-  airControlFactor: 1
-  groundCheck: {fileID: 230783848}
-  groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 988380354}
-  spriteRenderer: {fileID: 988380349}
+  groundCheck: {fileID: 230783848}
+  groundCheckRadius: 0.2
 --- !u!61 &988380352
 BoxCollider2D:
   m_ObjectHideFlags: 0

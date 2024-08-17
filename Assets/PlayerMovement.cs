@@ -4,58 +4,53 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public float acceleration = 10f;
-    public float deceleration = 10f;
-    public float velocityPower = 0.9f;
-    public float frictionAmount = 0.3f;
+    [Header("Movement")]
+    public float moveSpeed = 10f;
+    public float acceleration = 70f;     
+    public float deceleration = 100f;  
+    public float airControlMultiplier = 0.7f; 
 
-    [Header("Jump Settings")]
-    public float jumpForce = 12f;
-    public float maxJumpTime = 0.35f; // Tiempo máximo que puedes mantener el salto
-    public float coyoteTime = 0.2f;
-    public float jumpBufferTime = 0.2f;
-    public float airControlFactor = 0.5f; // Control en el aire
+    [Header("Jumping")]
+    public float jumpHeight = 5f;
+    public float maxJumpHeight = 8f;
+    public float maxFallSpeed = -20f;
+    public float fallMultiplier = 4f;     
+    public float lowJumpMultiplier = 5f;  
+
+    [Header("Coyote Time & Jump Buffering")]
+    public float coyoteTime = 0.2f; 
+    private float coyoteTimeCounter;
+    public float jumpBufferTime = 0.2f;   
+    private float jumpBufferCounter;
 
     [Header("Ground Check")]
+    public LayerMask groundLayer;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    private bool isGrounded;
 
-    [Header("Animations")]
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    [Header("Sprite & Flip")]
+    private bool facingRight = true;  
+    private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
     private float horizontalInput;
-    private bool isJumping = false;
-    private bool isCrouching = false;
-    private bool isFacingRight = true;
+    private float velocityXSmoothing;
+    private bool isJumping;
 
-    private float coyoteTimeCounter;
-    private float jumpBufferCounter;
-    private float jumpTimeCounter;
-
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (horizontalInput > 0 && !isFacingRight)
-        {
-            Flip();
-        }
-        else if (horizontalInput < 0 && isFacingRight)
-        {
-            Flip();
-        }
-
-        if (IsGrounded())
+        
+        if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -73,112 +68,97 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
 
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && !isJumping)
         {
-            isJumping = true;
-            jumpTimeCounter = maxJumpTime; // Comienza a contar el tiempo de salto
-            jumpBufferCounter = 0f;
-            coyoteTimeCounter = 0f;
+            Jump();
         }
 
-        if (Input.GetButton("Jump") && isJumping && jumpTimeCounter > 0)
+        if (rb.velocity.y < 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpTimeCounter -= Time.deltaTime;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        if (Input.GetButtonUp("Jump"))
+       
+        if (rb.velocity.y < maxFallSpeed)
         {
-            isJumping = false;
+            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
         }
 
-        // Crouching logic
-        if (Input.GetButtonDown("Crouch"))
-        {
-            isCrouching = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            isCrouching = false;
-        }
-
-        UpdateAnimations();
+        
+        HandleSpriteFlip();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        MovePlayer();
-    }
-
-    private void MovePlayer()
-    {
+        
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         float targetSpeed = horizontalInput * moveSpeed;
-        float speedDiff = targetSpeed - rb.velocity.x;
+        float accelerationRate = isGrounded ? acceleration : acceleration * airControlMultiplier;
+        float decelerationRate = isGrounded ? deceleration : deceleration * airControlMultiplier;
 
-        // Ajuste para evitar que el jugador cambie bruscamente de dirección en el aire
-        if (!IsGrounded() && Mathf.Abs(rb.velocity.x) > 0.1f)
+        
+        if (horizontalInput != 0)
         {
-            // Si está en el aire, solo permite un cambio gradual de dirección
-            targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, Time.fixedDeltaTime * 2f);
-        }
-
-        float movement = Mathf.Pow(Mathf.Abs(speedDiff) * acceleration, velocityPower) * Mathf.Sign(speedDiff);
-        rb.AddForce(movement * Vector2.right);
-
-        // Ajuste para control de movimiento en el aire
-        if (isJumping)
-        {
-            float airControl = Mathf.Lerp(1f, airControlFactor, 1f - (jumpTimeCounter / maxJumpTime));
-            rb.velocity = new Vector2(horizontalInput * moveSpeed * airControl, rb.velocity.y);
-        }
-
-        if (Mathf.Abs(horizontalInput) < 0.01f)
-        {
-            float friction = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-            friction *= Mathf.Sign(rb.velocity.x);
-            rb.AddForce(Vector2.right * -friction, ForceMode2D.Impulse);
-        }
-    }
-
-    private void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-    }
-
-    private void UpdateAnimations()
-    {
-        if (isCrouching)
-        {
-            animator.Play("Crouch");
-        }
-        else if (!IsGrounded())
-        {
-            animator.Play("Jump");
-        }
-        else if (Mathf.Abs(horizontalInput) > 0.1f)
-        {
-            animator.Play("Run");
+            rb.velocity = new Vector2(
+                Mathf.SmoothDamp(rb.velocity.x, targetSpeed, ref velocityXSmoothing, 1f / accelerationRate),
+                rb.velocity.y
+            );
         }
         else
         {
-            animator.Play("Idle");
+            rb.velocity = new Vector2(
+                Mathf.SmoothDamp(rb.velocity.x, 0, ref velocityXSmoothing, 1f / decelerationRate),
+                rb.velocity.y
+            );
         }
+    }
 
-        if (horizontalInput > 0)
+    void Jump()
+    {
+        isJumping = true;
+        float jumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(Physics2D.gravity.y) * jumpHeight);
+        rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+
+        coyoteTimeCounter = 0f;
+        jumpBufferCounter = 0f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            spriteRenderer.flipX = false;
+            isJumping = false;
         }
-        else if (horizontalInput < 0)
+    }
+
+    void HandleSpriteFlip()
+    {
+        if (horizontalInput > 0 && !facingRight)
         {
-            spriteRenderer.flipX = true;
+            Flip();
         }
+        else if (horizontalInput < 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;  
+        transform.localScale = scale;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
