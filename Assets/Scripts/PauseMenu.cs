@@ -1,81 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuInstance;
-    public GameObject pauseMenuPrefab;
-    private bool isPaused = false;
+    [SerializeField] public GameObject pauseUI;
+    [SerializeField] public static bool isPaused;
 
-    void Start()
-    {
-        
-        if (pauseMenuInstance == null)
-        {
-            pauseMenuInstance = Instantiate(pauseMenuPrefab);
-            DontDestroyOnLoad(pauseMenuInstance);
-            pauseMenuInstance.SetActive(false); 
-        }
-    }
-
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (isPaused)
             {
-                ResumeGame();
+                Resume();
             }
             else
             {
-                PauseGame();
+                Pause();
             }
         }
-       
     }
 
-    public void ResumeGame()
+    public void Pause()
     {
-        pauseMenuInstance.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-        
-    }
-
-    public void PauseGame()
-    {
-        pauseMenuInstance.SetActive(true);
-        Time.timeScale = 0;
+        pauseUI.SetActive(true);
         isPaused = true;
+        Time.timeScale = 0f;
+    }
+
+    public void Resume()
+    {
+        pauseUI.SetActive(false);
+        isPaused = false;
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quiting game");
         Application.Quit();
-    }
-
-    void OnEnable()
-    {
-        
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        
-        if (pauseMenuInstance == null)
-        {
-            pauseMenuInstance = Instantiate(pauseMenuPrefab);
-            DontDestroyOnLoad(pauseMenuInstance);
-            pauseMenuInstance.SetActive(false);
-        }
     }
 }
