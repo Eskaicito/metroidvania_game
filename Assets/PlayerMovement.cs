@@ -41,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
     private float velocityXSmoothing;
     private bool isJumping;
 
+    [Header("Dash")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+    private bool isDashing;
+    private float dashTime;
+    private float dashCooldownTime;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -103,10 +111,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Gestión de flip del sprite
         HandleSpriteFlip();
+
+        // Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= dashCooldownTime)
+        {
+            StartDash();
+        }
+
+        if (isDashing)
+        {
+            dashTime -= Time.deltaTime;
+            if (dashTime <= 0)
+            {
+                EndDash();
+            }
+        }
     }
 
     void FixedUpdate()
     {
+        if (isDashing) return;
+
         float targetSpeed = horizontalInput * moveSpeed;
         float accelerationRate = isGrounded ? acceleration : acceleration * airControlMultiplier;
         float decelerationRate = isGrounded ? deceleration : deceleration * airControlMultiplier;
@@ -125,6 +150,20 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity.y
             );
         }
+    }
+
+    void StartDash()
+    {
+        isDashing = true;
+        dashTime = dashDuration;
+        dashCooldownTime = Time.time + dashCooldown;
+        rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, rb.velocity.y);
+        animator.SetTrigger("Dash"); // Si tienes una animación de dash
+    }
+
+    void EndDash()
+    {
+        isDashing = false;
     }
 
     void Jump()
