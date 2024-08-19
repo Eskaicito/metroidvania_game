@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  comboWindow: 1
+  comboWindow: 0.5
   maxCombo: 3
   attackRadius: 0.9
   attackPoint: {fileID: 147119592}
