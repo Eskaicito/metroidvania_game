@@ -10,8 +10,8 @@ public class CollectibleSkill : MonoBehaviour, ICollectible
 
     public void Collect()
     {
-        // Aquí se debería notificar al sistema de la rueda de habilidades
+    
         SkillWheel.Instance.AddSkill(skillName, skillScript, skillIcon);
-        Destroy(gameObject); // Eliminar el objeto recogido
+        Destroy(gameObject); 
     }
 }

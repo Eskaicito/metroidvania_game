@@ -6,7 +6,7 @@ public class Skill1 : SkillBase
 {
     public override void Activate()
     {
-        // Implementa la lógica para lanzar una bola de fuego
-        Debug.Log("Fireball Skill Activated");
+       
+        Debug.Log("Negros Skill Activated");
     }
 }

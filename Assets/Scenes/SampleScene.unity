@@ -1047,9 +1047,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e32fc90121d72c40abd042293c6fb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Carvajal
-  skillScript: {fileID: 0}
-  skillIcon: {fileID: 21300000, guid: ec21a0f45c372d64b86334152d67548e, type: 3}
+  skillName: doom chaldeno
+  skillScript: {fileID: 612179955}
+  skillIcon: {fileID: 21300000, guid: 572b42e5611b7e942bec58d284dc2312, type: 3}
 --- !u!114 &612179951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ Transform:
   m_GameObject: {fileID: 612179948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.29, y: -2.73, z: 0}
+  m_LocalPosition: {x: -16.6, y: -2.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1431,9 +1431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e32fc90121d72c40abd042293c6fb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Carvajal
-  skillScript: {fileID: 0}
-  skillIcon: {fileID: 21300000, guid: ec21a0f45c372d64b86334152d67548e, type: 3}
+  skillName: MR FACTOS
+  skillScript: {fileID: 924442977}
+  skillIcon: {fileID: 21300000, guid: de5fa71d49085904292cb4ff8552599f, type: 3}
 --- !u!114 &924442973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ Transform:
   m_GameObject: {fileID: 924442970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.29, y: -2.73, z: 0}
+  m_LocalPosition: {x: 17.37, y: -2.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2357,9 +2357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e32fc90121d72c40abd042293c6fb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Carvajal
-  skillScript: {fileID: 0}
-  skillIcon: {fileID: 21300000, guid: ec21a0f45c372d64b86334152d67548e, type: 3}
+  skillName: CEO OF SEX
+  skillScript: {fileID: 1620914645}
+  skillIcon: {fileID: 21300000, guid: 44f4d54de93b07c49a4a605b9b993d2e, type: 3}
 --- !u!114 &1620914641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2433,7 +2433,7 @@ Transform:
   m_GameObject: {fileID: 1620914638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.29, y: -2.73, z: 0}
+  m_LocalPosition: {x: -9.8, y: -2.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2670,7 +2670,7 @@ MonoBehaviour:
   skillWheelCanvas: {fileID: 410791480}
   wheelImage: {fileID: 1694069694}
   wheelRadius: 200
-  skillHighlightSize: 1.2
+  skillHighlightSize: 2
   initialSkillSprites:
   - {fileID: 0}
 --- !u!1 &1694069692

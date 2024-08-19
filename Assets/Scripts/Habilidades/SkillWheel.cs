@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class SkillWheel : MonoBehaviour
 {
+
     public static SkillWheel Instance;
     public Canvas skillWheelCanvas;
     public Image wheelImage;
-    public float wheelRadius = 200f; 
-    public float skillHighlightSize = 1.2f; 
+    public float wheelRadius = 200f; // Radio de la rueda de habilidades
+    public float skillHighlightSize = 1.2f; // Tamaño de la habilidad resaltada
     public Dictionary<string, SkillBase> skills = new Dictionary<string, SkillBase>();
     private bool isWheelActive = false;
     private Image highlightedSkill;
@@ -26,7 +27,7 @@ public class SkillWheel : MonoBehaviour
         public SkillBase skillScript;
     }
 
-    public Sprite[] initialSkillSprites; 
+    public Sprite[] initialSkillSprites; // Habilidades iniciales como sprites
 
     private void Awake()
     {
@@ -47,20 +48,19 @@ public class SkillWheel : MonoBehaviour
 
         skillWheelCanvas.enabled = false;
 
-        //// Initialize skill wheel with predefined skills
-        //for (int i = 0; i < initialSkillSprites.Length; i++)
-        //{
-        //    // Create dummy skill scripts for initialization (Replace with actual scripts)
-        //    SkillBase dummySkill = CreateDummySkill("Skill" + i);
-        //    AddSkill("Skill" + i, dummySkill, initialSkillSprites[i]);
-        //}
+        // Initialize skill wheel with predefined skills
+        for (int i = 0; i < initialSkillSprites.Length; i++)
+        {
+            // Create dummy skill scripts for initialization (Replace with actual scripts)
+            //SkillBase dummySkill = CreateDummySkill("Skill" + i);
+            //AddSkill("Skill" + i, dummySkill, initialSkillSprites[i]);
+        }
     }
 
     //private SkillBase CreateDummySkill(string skillName)
     //{
     //    // Create a dummy skill. Replace this with actual skill instances.
-    //    // Example: return new FireballSkill(); if FireballSkill is a concrete class.
-    //    return new Skill1(); // Replace with the actual skill you want to use
+    //    return new FireballSkill(); // Replace with the actual skill you want to use
     //}
 
     private void Update()
@@ -92,7 +92,7 @@ public class SkillWheel : MonoBehaviour
         foreach (var button in skillButtons)
         {
             Vector2 buttonPosition = button.skillIcon.rectTransform.anchoredPosition;
-            Vector2 buttonDirection = buttonPosition - wheelCenter; 
+            Vector2 buttonDirection = buttonPosition - wheelCenter;
             float buttonAngle = Mathf.Atan2(buttonDirection.y, buttonDirection.x) * Mathf.Rad2Deg;
             if (buttonAngle < 0) buttonAngle += 360;
 
@@ -102,12 +102,12 @@ public class SkillWheel : MonoBehaviour
             if (angleDifference < 360f / skillButtons.Count / 2)
             {
                 HighlightSkill(button.skillIcon);
-                if (Input.GetMouseButtonUp(1)) 
+                if (Input.GetMouseButtonUp(1)) // Right-click release
                 {
                     SelectSkill(button.skillName);
                     isWheelActive = false;
                     skillWheelCanvas.enabled = false;
-                    Time.timeScale = 1f; 
+                    Time.timeScale = 1f; // Resume gameplay
                 }
             }
             else
@@ -139,7 +139,7 @@ public class SkillWheel : MonoBehaviour
         {
             selectedSkill = skills[skillName];
             Debug.Log("Selected skill: " + skillName);
-        
+            // Set the selected skill as the active skill for the player
             selectedSkill.Activate();
         }
     }
@@ -154,16 +154,35 @@ public class SkillWheel : MonoBehaviour
             GameObject skillObject = new GameObject(skillName);
             Image newSkillImage = skillObject.AddComponent<Image>();
             newSkillImage.sprite = skillSprite;
-            newSkillImage.transform.SetParent(wheelImage.transform, false); 
-            newSkillImage.rectTransform.sizeDelta = new Vector2(50, 50); 
-            newSkillImage.rectTransform.pivot = new Vector2(0.5f, 0.5f); 
+            newSkillImage.transform.SetParent(wheelImage.transform, false); // Set the parent without affecting the local scale
+            newSkillImage.rectTransform.sizeDelta = new Vector2(50, 50); // Ajustar tamaño de íconos si es necesario
+            newSkillImage.rectTransform.pivot = new Vector2(0.5f, 0.5f); // Center the pivot
+
             // Calculate position in a circular pattern
-            float angleStep = 360f / Mathf.Max(1, skillButtons.Count + 1); 
+            float angleStep = 360f / Mathf.Max(1, skillButtons.Count); // Ensure at least one angle step
             float angle = skillButtons.Count * angleStep;
             float radian = angle * Mathf.Deg2Rad;
             newSkillImage.rectTransform.anchoredPosition = new Vector2(Mathf.Cos(radian) * wheelRadius, Mathf.Sin(radian) * wheelRadius);
 
             skillButtons.Add(new SkillWheelButton { skillName = skillName, skillIcon = newSkillImage, skillScript = skillScript });
+
+            // Update all skill button positions after adding a new skill
+            UpdateSkillButtonPositions();
+        }
+    }
+
+    private void UpdateSkillButtonPositions()
+    {
+        int numSkills = skillButtons.Count;
+        float angleStep = 360f / numSkills;
+
+        for (int i = 0; i < numSkills; i++)
+        {
+            float angle = i * angleStep;
+            float radian = angle * Mathf.Deg2Rad;
+            Vector2 position = new Vector2(Mathf.Cos(radian) * wheelRadius, Mathf.Sin(radian) * wheelRadius);
+
+            skillButtons[i].skillIcon.rectTransform.anchoredPosition = position;
         }
     }
 }
