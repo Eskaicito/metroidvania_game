@@ -27,7 +27,6 @@ public class SkillWheel : MonoBehaviour
         public SkillBase skillScript;
     }
 
-    public Sprite[] initialSkillSprites; // Habilidades iniciales como sprites
 
     private void Awake()
     {
@@ -48,20 +47,9 @@ public class SkillWheel : MonoBehaviour
 
         skillWheelCanvas.enabled = false;
 
-        // Initialize skill wheel with predefined skills
-        for (int i = 0; i < initialSkillSprites.Length; i++)
-        {
-            // Create dummy skill scripts for initialization (Replace with actual scripts)
-            //SkillBase dummySkill = CreateDummySkill("Skill" + i);
-            //AddSkill("Skill" + i, dummySkill, initialSkillSprites[i]);
-        }
+        
     }
 
-    //private SkillBase CreateDummySkill(string skillName)
-    //{
-    //    // Create a dummy skill. Replace this with actual skill instances.
-    //    return new FireballSkill(); // Replace with the actual skill you want to use
-    //}
 
     private void Update()
     {
