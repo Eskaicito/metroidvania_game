@@ -31,10 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sprite & Flip")]
     private bool facingRight = true;
-    private SpriteRenderer spriteRenderer;
+
 
     [Header("Animation")]
-    public Animator animator;  // Referencia al Animator
+    public Animator animator;  
 
     public Rigidbody2D rb;
     private float horizontalInput;
@@ -52,17 +52,17 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+      
     }
 
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        // Actualizar la animación de estar en el suelo
+      
         animator.SetBool("IsGrounded", isGrounded);
 
-        // Saltar
+        
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        // Animaciones de salto y caída
+      
         if (rb.velocity.y > 0 && !isGrounded)
         {
             animator.SetBool("IsJumping", true);
@@ -103,16 +103,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsFalling", false);
         }
 
-        // Movimiento horizontal
+        
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        // Actualizar animación de velocidad (Idle vs Movimiento)
+       
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
-        // Gestión de flip del sprite
+       
         HandleSpriteFlip();
 
-        // Dash
+       
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= dashCooldownTime)
         {
             StartDash();
@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
         dashTime = dashDuration;
         dashCooldownTime = Time.time + dashCooldown;
         rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, rb.velocity.y);
-        animator.SetTrigger("Dash"); // Si tienes una animación de dash
+        animator.SetTrigger("Dash"); 
     }
 
     void EndDash()
@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         isJumping = true;
-        animator.SetBool("IsJumping", true);  // Activar la animación de salto
+        animator.SetBool("IsJumping", true);
         float jumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(Physics2D.gravity.y) * jumpHeight);
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
 

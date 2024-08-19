@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 147119591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.271, y: 0, z: 0}
+  m_LocalPosition: {x: 0.133, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,7 +200,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -737,7 +737,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 17.1181
+  orthographic size: 5.82
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -762,7 +762,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10488033, y: -0.03618002, z: -10}
+  m_LocalPosition: {x: -7.700846, y: 1.49903, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -825,6 +825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595932114}
+  - component: {fileID: 595932115}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -847,6 +848,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &595932115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595932113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bcc4a141cea8844b853731b230149f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 1315573893}
+  playerTransform: {fileID: 988380350}
+  minYSpeed: -5
+  maxYSpeed: 5
+  maxDamping: 3
+  minDamping: 0.5
+  transitionTime: 0.3
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,7 +1414,7 @@ Transform:
   m_GameObject: {fileID: 988380348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.17, y: 0.68, z: 0}
+  m_LocalPosition: {x: -8.17, y: 1.5, z: 0}
   m_LocalScale: {x: 3.1136, y: 3.1136, z: 3.1136}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1499,19 +1519,17 @@ MonoBehaviour:
   attackDamage: 10
   comboWindow: 1
   maxCombo: 3
-  attackRadius: 0.8
+  attackRadius: 0.9
   attackPoint: {fileID: 147119592}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   animator: {fileID: 988380354}
   attackDurations:
-  - 0.3
-  - 0.35
-  - 0.4
-  cameraShake: {fileID: 0}
-  shakeIntensity: 0.11
-  shakeDuration: 0.2
+  - 0.1
+  - 0.1
+  - 0.1
+  hitstopDuration: 0.1
 --- !u!70 &988380356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1885,7 +1903,7 @@ Transform:
   m_GameObject: {fileID: 1306702941}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.6, y: 0, z: 0}
   m_LocalScale: {x: 2.0500941, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1931,7 +1949,7 @@ MonoBehaviour:
   m_Follow: {fileID: 988380350}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 17.1181
+    OrthographicSize: 5.82
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1957,7 +1975,7 @@ Transform:
   m_GameObject: {fileID: 1315573892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.170002, y: 0.67999953, z: -10}
+  m_LocalPosition: {x: -8.170001, y: 1.4999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
