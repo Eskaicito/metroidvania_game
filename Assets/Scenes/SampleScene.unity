@@ -1529,7 +1529,7 @@ MonoBehaviour:
   - 0.1
   - 0.1
   - 0.1
-  hitstopDuration: 0.1
+  hitstopDuration: 0.2
 --- !u!70 &988380356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
