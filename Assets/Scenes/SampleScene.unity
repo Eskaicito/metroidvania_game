@@ -864,7 +864,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.700846, y: 1.49903, z: -10}
+  m_LocalPosition: {x: -8.17, y: 1.4999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   - 0.1
   - 0.1
   - 0.1
-  hitstopDuration: 0.15
+  hitstopDuration: 0.1
 --- !u!70 &988380356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2257,7 +2257,7 @@ Transform:
   m_GameObject: {fileID: 1315573892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.170001, y: 1.4999998, z: -10}
+  m_LocalPosition: {x: -8.17, y: 1.4999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2671,8 +2671,6 @@ MonoBehaviour:
   wheelImage: {fileID: 1694069694}
   wheelRadius: 200
   skillHighlightSize: 2
-  initialSkillSprites:
-  - {fileID: 0}
 --- !u!1 &1694069692
 GameObject:
   m_ObjectHideFlags: 0
