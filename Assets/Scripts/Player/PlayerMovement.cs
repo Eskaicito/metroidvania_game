@@ -99,8 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (rb.velocity.y < 0 && !isGrounded)
         {
-            //animator.SetBool("IsFalling", true);
-            //animator.SetBool("IsJumping", false);
+            
             ChangeAnimationState(FALL);
         }
         else if (horizontalInput != 0 && isGrounded)
@@ -111,18 +110,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeAnimationState(IDLE);
         }
-        //else
-        //{
-        //    animator.SetBool("IsJumping", false);
-        //    animator.SetBool("IsFalling", false);
-        //}
-
+       
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
        
-        //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-
+      
        
         HandleSpriteFlip();
 
@@ -165,14 +158,7 @@ public class PlayerMovement : MonoBehaviour
             );
         }
 
-        //if(horizontalInput > 0 || horizontalInput < 0)
-        //{
-        //    ChangeAnimationState(RUN);
-        //}
-        //else if(horizontalInput == 0 && isGrounded) 
-        //{
-        //    ChangeAnimationState(IDLE);
-        //}
+       
     }
 
     void StartDash()
@@ -181,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
         dashTime = dashDuration;
         dashCooldownTime = Time.time + dashCooldown;
         rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, rb.velocity.y);
-        //animator.SetTrigger("Dash"); 
+     
     }
 
     void EndDash()
