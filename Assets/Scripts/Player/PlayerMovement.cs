@@ -29,15 +29,21 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public bool isGrounded;
 
+
     [Header("Sprite & Flip")]
     private bool facingRight = true;
 
 
     [Header("Animation")]
-    public Animator animator;  
+    public Animator animator;
+    private string currentState;
+    const string IDLE = "Idle";
+    const string RUN = "Run";
+    const string JUMP = "Jump";
+    const string FALL = "Fall";
 
     public Rigidbody2D rb;
-    private float horizontalInput;
+    public float horizontalInput;
     private float velocityXSmoothing;
     private bool isJumping;
 
@@ -59,8 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-      
-        animator.SetBool("IsGrounded", isGrounded);
+     
 
         
         if (isGrounded)
@@ -89,25 +94,34 @@ public class PlayerMovement : MonoBehaviour
       
         if (rb.velocity.y > 0 && !isGrounded)
         {
-            animator.SetBool("IsJumping", true);
-            animator.SetBool("IsFalling", false);
+            
+            ChangeAnimationState(JUMP);
         }
         else if (rb.velocity.y < 0 && !isGrounded)
         {
-            animator.SetBool("IsFalling", true);
-            animator.SetBool("IsJumping", false);
+            //animator.SetBool("IsFalling", true);
+            //animator.SetBool("IsJumping", false);
+            ChangeAnimationState(FALL);
         }
-        else
+        else if (horizontalInput != 0 && isGrounded)
         {
-            animator.SetBool("IsJumping", false);
-            animator.SetBool("IsFalling", false);
+            ChangeAnimationState(RUN);
         }
+        else if (horizontalInput == 0 && isGrounded)
+        {
+            ChangeAnimationState(IDLE);
+        }
+        //else
+        //{
+        //    animator.SetBool("IsJumping", false);
+        //    animator.SetBool("IsFalling", false);
+        //}
 
-        
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
        
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
        
         HandleSpriteFlip();
@@ -150,6 +164,15 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity.y
             );
         }
+
+        //if(horizontalInput > 0 || horizontalInput < 0)
+        //{
+        //    ChangeAnimationState(RUN);
+        //}
+        //else if(horizontalInput == 0 && isGrounded) 
+        //{
+        //    ChangeAnimationState(IDLE);
+        //}
     }
 
     void StartDash()
@@ -158,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         dashTime = dashDuration;
         dashCooldownTime = Time.time + dashCooldown;
         rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, rb.velocity.y);
-        animator.SetTrigger("Dash"); 
+        //animator.SetTrigger("Dash"); 
     }
 
     void EndDash()
@@ -169,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         isJumping = true;
-        animator.SetBool("IsJumping", true);
+        ChangeAnimationState(JUMP);
         float jumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(Physics2D.gravity.y) * jumpHeight);
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
 
@@ -209,5 +232,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+
+        if (currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
     }
 }

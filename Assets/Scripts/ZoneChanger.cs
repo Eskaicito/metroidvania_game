@@ -13,9 +13,16 @@ public class ZoneChanger : MonoBehaviour
 
     private void Start()
     {
+        // Asegúrate de que la imagen esté desactivada al inicio
+        if (fadeImage != null)
+        {
+            fadeImage.gameObject.SetActive(false);
+        }
+
         if (_connection == LevelConnection.ActiveConnecttion)
         {
             FindObjectOfType<PlayerMovement>().transform.position = _spawnPoint.position;
+            StartCoroutine(FadeIn()); // Fade in si es la escena correcta
         }
     }
 
@@ -30,26 +37,33 @@ public class ZoneChanger : MonoBehaviour
 
     private IEnumerator TransitionToZone()
     {
-        // Fundido a negro si está habilitado
+        // Activar la imagen negra y hacer el fade out
         if (fadeImage != null)
         {
-            yield return StartCoroutine(FadeOut());
-        }
+            fadeImage.gameObject.SetActive(true);
 
-        // Cargar pantalla de carga si está definida
-        if (!string.IsNullOrEmpty(_connection.loadingScreenSceneName))
-        {
-            SceneManager.LoadScene(_connection.loadingScreenSceneName);
-            yield return null;  // Esperar un frame para cargar
+            yield return StartCoroutine(FadeOut());
         }
 
         // Cargar la nueva zona
         SceneManager.LoadScene(_targetZoneName);
 
-        // Fundido desde negro al cargar la nueva zona
+        // Esperar un frame para que la nueva escena cargue
+        yield return null;
+
+        // Reposicionar al jugador en la nueva zona
+        var player = FindObjectOfType<PlayerMovement>();
+        if (player != null)
+        {
+            player.transform.position = _spawnPoint.position;
+        }
+
+        // Hacer el fade in y luego desactivar la imagen
         if (fadeImage != null)
         {
             yield return StartCoroutine(FadeIn());
+            fadeImage.gameObject.SetActive(false);
+            Destroy(fadeImage.gameObject);  // Destruir la imagen después del fade in
         }
     }
 
@@ -78,5 +92,4 @@ public class ZoneChanger : MonoBehaviour
             yield return null;
         }
     }
-
 }
