@@ -21,7 +21,12 @@ public class EnemyFactory : MonoBehaviour
     {
         if (idEnemies.TryGetValue(id, out Enemy enemy))
         {
-            return Instantiate(enemy);
+            Enemy instantiatedEnemy = Instantiate(enemy);
+            instantiatedEnemy.Name = enemy.Name;
+
+            Debug.Log("Bird y soldier creados");
+
+            return instantiatedEnemy;
         }
         return null;
     }
