@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class EnemyFactory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Enemy[] enemies;
+    private Dictionary<string, Enemy> idEnemies;
+
+    private void Awake()
     {
-        
+        idEnemies = new Dictionary<string, Enemy>();
+
+        foreach (Enemy enemy in enemies)
+        {
+            idEnemies.Add(enemy.Id, enemy);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Enemy Create(string id)
     {
-        
+        if (idEnemies.TryGetValue(id, out Enemy enemy))
+        {
+            return Instantiate(enemy);
+        }
+        return null;
     }
 }
