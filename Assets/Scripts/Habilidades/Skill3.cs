@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill3 : SkillBase
+public class Skill3 : MonoBehaviour, ISkill
 {
-    public override void Activate()
+    public void Activate()
     {
-        // Implementa la lógica para lanzar una bola de fuego
-        Debug.Log("Mamita Skill Activated");
+        Debug.Log("Skill3 Activated");
+        // Aquí podrías realizar configuraciones adicionales o mostrar un ícono
+    }
+
+    public void Use()
+    {
+        Debug.Log("Skill3 Used");
+        // Aquí implementas la acción que realiza la habilidad cuando se usa
     }
 }

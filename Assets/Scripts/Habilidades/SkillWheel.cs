@@ -1,20 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillWheel : MonoBehaviour
 {
-
     public static SkillWheel Instance;
     public Canvas skillWheelCanvas;
     public Image wheelImage;
-    public float wheelRadius = 200f; // Radio de la rueda de habilidades
-    public float skillHighlightSize = 1.2f; // Tamaño de la habilidad resaltada
-    public Dictionary<string, SkillBase> skills = new Dictionary<string, SkillBase>();
+    public float wheelRadius = 200f;
+    public float skillHighlightSize = 1.2f;
+    public Image activeSkillIconUI; // Referencia al ícono en la UI para mostrar la habilidad activa
+
+    private Dictionary<string, ISkill> skills = new Dictionary<string, ISkill>();
     private bool isWheelActive = false;
     private Image highlightedSkill;
-    private SkillBase selectedSkill;
+    private ISkill activeSkill;
     private RectTransform wheelRectTransform;
     private Vector2 wheelCenter;
     private List<SkillWheelButton> skillButtons = new List<SkillWheelButton>();
@@ -24,9 +24,8 @@ public class SkillWheel : MonoBehaviour
     {
         public string skillName;
         public Image skillIcon;
-        public SkillBase skillScript;
+        public ISkill skillScript;
     }
-
 
     private void Awake()
     {
@@ -43,13 +42,13 @@ public class SkillWheel : MonoBehaviour
     private void Start()
     {
         wheelRectTransform = wheelImage.rectTransform;
-        wheelCenter = wheelRectTransform.rect.size / 2f; // Center the wheel center
-
+        wheelCenter = wheelRectTransform.rect.size / 2f;
         skillWheelCanvas.enabled = false;
-
-        
+        if (activeSkillIconUI != null)
+        {
+            activeSkillIconUI.gameObject.SetActive(true);
+        }
     }
-
 
     private void Update()
     {
@@ -57,19 +56,27 @@ public class SkillWheel : MonoBehaviour
         {
             isWheelActive = !isWheelActive;
             skillWheelCanvas.enabled = isWheelActive;
-
-            // Pause or resume the game
             Time.timeScale = isWheelActive ? 0f : 1f;
+            if (!isWheelActive && activeSkillIconUI != null)
+            {
+                activeSkillIconUI.gameObject.SetActive(true);
+            }
         }
 
         if (isWheelActive)
         {
             HandleSkillWheel();
         }
+
+        if (Input.GetKeyDown(KeyCode.Z) && activeSkill != null)
+        {
+            activeSkill.Use();
+        }
     }
 
     private void HandleSkillWheel()
     {
+
         Vector2 mousePosition = Input.mousePosition;
         Vector2 wheelPosition = wheelRectTransform.position;
         Vector2 direction = mousePosition - wheelPosition;
@@ -87,15 +94,18 @@ public class SkillWheel : MonoBehaviour
             float angleDifference = Mathf.Abs(angle - buttonAngle);
             angleDifference = Mathf.Min(angleDifference, 360f - angleDifference);
 
+            // Debugging
+            Debug.Log($"Button Angle: {buttonAngle}, Mouse Angle: {angle}, Angle Difference: {angleDifference}");
+
             if (angleDifference < 360f / skillButtons.Count / 2)
             {
                 HighlightSkill(button.skillIcon);
-                if (Input.GetMouseButtonUp(1)) // Right-click release
+                if (Input.GetMouseButtonUp(1))
                 {
                     SelectSkill(button.skillName);
                     isWheelActive = false;
                     skillWheelCanvas.enabled = false;
-                    Time.timeScale = 1f; // Resume gameplay
+                    Time.timeScale = 1f;
                 }
             }
             else
@@ -125,36 +135,32 @@ public class SkillWheel : MonoBehaviour
     {
         if (skills.ContainsKey(skillName))
         {
-            selectedSkill = skills[skillName];
+            activeSkill = skills[skillName];
             Debug.Log("Selected skill: " + skillName);
-            // Set the selected skill as the active skill for the player
-            selectedSkill.Activate();
+            activeSkill.Activate();
+
+            // Mostrar el ícono de la habilidad activa en la UI
+            activeSkillIconUI.sprite = skillButtons.Find(button => button.skillName == skillName).skillIcon.sprite;
+
         }
     }
 
-    public void AddSkill(string skillName, SkillBase skillScript, Sprite skillSprite)
+    public void AddSkill(string skillName, ISkill skillScript, Sprite skillSprite)
     {
         if (!skills.ContainsKey(skillName))
         {
             skills.Add(skillName, skillScript);
 
-            // Create and position new skill icon
             GameObject skillObject = new GameObject(skillName);
             Image newSkillImage = skillObject.AddComponent<Image>();
             newSkillImage.sprite = skillSprite;
-            newSkillImage.transform.SetParent(wheelImage.transform, false); // Set the parent without affecting the local scale
-            newSkillImage.rectTransform.sizeDelta = new Vector2(50, 50); // Ajustar tamaño de íconos si es necesario
-            newSkillImage.rectTransform.pivot = new Vector2(0.5f, 0.5f); // Center the pivot
-
-            // Calculate position in a circular pattern
-            float angleStep = 360f / Mathf.Max(1, skillButtons.Count); // Ensure at least one angle step
-            float angle = skillButtons.Count * angleStep;
-            float radian = angle * Mathf.Deg2Rad;
-            newSkillImage.rectTransform.anchoredPosition = new Vector2(Mathf.Cos(radian) * wheelRadius, Mathf.Sin(radian) * wheelRadius);
+            newSkillImage.transform.SetParent(wheelImage.transform, false);
+            newSkillImage.rectTransform.sizeDelta = new Vector2(50, 50);
+            newSkillImage.rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
             skillButtons.Add(new SkillWheelButton { skillName = skillName, skillIcon = newSkillImage, skillScript = skillScript });
 
-            // Update all skill button positions after adding a new skill
+            // Actualiza posiciones después de añadir la habilidad
             UpdateSkillButtonPositions();
         }
     }
@@ -162,6 +168,8 @@ public class SkillWheel : MonoBehaviour
     private void UpdateSkillButtonPositions()
     {
         int numSkills = skillButtons.Count;
+        if (numSkills == 0) return;
+
         float angleStep = 360f / numSkills;
 
         for (int i = 0; i < numSkills; i++)
@@ -172,5 +180,10 @@ public class SkillWheel : MonoBehaviour
 
             skillButtons[i].skillIcon.rectTransform.anchoredPosition = position;
         }
+    }
+
+    public ISkill GetActiveSkill()
+    {
+        return activeSkill;
     }
 }
