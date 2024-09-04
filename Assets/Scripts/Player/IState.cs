@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IState
 {
-    void UpdateState(PlayerMovement player);
+    void Enter();
+    void Exit();
+    void UpdateState();
 }
