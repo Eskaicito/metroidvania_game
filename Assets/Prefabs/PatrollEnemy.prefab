@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7382c83d9647eed4bbf77234413d0bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 50
   id: Patroller
-  Name: Soldier Guy

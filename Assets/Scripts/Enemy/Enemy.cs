@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
 {
     public float health = 50f;
 
+    [SerializeField] string id;
+
+    public string Id => id;
+
     public void TakeDamage(float damage)
     {
    
