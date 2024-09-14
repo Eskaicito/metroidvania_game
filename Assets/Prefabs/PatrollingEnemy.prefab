@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  detectionRange: 10
+  isPlayerInRange: 0
+  player: {fileID: 0}
+  speed: 3
   id: Patrolling
 --- !u!212 &2429401340163981742
 SpriteRenderer:

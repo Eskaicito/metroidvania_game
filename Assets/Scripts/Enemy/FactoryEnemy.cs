@@ -7,6 +7,7 @@ public class FactoryEnemy : MonoBehaviour
     [SerializeField] List<Enemy> enemyList;
     private Dictionary<string , Enemy> idEnemies;
 
+
     private void Awake()
     {
         idEnemies = new Dictionary<string , Enemy>();

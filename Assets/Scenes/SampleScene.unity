@@ -788,7 +788,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  id: 
+  detectionRange: 10
+  isPlayerInRange: 1
+  player: {fileID: 988380350}
+  speed: 3
+  id: Patrolling
 --- !u!61 &500499359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1640,6 +1644,7 @@ GameObject:
   - component: {fileID: 988380349}
   - component: {fileID: 988380355}
   - component: {fileID: 988380351}
+  - component: {fileID: 988380357}
   - component: {fileID: 988380353}
   - component: {fileID: 988380354}
   - component: {fileID: 988380356}
@@ -1861,6 +1866,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0064002573, y: -0.008000225}
   m_Size: {x: 0.3928005, y: 0.5960005}
   m_Direction: 0
+--- !u!114 &988380357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988380348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acfa4f6ed58c854ab0d9343267a7323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 988380350}
 --- !u!1 &1034019701
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  detectionRange: 10
+  isPlayerInRange: 0
+  player: {fileID: 0}
+  speed: 3
   id: Flying
 --- !u!212 &751848202872002127
 SpriteRenderer:
