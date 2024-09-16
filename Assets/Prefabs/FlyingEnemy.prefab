@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 751848202872002127}
   - component: {fileID: 4112208023186743470}
   - component: {fileID: -8291122324748839409}
-  - component: {fileID: -5015648241322926068}
+  - component: {fileID: 5451543832837064061}
   m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Untagged
@@ -50,9 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   damage: 10
-  attackCooldown: 4
-  detectionRange: 3
-  attackRange: 1.5
+  attackCooldown: 2.5
+  detectionRange: 2
+  attackRange: 2
   isPlayerInRange: 0
   speed: 3
   id: Flying
@@ -181,8 +181,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-5015648241322926068
-CircleCollider2D:
+--- !u!70 &5451543832837064061
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,6 +213,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11728859, y: 0.025133133}
-  serializedVersion: 2
-  m_Radius: 2
+  m_Offset: {x: 0.0047752857, y: 0.043549478}
+  m_Size: {x: 3.9733691, y: 4.01787}
+  m_Direction: 0

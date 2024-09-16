@@ -10,9 +10,6 @@ public class HealthBar : MonoBehaviour
     public float ActualHealth;
     public float HealthMax;
 
-  
-
-    
     void Update()
     {
         healthBar.fillAmount = ActualHealth / HealthMax;
