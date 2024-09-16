@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4810039215693415045}
   - component: {fileID: 2429401340163981742}
   - component: {fileID: 9105045257264063951}
+  - component: {fileID: 6289710365347982710}
   m_Layer: 7
   m_Name: PatrollingEnemy
   m_TagString: Untagged
@@ -47,9 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  damage: 10
+  attackCooldown: 4
   speed: 3
   id: Patrolling
   healthPotion: {fileID: 6591945127455573355, guid: 656fc0fe1d3601641af8586b99b76b67, type: 3}
+  detectionRange: 3
+  isPlayerInRange: 0
 --- !u!212 &2429401340163981742
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -147,3 +152,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &6289710365347982710
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213565434593496199}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09873557, y: 0}
+  serializedVersion: 2
+  m_Radius: 2

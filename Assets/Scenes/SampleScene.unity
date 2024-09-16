@@ -788,9 +788,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  damage: 10
+  attackCooldown: 4
   speed: 3
   id: Patrolling
   healthPotion: {fileID: 6591945127455573355, guid: 656fc0fe1d3601641af8586b99b76b67, type: 3}
+  detectionRange: 3
+  isPlayerInRange: 0
 --- !u!61 &500499359
 BoxCollider2D:
   m_ObjectHideFlags: 0

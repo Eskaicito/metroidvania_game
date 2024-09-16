@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float health;
 
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float attackCooldown = 4f;
+    [SerializeField] private float attackCooldown = 2f;
     private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
@@ -23,19 +23,50 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(isPlayerInRange && Time.time >= nextAttackTime)
+        Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
+
+        if (isPlayerInRange)
         {
-            AttackPlayer();
-            nextAttackTime = Time.time + attackCooldown;
+            if(Time.time >= nextAttackTime)
+            {
+                AttackPlayer();
+                nextAttackTime = Time.time + attackCooldown;
+            }
+            
         }
     }
 
     private void AttackPlayer()
     {
-        GameObject player = GetComponent<GameObject>();
+        Debug.Log("Attempting to attack player.");
+
+        GameObject player = GameObject.FindWithTag("Player");
         if(player != null)
         {
+            Player playerHealth = player.GetComponent<Player>();
+            if(playerHealth != null)
+            {
+                playerHealth.TakeDamage((int)damage);
+                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.currentHealth);
+            }
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+            Debug.Log("Player entro en rango");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+            Debug.Log("Player salio del rango");
         }
     }
 
