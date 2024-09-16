@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
+        //Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
 
         if (isPlayerInRange)
         {
