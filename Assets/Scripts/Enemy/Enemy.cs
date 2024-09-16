@@ -6,9 +6,14 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
 
+    private Player player;
+
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackCooldown = 2f;
     private float nextAttackTime;
+    [SerializeField] private float detectionRange = 5f;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private bool isPlayerInRange = false;
 
     [SerializeField] float speed = 3f;
     public float Speed => speed; // Propiedad
@@ -18,27 +23,23 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public GameObject healthPotion;
 
-    [SerializeField] private float detectionRange = 3f;
-    [SerializeField] private bool isPlayerInRange = false;
 
     private void Update()
     {
-        Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
-
-        if (isPlayerInRange)
+        if (isPlayerInRange && player != null)
         {
-            if(Time.time >= nextAttackTime)
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
             {
                 AttackPlayer();
                 nextAttackTime = Time.time + attackCooldown;
             }
-            
         }
     }
 
     private void AttackPlayer()
     {
-        Debug.Log("Attempting to attack player.");
+        //Debug.Log("Attempting to attack player.");
 
         GameObject player = GameObject.FindWithTag("Player");
         if(player != null)
@@ -120,6 +121,14 @@ public class Enemy : MonoBehaviour
                 nextAttackTime = Time.time + attackCooldown;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange); // Rango de detección
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange); // Rango de ataque
     }
 
 
