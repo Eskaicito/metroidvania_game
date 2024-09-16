@@ -7,6 +7,8 @@ public class FactoryEnemy : MonoBehaviour
     [SerializeField] List<Enemy> enemyList;
     private Dictionary<string , Enemy> idEnemies;
 
+    [SerializeField] private GameObject healthPotion;
+
 
     private void Awake()
     {
@@ -22,8 +24,11 @@ public class FactoryEnemy : MonoBehaviour
     {
         if(idEnemies.TryGetValue(id, out Enemy enemy))
         {
-            return Instantiate(enemy);
+            Enemy newEnemy = Instantiate(enemy);
             
+            newEnemy.healthPotion = healthPotion;
+
+            return newEnemy;
         }
         return null;
 

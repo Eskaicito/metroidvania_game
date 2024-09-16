@@ -5,12 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
-    [SerializeField] private float detectionRange = 10f;
-    [SerializeField] bool isPlayerInRange;
 
-    [SerializeField] public Transform player;
-    public Transform Player => player; // Propiedad
-
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float attackCooldown = 2f;
+    private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
     public float Speed => speed; // Propiedad
@@ -18,45 +16,57 @@ public class Enemy : MonoBehaviour
     [SerializeField] string id;
     public string Id => id; // Propiedad
 
-    private void Start()
+    [SerializeField] public GameObject healthPotion;
+
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private bool isPlayerInRange = false;
+
+    private void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+        Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
 
-
-    public virtual void DetectPlayer()
-    {
-        // Dirección hacia el jugador
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-
-        // Crear un raycast desde la posición del enemigo en la dirección del jugador
-        RaycastHit hit;
-
-        // Si el rayo impacta algo dentro del rango de detección
-        if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
-        {
-            // Si el rayo golpea al jugador
-            if (hit.collider.CompareTag("Player")) // Asegúrate de que el jugador tiene la etiqueta "Player"
-            {
-                isPlayerInRange = true;
-            }
-            else
-            {
-                isPlayerInRange = false;
-            }
-        }
-        else
-        {
-            isPlayerInRange = false;
-        }
-    }
-
-    public void Update()
-    {
-        DetectPlayer();
         if (isPlayerInRange)
         {
-            Move();
+            if(Time.time >= nextAttackTime)
+            {
+                AttackPlayer();
+                nextAttackTime = Time.time + attackCooldown;
+            }
+            
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        Debug.Log("Attempting to attack player.");
+
+        GameObject player = GameObject.FindWithTag("Player");
+        if(player != null)
+        {
+            Player playerHealth = player.GetComponent<Player>();
+            if(playerHealth != null)
+            {
+                playerHealth.TakeDamage((int)damage);
+                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.currentHealth);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+            Debug.Log("Player entro en rango");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+            Debug.Log("Player salio del rango");
         }
     }
 
@@ -81,11 +91,37 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy died!");
 
         Destroy(gameObject);
+
+        DropHealthPotion();
     }
 
-    public virtual void Move()
+    public void DropHealthPotion()
     {
-
+        if(healthPotion != null)
+        {
+            Instantiate(healthPotion, transform.position, Quaternion.identity);
+        }
+       
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (Time.time >= nextAttackTime)
+            {
+                Player player = collision.gameObject.GetComponent<Player>();
+
+                if (player != null)
+                {
+                    player.TakeDamage((int)damage);
+                    Debug.Log("Enemy attacked player for " + damage + "damage. Players current health: " + player.currentHealth);
+                }
+
+                nextAttackTime = Time.time + attackCooldown;
+            }
+        }
+    }
+
+
 
 }
