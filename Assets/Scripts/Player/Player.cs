@@ -2,50 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Player : MonoBehaviour
 {
-    public int maxHealth = 50;
-    public int currentHealth;
-
-    
-    public HealthBar healthBar;
+    // Referencia al ScriptableObject
+    public PlayerHealthData playerHealthData;
 
     private void Start()
     {
-        currentHealth = maxHealth;
-
-        
-        healthBar.HealthMax = maxHealth;
-        healthBar.ActualHealth = currentHealth;
+        // Si es la primera vez que se carga el jugador, aseguramos que su vida actual es igual a la máxima
+        if (playerHealthData.currentHealth <= 0)
+        {
+            playerHealthData.currentHealth = playerHealthData.maxHealth;
+        }
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
+        playerHealthData.currentHealth += amount;
 
-        if (currentHealth > maxHealth)
+        if (playerHealthData.currentHealth > playerHealthData.maxHealth)
         {
-            currentHealth = maxHealth;
+            playerHealthData.currentHealth = playerHealthData.maxHealth;
         }
 
-        
-        healthBar.ActualHealth = currentHealth;
-
-        Debug.Log("Salud del jugador: " + currentHealth);
+        Debug.Log("Salud del jugador: " + playerHealthData.currentHealth);
     }
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        playerHealthData.currentHealth -= amount;
 
-        if (currentHealth < 0)
+        if (playerHealthData.currentHealth < 0)
         {
-            currentHealth = 0;
+            playerHealthData.currentHealth = 0;
         }
 
-        
-        healthBar.ActualHealth = currentHealth;
-
-        Debug.Log("Salud del jugador: " + currentHealth);
+        Debug.Log("Salud del jugador: " + playerHealthData.currentHealth);
     }
 }
