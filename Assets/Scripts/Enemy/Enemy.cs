@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] string id;
     public string Id => id; // Propiedad
 
+    [SerializeField] public GameObject healthPotion;
+
     private void Start()
     {
        
@@ -38,6 +40,20 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy died!");
 
         Destroy(gameObject);
+
+        DropHealthPotion();
+    }
+
+    public void DropHealthPotion()
+    {
+        if(healthPotion != null)
+        {
+            Instantiate(healthPotion, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("Potion not assigned to insp");
+        }
     }
 
    

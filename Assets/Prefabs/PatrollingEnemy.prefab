@@ -47,11 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  detectionRange: 10
-  isPlayerInRange: 0
-  player: {fileID: 0}
   speed: 3
   id: Patrolling
+  healthPotion: {fileID: 6591945127455573355, guid: 656fc0fe1d3601641af8586b99b76b67, type: 3}
 --- !u!212 &2429401340163981742
 SpriteRenderer:
   m_ObjectHideFlags: 0

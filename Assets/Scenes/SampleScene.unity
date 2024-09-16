@@ -790,6 +790,7 @@ MonoBehaviour:
   health: 50
   speed: 3
   id: Patrolling
+  healthPotion: {fileID: 6591945127455573355, guid: 656fc0fe1d3601641af8586b99b76b67, type: 3}
 --- !u!61 &500499359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1531,7 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acfa4f6ed58c854ab0d9343267a7323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 988380350}
+  maxHealth: 50
+  currentHealth: 50
 --- !u!1 &1143027244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,6 +2632,7 @@ MonoBehaviour:
   enemyList:
   - {fileID: 1370611554570292858, guid: 6133b2a957dd9c64caf52d746a4c0b97, type: 3}
   - {fileID: 4810039215693415045, guid: 6eccee49a26c7e7459c072198eb1f5c8, type: 3}
+  healthPotion: {fileID: 6591945127455573355, guid: 656fc0fe1d3601641af8586b99b76b67, type: 3}
 --- !u!4 &2032717240
 Transform:
   m_ObjectHideFlags: 0
