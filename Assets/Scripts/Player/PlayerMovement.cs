@@ -101,24 +101,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
       
-        //if (rb.velocity.y > 0 && !isGrounded)
-        //{
-            
-        //    ChangeAnimationState(JUMP);
-        //}
-        //else if (rb.velocity.y < 0 && !isGrounded)
-        //{
-            
-        //    ChangeAnimationState(FALL);
-        //}
-        //else if (horizontalInput != 0 && isGrounded)
-        //{
-        //    ChangeAnimationState(RUN);
-        //}
-        //else if (horizontalInput == 0 && isGrounded)
-        //{
-        //    ChangeAnimationState(IDLE);
-        //}
        
 
         horizontalInput = Input.GetAxisRaw("Horizontal");

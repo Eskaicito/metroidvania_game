@@ -7,12 +7,19 @@ public class Player : MonoBehaviour
     public int maxHealth = 50;
     public int currentHealth;
 
+    
+    public HealthBar healthBar;
+
     private void Start()
     {
         currentHealth = maxHealth;
+
+        
+        healthBar.HealthMax = maxHealth;
+        healthBar.ActualHealth = currentHealth;
     }
 
-    public void Heal (int amount)
+    public void Heal(int amount)
     {
         currentHealth += amount;
 
@@ -21,8 +28,12 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
 
+        
+        healthBar.ActualHealth = currentHealth;
+
         Debug.Log("Salud del jugador: " + currentHealth);
     }
+
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -32,7 +43,8 @@ public class Player : MonoBehaviour
             currentHealth = 0;
         }
 
-        //healthBar.SetHealth(currentHealth);
+        
+        healthBar.ActualHealth = currentHealth;
 
         Debug.Log("Salud del jugador: " + currentHealth);
     }
