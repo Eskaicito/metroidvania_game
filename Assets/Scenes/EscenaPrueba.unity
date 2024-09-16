@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 320745341}
   - component: {fileID: 320745340}
   - component: {fileID: 320745339}
+  - component: {fileID: 320745344}
   - component: {fileID: 320745343}
   - component: {fileID: 320745338}
   - component: {fileID: 320745337}
@@ -755,8 +756,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 341193330}
-  ActualHealth: 100
-  HealthMax: 100
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
+--- !u!114 &320745344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320745335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acfa4f6ed58c854ab0d9343267a7323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
 --- !u!114 &341193330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3331822619507800051, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}

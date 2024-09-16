@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
@@ -23,31 +24,26 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Update called. isPlayerInRange: " + isPlayerInRange);
-
         if (isPlayerInRange)
         {
-            if(Time.time >= nextAttackTime)
+            if (Time.time >= nextAttackTime)
             {
                 AttackPlayer();
                 nextAttackTime = Time.time + attackCooldown;
             }
-            
         }
     }
 
     private void AttackPlayer()
     {
-        Debug.Log("Attempting to attack player.");
-
         GameObject player = GameObject.FindWithTag("Player");
-        if(player != null)
+        if (player != null)
         {
             Player playerHealth = player.GetComponent<Player>();
-            if(playerHealth != null)
+            if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
-                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.currentHealth);
+                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.playerHealthData.currentHealth);
             }
         }
     }
@@ -72,13 +68,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-   
         health -= damage;
-
-        
         Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
 
-       
         if (health <= 0)
         {
             Die();
@@ -87,7 +79,6 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-   
         Debug.Log("Enemy died!");
 
         Destroy(gameObject);
@@ -97,12 +88,12 @@ public class Enemy : MonoBehaviour
 
     public void DropHealthPotion()
     {
-        if(healthPotion != null)
+        if (healthPotion != null)
         {
             Instantiate(healthPotion, transform.position, Quaternion.identity);
         }
-       
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -114,14 +105,11 @@ public class Enemy : MonoBehaviour
                 if (player != null)
                 {
                     player.TakeDamage((int)damage);
-                    Debug.Log("Enemy attacked player for " + damage + "damage. Players current health: " + player.currentHealth);
+                    Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
                 }
 
                 nextAttackTime = Time.time + attackCooldown;
             }
         }
     }
-
-
-
 }

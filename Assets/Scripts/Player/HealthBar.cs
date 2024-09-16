@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class HealthBar : MonoBehaviour
 {
     public Image healthBar;
+    public PlayerHealthData playerHealthData;
 
-    public float ActualHealth;
-    public float HealthMax;
-
-  
-
-    
     void Update()
     {
-        healthBar.fillAmount = ActualHealth / HealthMax;
-
+        healthBar.fillAmount = (float)playerHealthData.currentHealth / playerHealthData.maxHealth;
     }
 }

@@ -1537,9 +1537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acfa4f6ed58c854ab0d9343267a7323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 50
-  healthBar: {fileID: 988380358}
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
 --- !u!114 &988380358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,8 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1862575210}
-  ActualHealth: 50
-  HealthMax: 50
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
 --- !u!1 &1143027244
 GameObject:
   m_ObjectHideFlags: 0
