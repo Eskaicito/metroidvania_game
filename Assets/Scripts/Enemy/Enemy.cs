@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
 
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float attackCooldown = 4f;
+    private float nextAttackTime;
+
     [SerializeField] float speed = 3f;
     public float Speed => speed; // Propiedad
 
@@ -14,9 +18,25 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public GameObject healthPotion;
 
-    private void Start()
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private bool isPlayerInRange = false;
+
+    private void Update()
     {
-       
+        if(isPlayerInRange && Time.time >= nextAttackTime)
+        {
+            AttackPlayer();
+            nextAttackTime = Time.time + attackCooldown;
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        GameObject player = GetComponent<GameObject>();
+        if(player != null)
+        {
+
+        }
     }
 
     public void TakeDamage(float damage)
@@ -50,12 +70,27 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(healthPotion, transform.position, Quaternion.identity);
         }
-        else
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.LogWarning("Potion not assigned to insp");
+            if (Time.time >= nextAttackTime)
+            {
+                Player player = collision.gameObject.GetComponent<Player>();
+
+                if (player != null)
+                {
+                    player.TakeDamage((int)damage);
+                    Debug.Log("Enemy attacked player for " + damage + "damage. Players current health: " + player.currentHealth);
+                }
+
+                nextAttackTime = Time.time + attackCooldown;
+            }
         }
     }
 
-   
+
 
 }

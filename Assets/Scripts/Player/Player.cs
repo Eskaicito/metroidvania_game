@@ -9,15 +9,30 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = 50;
+        currentHealth = maxHealth;
     }
 
     public void Heal (int amount)
     {
+        currentHealth += amount;
+
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
+
+        Debug.Log("Salud del jugador: " + currentHealth);
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        //healthBar.SetHealth(currentHealth);
 
         Debug.Log("Salud del jugador: " + currentHealth);
     }

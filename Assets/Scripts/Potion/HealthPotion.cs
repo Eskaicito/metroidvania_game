@@ -15,6 +15,7 @@ public class HealthPotion : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.Heal(healthAmount);
+                Debug.Log("Player healed by " + healthAmount + ". Current Health: " + playerHealth.currentHealth);
                 Destroy(gameObject);
             }
         }
