@@ -110,9 +110,11 @@ public class PlayerCombat : MonoBehaviour
     // Método visual para dibujar el radio de ataque en el editor
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius); // Rango de detección
+        
+        
     }
 }
+
+

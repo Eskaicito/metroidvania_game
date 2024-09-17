@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private bool isPlayerInRange = false;
     private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
@@ -19,8 +22,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public GameObject healthPotion;
 
-    [SerializeField] private float detectionRange = 3f;
-    [SerializeField] private bool isPlayerInRange = false;
 
     private void Update()
     {
@@ -96,20 +97,33 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Vector2.Distance(transform.position, collision.transform.position) <= attackRange)
         {
-            if (Time.time >= nextAttackTime)
+            if (collision.gameObject.CompareTag("Player"))
             {
-                Player player = collision.gameObject.GetComponent<Player>();
-
-                if (player != null)
+                if (Time.time >= nextAttackTime)
                 {
-                    player.TakeDamage((int)damage);
-                    Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
-                }
+                    Player player = collision.gameObject.GetComponent<Player>();
 
-                nextAttackTime = Time.time + attackCooldown;
+                    if (player != null)
+                    {
+                        player.TakeDamage((int)damage);
+                        Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
+                    }
+
+                    nextAttackTime = Time.time + attackCooldown;
+                }
             }
+
         }
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange); // Rango de detección
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange); // Rango de ataque
     }
 }
