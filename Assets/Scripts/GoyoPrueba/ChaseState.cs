@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseState : MonoBehaviour
+public class ChaseState : IStateEnemy
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public EnemyGoyo enemyGoyo;
+
+    public ChaseState(EnemyGoyo enemyGoyo)
     {
-        
+        this.enemyGoyo = enemyGoyo;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EnterEnemyState()
     {
-        
+
+    }
+
+    public void UpdateEnemyState()
+    {
+
+    }
+
+    public void ExitEnemyState()
+    {
+
     }
 }

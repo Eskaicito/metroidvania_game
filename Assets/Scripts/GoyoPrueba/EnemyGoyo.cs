@@ -4,5 +4,21 @@ using UnityEngine;
 
 public class EnemyGoyo : MonoBehaviour
 {
-   
+    private EnemyStateMachine enemyStateMachine;
+    public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
+
+    public Transform[] waypoints;
+
+
+    private void Awake()
+    {
+        enemyStateMachine = new EnemyStateMachine(this);
+        enemyStateMachine.Initialize(enemyStateMachine.patrolState);
+    }
+
+    private void Update()
+    {
+        enemyStateMachine.UpdateState();
+        
+    }
 }
