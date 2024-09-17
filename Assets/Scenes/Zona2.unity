@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 313780430}
   - component: {fileID: 313780429}
   - component: {fileID: 313780428}
+  - component: {fileID: 313780433}
+  - component: {fileID: 313780432}
   - component: {fileID: 313780427}
   - component: {fileID: 313780426}
   - component: {fileID: 313780425}
@@ -258,7 +260,6 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   isGrounded: 0
   animator: {fileID: 313780426}
-  rb: {fileID: 313780427}
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
@@ -357,6 +358,33 @@ Transform:
   - {fileID: 1304861445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &313780432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313780424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4778d3de68757834a98cf70b1589a845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
+--- !u!114 &313780433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313780424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acfa4f6ed58c854ab0d9343267a7323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealthData: {fileID: 11400000, guid: b46ab34ba8503d745b74333f9e94c40e, type: 2}
 --- !u!1 &498228268
 GameObject:
   m_ObjectHideFlags: 0
