@@ -14,12 +14,12 @@ public class JumpState : IState
     public void Enter()
     {
         player.ChangeAnimationState(JUMP);
-        Debug.Log("Entering Jump");
+        
     }
 
     public void Exit()
     {
-        Debug.Log("Saliste de Jump");
+        
     }
 
     public void UpdateState()
