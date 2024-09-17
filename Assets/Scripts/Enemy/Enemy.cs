@@ -81,10 +81,10 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        DropPotion(); // Dropea una poción al morir
+        DropPotion(); 
     }
 
-    // Llama al factory para dropear una poción
+    
     public void DropPotion()
     {
         if (potionFactory != null)

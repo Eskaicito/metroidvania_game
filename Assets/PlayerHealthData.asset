@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 30
   maxEnergy: 50
-  currentEnergy: 0
+  currentEnergy: 20

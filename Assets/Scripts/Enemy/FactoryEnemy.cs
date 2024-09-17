@@ -7,7 +7,7 @@ public class FactoryEnemy : MonoBehaviour
     [SerializeField] List<Enemy> enemyList;
     private Dictionary<string , Enemy> idEnemies;
 
-    [SerializeField] private GameObject healthPotion;
+    //[SerializeField] private GameObject healthPotion;
 
 
     private void Awake()
@@ -26,7 +26,7 @@ public class FactoryEnemy : MonoBehaviour
         {
             Enemy newEnemy = Instantiate(enemy);
             
-            newEnemy.healthPotion = healthPotion;
+            //newEnemy.healthPotion = healthPotion;
 
             return newEnemy;
         }

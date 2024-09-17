@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Player : MonoBehaviour
 {
     // Referencia al ScriptableObject
@@ -11,25 +9,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        // Si es la primera vez que se carga el jugador, aseguramos que su vida y energía actual es igual a la máxima
-        if (playerHealthData.currentHealth <= 0)
-        {
-            playerHealthData.currentHealth = playerHealthData.maxHealth;
-        }
-
-        if (playerHealthData.currentEnergy <= 0)
-        {
-            playerHealthData.currentEnergy = playerHealthData.maxEnergy;
-        }
-    }
-
-    private void Update()
-    {
-        // Detectar si se presiona la tecla J para perder energía
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            UseEnergy(10); // Resta 10 puntos de energía al presionar J
-        }
+        // Reiniciar valores solo al iniciar el juego por primera vez, no al cambiar de escena
+        playerHealthData.InitializeValues();
     }
 
     public void Heal(int amount)

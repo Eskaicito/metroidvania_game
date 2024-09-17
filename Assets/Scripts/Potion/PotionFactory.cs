@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class PotionFactory : MonoBehaviour
 {
     // Referencias a los prefabs de las pociones
