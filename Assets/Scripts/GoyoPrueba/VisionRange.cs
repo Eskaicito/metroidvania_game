@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class VisionRange : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private EnemyYT enemyYT;
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            enemyYT.Attacking = true;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }
