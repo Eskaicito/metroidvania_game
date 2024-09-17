@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
-
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackCooldown = 2f;
     private float nextAttackTime;
@@ -17,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] string id;
     public string Id => id; // Propiedad
 
-    [SerializeField] public GameObject healthPotion;
+    [SerializeField] private PotionFactory potionFactory; // Referencia al factory
 
     [SerializeField] private float detectionRange = 3f;
     [SerializeField] private bool isPlayerInRange = false;
@@ -83,14 +81,15 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        DropHealthPotion();
+        DropPotion(); // Dropea una poción al morir
     }
 
-    public void DropHealthPotion()
+    // Llama al factory para dropear una poción
+    public void DropPotion()
     {
-        if (healthPotion != null)
+        if (potionFactory != null)
         {
-            Instantiate(healthPotion, transform.position, Quaternion.identity);
+            potionFactory.DropPotion(transform.position);
         }
     }
 
