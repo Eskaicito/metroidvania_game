@@ -9,4 +9,9 @@ public class PlayerHealthData : ScriptableObject
 {
     public int maxHealth = 50;
     public int currentHealth;
+
+    // Variables para la energía
+    public int maxEnergy = 100;
+    public int currentEnergy;
 }
+

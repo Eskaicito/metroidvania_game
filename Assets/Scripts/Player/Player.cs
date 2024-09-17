@@ -11,10 +11,24 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        // Si es la primera vez que se carga el jugador, aseguramos que su vida actual es igual a la máxima
+        // Si es la primera vez que se carga el jugador, aseguramos que su vida y energía actual es igual a la máxima
         if (playerHealthData.currentHealth <= 0)
         {
             playerHealthData.currentHealth = playerHealthData.maxHealth;
+        }
+
+        if (playerHealthData.currentEnergy <= 0)
+        {
+            playerHealthData.currentEnergy = playerHealthData.maxEnergy;
+        }
+    }
+
+    private void Update()
+    {
+        // Detectar si se presiona la tecla J para perder energía
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            UseEnergy(10); // Resta 10 puntos de energía al presionar J
         }
     }
 
@@ -40,5 +54,30 @@ public class Player : MonoBehaviour
         }
 
         Debug.Log("Salud del jugador: " + playerHealthData.currentHealth);
+    }
+
+    // Métodos para manipular la energía
+    public void UseEnergy(int amount)
+    {
+        playerHealthData.currentEnergy -= amount;
+
+        if (playerHealthData.currentEnergy < 0)
+        {
+            playerHealthData.currentEnergy = 0;
+        }
+
+        Debug.Log("Energía del jugador: " + playerHealthData.currentEnergy);
+    }
+
+    public void RestoreEnergy(int amount)
+    {
+        playerHealthData.currentEnergy += amount;
+
+        if (playerHealthData.currentEnergy > playerHealthData.maxEnergy)
+        {
+            playerHealthData.currentEnergy = playerHealthData.maxEnergy;
+        }
+
+        Debug.Log("Energía del jugador: " + playerHealthData.currentEnergy);
     }
 }
