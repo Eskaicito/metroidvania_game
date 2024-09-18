@@ -7,9 +7,7 @@ public class ChaseState : IStateEnemy
 {
 
     private EnemyGoyo enemyGoyo;
-    [SerializeField] private float chaseSpeed;
-    [SerializeField] private float visionRange;
-    [SerializeField] private float rayHeight;
+    [SerializeField] private float chaseSpeed = 5.0F;
     [SerializeField] private Transform playerTransform;
     
     
@@ -28,9 +26,28 @@ public class ChaseState : IStateEnemy
 
     public void UpdateEnemyState()
     {
+        if (enemyGoyo.PlayerTransform != null)
+        {
+            enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.patrolState);
+            return;
+        }
 
-       
+        MoveTowardsPlayer();
     }
+
+    private void MoveTowardsPlayer()
+    {
+        if (enemyGoyo.PlayerTransform == null)
+            return;
+
+        Vector2 targetPosition = enemyGoyo.PlayerTransform.position;
+        Vector2 currentPosition = enemyGoyo.transform.position;
+
+        // Mover hacia el jugador
+        Vector2 direction = (targetPosition - currentPosition).normalized;
+        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, targetPosition, chaseSpeed * Time.deltaTime);
+    }
+
 
     public void ExitEnemyState()
     {

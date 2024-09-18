@@ -1169,7 +1169,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &809687531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1227,9 +1227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3f71d1f3ab91d4888c4e3e1ae4c1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 911160812}
-  - {fileID: 1337320498}
   playerTransform: {fileID: 320745342}
   isPlayerInRange: 0
 --- !u!58 &809687533
