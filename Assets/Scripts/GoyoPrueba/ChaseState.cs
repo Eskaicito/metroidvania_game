@@ -8,11 +8,10 @@ public class ChaseState : IStateEnemy
 
     private EnemyGoyo enemyGoyo;
     [SerializeField] private float chaseSpeed = 5.0F;
+    [SerializeField] private float chaseDuration = 5.0f;
+    [SerializeField] private float chaseTimer = 0f;
     [SerializeField] private Transform playerTransform;
     
-    
-
-
     public ChaseState(EnemyGoyo enemyGoyo)
     {
         this.enemyGoyo = enemyGoyo;
@@ -22,30 +21,29 @@ public class ChaseState : IStateEnemy
     public void EnterEnemyState()
     {
         Debug.Log("Entrando a estado CHASE");
+        chaseTimer = chaseDuration;
     }
 
     public void UpdateEnemyState()
     {
         if (enemyGoyo.PlayerTransform != null)
         {
-            enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.patrolState);
-            return;
+            MoveTowardsPlayer();
         }
+         chaseTimer-= Time.deltaTime;
 
-        MoveTowardsPlayer();
+        if(chaseTimer <= 0)
+        {
+            enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.patrolState);
+        }
+        
     }
 
     private void MoveTowardsPlayer()
     {
-        if (enemyGoyo.PlayerTransform == null)
-            return;
-
-        Vector2 targetPosition = enemyGoyo.PlayerTransform.position;
+        Vector2 playerPosition = enemyGoyo.PlayerTransform.position;
         Vector2 currentPosition = enemyGoyo.transform.position;
-
-        // Mover hacia el jugador
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, targetPosition, chaseSpeed * Time.deltaTime);
+        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, playerPosition, chaseSpeed * Time.deltaTime);
     }
 
 

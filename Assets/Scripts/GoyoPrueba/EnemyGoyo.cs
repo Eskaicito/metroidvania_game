@@ -7,11 +7,14 @@ public class EnemyGoyo : MonoBehaviour
     private EnemyStateMachine enemyStateMachine;
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
-    //[SerializeField] private Transform[] waypoints;
-    //public Transform[] Waypoints => waypoints;
+    [SerializeField] private Transform[] waypoints;
+    public Transform[] Waypoints => waypoints;
 
     [SerializeField] private Transform playerTransform;
     public Transform PlayerTransform => playerTransform;
+
+     private float chaseDuration = 5.0f;
+     private float chaseTimer = 0f;
 
     public bool isPlayerInRange;
 
