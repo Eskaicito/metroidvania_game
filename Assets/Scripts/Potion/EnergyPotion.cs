@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyPotion : MonoBehaviour
+public class EnergyPotion : Potion, ICollectible
 {
-    public int energyAmount = 10; // Cantidad de energía que restaura la poción
+    public int energyAmount = 10; 
+    private Player playerEnergy;
+
+    private void Start()
+    {
+        playerEnergy = FindAnyObjectByType<Player>();
+    }
+    public void Collect()
+    {
+
+        if (playerEnergy != null)
+        {
+           
+            playerEnergy.RestoreEnergy(energyAmount);
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Player player = collision.GetComponent<Player>();
-            if (player != null)
-            {
-                // Restaura energía al jugador
-                player.RestoreEnergy(energyAmount);
-                Debug.Log("Player restored by " + energyAmount + " energy. Current Energy: " + player.playerHealthData.currentEnergy);
-
-                // Destruye la poción después de ser usada
-                Destroy(gameObject);
-            }
+          Collect();
         }
     }
 }

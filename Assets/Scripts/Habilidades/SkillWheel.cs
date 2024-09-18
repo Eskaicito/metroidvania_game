@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SkillWheel : MonoBehaviour
 {
-    public static SkillWheel Instance;
     public Canvas skillWheelCanvas;
     public Image wheelImage;
     public float wheelRadius = 200f;
@@ -19,6 +18,7 @@ public class SkillWheel : MonoBehaviour
     private Vector2 wheelCenter;
     private List<SkillWheelButton> skillButtons = new List<SkillWheelButton>();
 
+
     [System.Serializable]
     public class SkillWheelButton
     {
@@ -27,17 +27,6 @@ public class SkillWheel : MonoBehaviour
         public ISkill skillScript;
     }
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -139,7 +128,7 @@ public class SkillWheel : MonoBehaviour
             Debug.Log("Selected skill: " + skillName);
             activeSkill.Activate();
 
-            // Mostrar el ícono de la habilidad activa en la UI
+           
             activeSkillIconUI.sprite = skillButtons.Find(button => button.skillName == skillName).skillIcon.sprite;
 
         }

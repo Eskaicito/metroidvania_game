@@ -5,33 +5,29 @@ using UnityEngine;
 
 public class PotionFactory : MonoBehaviour
 {
-    // Referencias a los prefabs de las pociones
-    [SerializeField] private GameObject healthPotionPrefab;
-    [SerializeField] private GameObject energyPotionPrefab;
 
-    // Método que decide qué poción crear (salud o energía) y la instancia en la escena
-    public void DropPotion(Vector3 position)
+    [SerializeField] private Potion[] potionsPrefabs;
+    private Dictionary<string, Potion> idPotions;
+   
+
+    private void Awake()
     {
-        int randomDrop = Random.Range(0, 2); // 0 para salud, 1 para energía
-
-        GameObject potionToDrop = null;
-
-        if (randomDrop == 0)
+        idPotions = new Dictionary<string, Potion>();
+        foreach (var potion in potionsPrefabs) 
         {
-            potionToDrop = healthPotionPrefab;
-            Debug.Log("Factory is dropping a Health Potion");
+        
+        idPotions.Add(potion.Id, potion);
         }
-        else
-        {
-            potionToDrop = energyPotionPrefab;
-            Debug.Log("Factory is dropping an Energy Potion");
-        }
+    }
+    public Potion DropPotion(Vector3 position)
+    {
+        int randomDrop = Random.Range(0, potionsPrefabs.Length); 
+        Potion selectedPotion = potionsPrefabs[randomDrop]; 
 
-        // Instanciamos la poción en la posición dada
-        if (potionToDrop != null)
-        {
-            Instantiate(potionToDrop, position, Quaternion.identity);
-        }
+       
+        Potion droppedPotion = Instantiate(selectedPotion, position, Quaternion.identity);
+
+        return droppedPotion;
     }
 }
 
