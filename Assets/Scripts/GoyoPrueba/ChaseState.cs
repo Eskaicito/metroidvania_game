@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class ChaseState : IStateEnemy
 {
-
     private EnemyGoyo enemyGoyo;
     [SerializeField] private float chaseSpeed = 5.0F;
     [SerializeField] private float chaseDuration = 5.0f;
     [SerializeField] private float chaseTimer = 0f;
     [SerializeField] private Transform playerTransform;
-    
+
     public ChaseState(EnemyGoyo enemyGoyo)
     {
         this.enemyGoyo = enemyGoyo;
@@ -30,13 +29,13 @@ public class ChaseState : IStateEnemy
         {
             MoveTowardsPlayer();
         }
-         chaseTimer-= Time.deltaTime;
+        chaseTimer -= Time.deltaTime;
 
-        if(chaseTimer <= 0)
+        if (chaseTimer <= 0)
         {
+            // Cuando el tiempo de persecución termina, transiciona a patrullaje
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.patrolState);
         }
-        
     }
 
     private void MoveTowardsPlayer()
@@ -46,14 +45,8 @@ public class ChaseState : IStateEnemy
         enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, playerPosition, chaseSpeed * Time.deltaTime);
     }
 
-
     public void ExitEnemyState()
     {
         Debug.Log("Saliendo de CHASE");
     }
-
-   
-
-    
-
 }

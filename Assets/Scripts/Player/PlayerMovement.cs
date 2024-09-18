@@ -46,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
 
     [Header("Dash")]
-    public float dashSpeed = 20f;
+    public float dashSpeed = 10f;
     public float dashDuration = 0.2f;
-    public float dashCooldown = 1f;
+    public float dashCooldown = 2f;
     private bool isDashing;
     public bool IDashing => isDashing;
     private float dashTime;

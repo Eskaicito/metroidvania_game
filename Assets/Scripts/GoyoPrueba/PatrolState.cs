@@ -10,13 +10,8 @@ public class PatrolState : IStateEnemy
     private int currentWaypointIndex = 0;
     private float move_speed = 2.0f;
 
-    [SerializeField] private float chaseSpeed;
-    [SerializeField] private float visionRange;
-    [SerializeField] private float rayHeight;
     [SerializeField] private Transform playerTransform;
-
     private bool isPlayerInRange;
-    
 
     public PatrolState(EnemyGoyo enemyGoyo)
     {
@@ -27,16 +22,18 @@ public class PatrolState : IStateEnemy
 
     public void EnterEnemyState()
     {
-        if (waypoints.Length > 0)
+        Debug.Log("Entrando a estado de PATRULLA");
+
+        // Evitar mover al enemigo al primer waypoint al entrar de nuevo en patrullaje
+        if (waypoints.Length > 0 && currentWaypointIndex == 0)
         {
+            // Solo colocar al enemigo en el waypoint si es la primera vez
             enemyGoyo.transform.position = waypoints[currentWaypointIndex].position;
         }
     }
 
     public void UpdateEnemyState()
     {
-        Debug.Log("Entro en patrol");
-
         if (waypoints.Length == 0)
         {
             return;
@@ -49,7 +46,6 @@ public class PatrolState : IStateEnemy
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
 
-        
         if (isPlayerInRange)
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
@@ -58,7 +54,7 @@ public class PatrolState : IStateEnemy
 
     public void ExitEnemyState()
     {
-        Debug.Log("Slio de patrol");
+        Debug.Log("Saliendo de PATRULLA");
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -82,10 +78,8 @@ public class PatrolState : IStateEnemy
         Vector2 targetPosition = waypoints[currentWaypointIndex].position;
         Vector2 currentPosition = enemyGoyo.transform.position;
 
-        // Solo mover en el eje X
+        // Solo mover en el eje X para mantener el patrullaje sin teletransportar
         float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, move_speed * Time.deltaTime);
         enemyGoyo.transform.position = new Vector2(newX, currentPosition.y);
     }
-
-   
 }
