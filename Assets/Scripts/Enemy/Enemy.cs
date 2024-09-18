@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
-                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.playerHealthData.currentHealth);
             }
         }
     }
@@ -51,7 +50,6 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            Debug.Log("Player entro en rango");
         }
     }
 
@@ -60,14 +58,12 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            Debug.Log("Player salio del rango");
         }
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
 
         if (health <= 0)
         {
@@ -104,7 +100,6 @@ public class Enemy : MonoBehaviour
                 if (player != null)
                 {
                     player.TakeDamage((int)damage);
-                    Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
                 }
 
                 nextAttackTime = Time.time + attackCooldown;

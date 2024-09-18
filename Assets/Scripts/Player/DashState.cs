@@ -13,12 +13,12 @@ public class DashState : IState
 
     public void Enter()
     {
-        Debug.Log("Entering Jump");
+      
     }
 
     public void Exit()
     {
-        Debug.Log("Saliste de Jump");
+        
     }
 
     public void UpdateState()

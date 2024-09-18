@@ -29,13 +29,13 @@ public class PlayerCombat : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private PlayerMovement playerMovement;
+    private SkillWheel skillWheel;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        playerMovement = GetComponent<PlayerMovement>();
+        skillWheel = FindAnyObjectByType<SkillWheel>();
     }
 
     void Update()
@@ -54,6 +54,11 @@ public class PlayerCombat : MonoBehaviour
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack());
         }
+
+        if (Input.GetKeyDown(KeyCode.Z) && skillWheel.skillActive != null)
+        {
+            skillWheel.skillActive.Use();
+        }
     }
 
     private IEnumerator PerformAttack()
@@ -64,7 +69,6 @@ public class PlayerCombat : MonoBehaviour
 
         comboStep = currentCombo - 1;
 
-        // Activa la animación correspondiente al ataque en el combo
         animator.SetTrigger("Attack" + currentCombo);
 
         yield return new WaitForSeconds(attackDurations[comboStep]);
@@ -77,11 +81,9 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    // Este método será llamado desde un Animation Event
     public void OnAttackHit()
     {
-        // Ejecuta el ataque en el momento preciso de la animación
-        Vector2 attackDirection = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -95,19 +97,18 @@ public class PlayerCombat : MonoBehaviour
     {
         isHitstopActive = true;
 
-        // Pausa el tiempo del juego brevemente
         Time.timeScale = 0f;
 
-        // Espera la duración del hitstop
+
         yield return new WaitForSecondsRealtime(hitstopDuration);
 
-        // Restaura el tiempo del juego
+
         Time.timeScale = 1f;
 
         isHitstopActive = false;
     }
 
-    // Método visual para dibujar el radio de ataque en el editor
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

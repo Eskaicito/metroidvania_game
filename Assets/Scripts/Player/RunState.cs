@@ -13,7 +13,7 @@ public class RunState : IState
     public void Enter()
     {
         player.ChangeAnimationState(RUN);
-        Debug.Log("Entro en Run");
+        
     }
 
     public void Exit()
