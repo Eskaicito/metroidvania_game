@@ -7,7 +7,13 @@ public class EnemyGoyo : MonoBehaviour
     private EnemyStateMachine enemyStateMachine;
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
-    public Transform[] waypoints;
+    [SerializeField] private Transform[] waypoints;
+
+    public Transform[] Waypoints => waypoints;
+
+    private Transform playerTransform;
+
+    public Transform PlayerTransform => playerTransform;
 
 
     private void Awake()

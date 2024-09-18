@@ -12,7 +12,7 @@ public class PatrolState : IStateEnemy
     public PatrolState(EnemyGoyo enemyGoyo)
     {
         this.enemyGoyo = enemyGoyo;
-        waypoints = enemyGoyo.waypoints;
+        waypoints = enemyGoyo.Waypoints;
     }
 
     public void EnterEnemyState()
@@ -42,6 +42,7 @@ public class PatrolState : IStateEnemy
         if (Input.GetKeyDown(KeyCode.L)) // Condicion cambio a chase
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
+            Debug.Log("Salio de patrol y entro en chase");
         }
 
     }
