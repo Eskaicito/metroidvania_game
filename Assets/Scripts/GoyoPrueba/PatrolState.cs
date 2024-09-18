@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PatrolState : IStateEnemy
@@ -13,6 +14,8 @@ public class PatrolState : IStateEnemy
     [SerializeField] private float visionRange;
     [SerializeField] private float rayHeight;
     [SerializeField] private Transform playerTransform;
+
+    private bool isPlayerInRange;
     
 
     public PatrolState(EnemyGoyo enemyGoyo)
@@ -47,17 +50,31 @@ public class PatrolState : IStateEnemy
         }
 
         
-        if ()
+        if (isPlayerInRange)
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
         }
-
- 
     }
 
     public void ExitEnemyState()
     {
         Debug.Log("Slio de patrol");
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform == playerTransform)
+        {
+            isPlayerInRange = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform == playerTransform)
+        {
+            isPlayerInRange = false;
+        }
     }
 
     private void MoveToWaypoint()
