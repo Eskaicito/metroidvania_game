@@ -6,8 +6,8 @@ using UnityEngine;
 public class ChaseState : IStateEnemy
 {
     private EnemyGoyo enemyGoyo;
-    [SerializeField] private float chaseSpeed = 5.0F;
-    [SerializeField] private float chaseDuration = 5.0f;
+    [SerializeField] private float chaseSpeed = 2.0F;
+    [SerializeField] private float chaseDuration = 1.0f;
     [SerializeField] private float chaseTimer = 0f;
     [SerializeField] private Transform playerTransform;
 

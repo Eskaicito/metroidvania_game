@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PatrolState : IStateEnemy
 {
-    public EnemyGoyo enemyGoyo;
+    private EnemyGoyo enemyGoyo;
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
-    private float move_speed = 2.0f;
+    private float moveSpeed = 2.0f;
 
-    [SerializeField] private Transform playerTransform;
-    private bool isPlayerInRange;
+    [SerializeField] private float detectionRange = 5.0f; // Rango de detección del jugador
+    private Transform playerTransform;
 
     public PatrolState(EnemyGoyo enemyGoyo)
     {
@@ -39,17 +39,17 @@ public class PatrolState : IStateEnemy
             return;
         }
 
+        // Mover hacia el siguiente waypoint
         MoveToWaypoint();
 
+        // Si llegamos al waypoint actual, avanzamos al siguiente
         if (Vector2.Distance(enemyGoyo.transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
 
-        if (isPlayerInRange)
-        {
-            enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
-        }
+        // Comprobar si el jugador está en rango
+        CheckPlayerInRange();
     }
 
     public void ExitEnemyState()
@@ -57,19 +57,12 @@ public class PatrolState : IStateEnemy
         Debug.Log("Saliendo de PATRULLA");
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void CheckPlayerInRange()
     {
-        if (collision.transform == playerTransform)
+        // Si el jugador está dentro del rango de detección, cambiar al estado de persecución
+        if (Vector2.Distance(enemyGoyo.transform.position, playerTransform.position) <= detectionRange)
         {
-            isPlayerInRange = true;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform == playerTransform)
-        {
-            isPlayerInRange = false;
+            enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
         }
     }
 
@@ -78,8 +71,7 @@ public class PatrolState : IStateEnemy
         Vector2 targetPosition = waypoints[currentWaypointIndex].position;
         Vector2 currentPosition = enemyGoyo.transform.position;
 
-        // Solo mover en el eje X para mantener el patrullaje sin teletransportar
-        float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, move_speed * Time.deltaTime);
-        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y);
+        // Mover al enemigo hacia el siguiente waypoint
+        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
     }
 }
