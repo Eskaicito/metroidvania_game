@@ -9,10 +9,17 @@ public class PatrolState : IStateEnemy
     private int currentWaypointIndex = 0;
     private float move_speed = 2.0f;
 
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private float visionRange;
+    [SerializeField] private float rayHeight;
+    [SerializeField] private Transform playerTransform;
+    
+
     public PatrolState(EnemyGoyo enemyGoyo)
     {
         this.enemyGoyo = enemyGoyo;
         waypoints = enemyGoyo.Waypoints;
+        playerTransform = enemyGoyo.PlayerTransform;
     }
 
     public void EnterEnemyState()
@@ -34,31 +41,34 @@ public class PatrolState : IStateEnemy
 
         MoveToWaypoint();
 
-        if (Vector3.Distance(enemyGoyo.transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
+        if (Vector2.Distance(enemyGoyo.transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
 
-        if (Input.GetKeyDown(KeyCode.L)) // Condicion cambio a chase
+        
+        if ()
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
-            Debug.Log("Salio de patrol y entro en chase");
         }
 
+ 
     }
 
     public void ExitEnemyState()
     {
-
+        Debug.Log("Slio de patrol");
     }
 
     private void MoveToWaypoint()
     {
-        Vector3 targetPosition = waypoints[currentWaypointIndex].position;
-        Vector3 currentPosition = enemyGoyo.transform.position;
+        Vector2 targetPosition = waypoints[currentWaypointIndex].position;
+        Vector2 currentPosition = enemyGoyo.transform.position;
 
         // Solo mover en el eje X
         float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, move_speed * Time.deltaTime);
-        enemyGoyo.transform.position = new Vector3(newX, currentPosition.y, currentPosition.z);
+        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y);
     }
+
+   
 }

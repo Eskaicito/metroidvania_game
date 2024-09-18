@@ -8,13 +8,12 @@ public class EnemyGoyo : MonoBehaviour
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
     [SerializeField] private Transform[] waypoints;
-
     public Transform[] Waypoints => waypoints;
 
-    private Transform playerTransform;
-
+    [SerializeField] private Transform playerTransform;
     public Transform PlayerTransform => playerTransform;
 
+    [SerializeField] private float visionRange;
 
     private void Awake()
     {
@@ -24,6 +23,7 @@ public class EnemyGoyo : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Cambiando estado");
         enemyStateMachine.UpdateState();
         
     }

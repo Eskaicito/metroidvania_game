@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class ChaseState : IStateEnemy
@@ -10,6 +11,8 @@ public class ChaseState : IStateEnemy
     [SerializeField] private float visionRange;
     [SerializeField] private float rayHeight;
     [SerializeField] private Transform playerTransform;
+    
+    
 
 
     public ChaseState(EnemyGoyo enemyGoyo)
@@ -26,10 +29,16 @@ public class ChaseState : IStateEnemy
     public void UpdateEnemyState()
     {
 
+       
     }
 
     public void ExitEnemyState()
     {
-
+        Debug.Log("Saliendo de CHASE");
     }
+
+   
+
+    
+
 }
