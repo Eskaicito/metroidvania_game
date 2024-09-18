@@ -10,7 +10,7 @@ public class PatrolState : IStateEnemy
     private int currentWaypointIndex = 0;
     private float moveSpeed = 2.0f;
 
-    [SerializeField] private float detectionRange = 5.0f; // Rango de detección del jugador
+    [SerializeField] private float detectionRange = 5.0f; 
     private Transform playerTransform;
 
     public PatrolState(EnemyGoyo enemyGoyo)
@@ -24,10 +24,8 @@ public class PatrolState : IStateEnemy
     {
         Debug.Log("Entrando a estado de PATRULLA");
 
-        // Evitar mover al enemigo al primer waypoint al entrar de nuevo en patrullaje
         if (waypoints.Length > 0 && currentWaypointIndex == 0)
         {
-            // Solo colocar al enemigo en el waypoint si es la primera vez
             enemyGoyo.transform.position = waypoints[currentWaypointIndex].position;
         }
     }
@@ -39,16 +37,13 @@ public class PatrolState : IStateEnemy
             return;
         }
 
-        // Mover hacia el siguiente waypoint
         MoveToWaypoint();
 
-        // Si llegamos al waypoint actual, avanzamos al siguiente
         if (Vector2.Distance(enemyGoyo.transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
 
-        // Comprobar si el jugador está en rango
         CheckPlayerInRange();
     }
 
@@ -59,7 +54,6 @@ public class PatrolState : IStateEnemy
 
     private void CheckPlayerInRange()
     {
-        // Si el jugador está dentro del rango de detección, cambiar al estado de persecución
         if (Vector2.Distance(enemyGoyo.transform.position, playerTransform.position) <= detectionRange)
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);
@@ -71,7 +65,8 @@ public class PatrolState : IStateEnemy
         Vector2 targetPosition = waypoints[currentWaypointIndex].position;
         Vector2 currentPosition = enemyGoyo.transform.position;
 
-        // Mover al enemigo hacia el siguiente waypoint
-        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
+        // Solo mover en el eje X
+        float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, moveSpeed * Time.deltaTime);
+        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); // Mantener fija la Y
     }
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public class ChaseState : IStateEnemy
 {
     private EnemyGoyo enemyGoyo;
-    [SerializeField] private float chaseSpeed = 2.0F;
-    [SerializeField] private float chaseDuration = 1.0f;
-    [SerializeField] private float chaseTimer = 0f;
+     private float chaseSpeed = 3.0F;
+     private float chaseDuration = 2.0f;
+     private float chaseTimer = 0f;
     [SerializeField] private Transform playerTransform;
 
     public ChaseState(EnemyGoyo enemyGoyo)
@@ -33,7 +33,6 @@ public class ChaseState : IStateEnemy
 
         if (chaseTimer <= 0)
         {
-            // Cuando el tiempo de persecución termina, transiciona a patrullaje
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.patrolState);
         }
     }
@@ -42,7 +41,10 @@ public class ChaseState : IStateEnemy
     {
         Vector2 playerPosition = enemyGoyo.PlayerTransform.position;
         Vector2 currentPosition = enemyGoyo.transform.position;
-        enemyGoyo.transform.position = Vector2.MoveTowards(currentPosition, playerPosition, chaseSpeed * Time.deltaTime);
+
+        // Mantener la posición Y fija
+        float newX = Mathf.MoveTowards(currentPosition.x, playerPosition.x, chaseSpeed * Time.deltaTime);
+        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); // La Y se mantiene fija
     }
 
     public void ExitEnemyState()
