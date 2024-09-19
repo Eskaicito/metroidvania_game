@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     [Header("Combat Settings")]
-    public float attackDamage = 10f;
     public float comboWindow = 0.5f;
     public int maxCombo = 3;
     public float attackRadius = 0.5f;
     public Transform attackPoint;
     public LayerMask enemyLayers;
+
+    [Header("Damage Settings")]
+    private float[] comboDamage = { 10f, 15f, 25f };  // Daño por cada ataque en el combo
 
     [Header("Animation Settings")]
     public Animator animator;
@@ -99,10 +100,11 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            StartCoroutine(TriggerHitstop());
+            // Aplicar daño según el combo actual
+            enemy.GetComponent<Enemy>().TakeDamage(comboDamage[comboStep]);
 
-            // Activar el "camera shake" al golpear
+            // Iniciar hitstop y shake de cámara
+            StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
     }

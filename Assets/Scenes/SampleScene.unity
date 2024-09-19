@@ -2209,8 +2209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f93c214fb10fd49bec627e23680d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
-  comboWindow: 1
+  comboWindow: 0.6
   maxCombo: 3
   attackRadius: 0.9
   attackPoint: {fileID: 147119592}
