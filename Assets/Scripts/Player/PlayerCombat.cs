@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
 
     [Header("Damage Settings")]
-    private float[] comboDamage = { 10f, 15f, 25f };  // Daño por cada ataque en el combo
+    private float[] comboDamage = { 10f, 15f, 25f };  
 
     [Header("Animation Settings")]
     public Animator animator;
@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isHitstopActive = false;
 
     [Header("Camera Shake Settings")]
-    public CameraController cameraController;  // Referencia al script de la cámara
+    public CameraController cameraController;  
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -45,10 +45,10 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        // Detectar entrada de ataque
+        
         if (Input.GetButtonDown("Fire1") && !isAttacking && !isHitstopActive)
         {
-            // Continuar combo si está en ventana de tiempo
+            
             if (Time.time - lastAttackTime <= comboWindow && currentCombo < maxCombo)
             {
                 currentCombo++;
@@ -62,7 +62,7 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(PerformAttack());
         }
 
-        // Detectar habilidad
+
         if (Input.GetKeyDown(KeyCode.Q) && skillWheel.skillActive != null)
         {
             skillWheel.skillActive.Use();
@@ -75,16 +75,16 @@ public class PlayerCombat : MonoBehaviour
     {
         isAttacking = true;
 
-        // Detener al jugador
+      
         rb.velocity = new Vector2(0, rb.velocity.y);
 
-        // Determinar paso del combo
+       
         comboStep = currentCombo - 1;
 
-        // Lanzar la animación de ataque correspondiente
+        
         animator.SetTrigger("Attack" + currentCombo);
 
-        // Esperar hasta que termine la animación actual
+      
         yield return new WaitForSeconds(attackDurations[comboStep]);
 
         isAttacking = false;
@@ -97,15 +97,15 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnAttackHit()
     {
-        // Detectar enemigos golpeados
+     
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Aplicar daño según el combo actual
+            
             enemy.GetComponent<Enemy>().TakeDamage(comboDamage[comboStep]);
 
-            // Iniciar hitstop y shake de cámara
+          
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
@@ -115,12 +115,11 @@ public class PlayerCombat : MonoBehaviour
     {
         isHitstopActive = true;
 
-        // Pausar el tiempo
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(hitstopDuration);
 
-        // Reanudar el tiempo
+       
         Time.timeScale = 1f;
 
         isHitstopActive = false;
@@ -128,7 +127,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // Dibujar el área del ataque
+       
         if (attackPoint == null)
             return;
 

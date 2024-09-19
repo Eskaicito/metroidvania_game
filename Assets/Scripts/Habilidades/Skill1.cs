@@ -6,7 +6,6 @@ public class Skill1 : MonoBehaviour, ISkill
 {
     private Player player;
     private int energyAmount = 60;
-    public int energySkill1 => energyAmount;
     private int damage = 30;
     private PlayerCombat combat;
 
@@ -23,9 +22,19 @@ public class Skill1 : MonoBehaviour, ISkill
 
     public void Use()
     {
-        SkillDamage();
-        player.UseEnergy(energyAmount);
-        Debug.Log("Skill1 Used");
+        if (player.HasEnoughEnergy(energyAmount))
+        {
+            SkillDamage();
+            player.UseEnergy(energyAmount);
+            Debug.Log("Skill1 Used");
+        }
+        else
+        {
+            Debug.Log("No puedes usar esta habilidad, no tienes suficiente energía.");
+            Debug.Log("Energía actual: " + player.playerHealthData.currentEnergy);
+        }
+   
+
     }
 
     private void SkillDamage()

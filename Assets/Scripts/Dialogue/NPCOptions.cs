@@ -45,13 +45,13 @@ public class NPCOptions : MonoBehaviour
         dialogueController.StartDialogueWithOptions(
             npcDialogue,
             () => {
-                Debug.Log("Opción A elegida");
-                karmaSystem.AddRedencionPoints(10);  // Aumenta redención
+                Debug.Log("REDENCION");
+                karmaSystem.AddRedencionPoints(20);  // Aumenta redención
                 Destroy(gameObject);
             },  // Acción para la opción A
             () => {
-                Debug.Log("Opción B elegida");
-                karmaSystem.AddVenganzaPoints(10);   // Aumenta venganza
+                Debug.Log("VENGANZA");
+                karmaSystem.AddVenganzaPoints(20);   // Aumenta venganza
                 Destroy(gameObject);
             }   // Acción para la opción B
         );

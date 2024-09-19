@@ -17,24 +17,23 @@ public class CameraController : MonoBehaviour
     private CinemachineFramingTransposer framingTransposer;
     private Rigidbody2D playerRigidbody;
 
-    private CinemachineBasicMultiChannelPerlin noise; // Para el shake
+    private CinemachineBasicMultiChannelPerlin noise; 
 
     private void Start()
     {
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         playerRigidbody = playerTransform.GetComponent<Rigidbody2D>();
 
-        // Obtener el componente de ruido para el "shake"
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-        // Verificar si el componente de ruido existe
+    
         if (noise == null)
         {
             Debug.LogError("CinemachineBasicMultiChannelPerlin component not found on the virtual camera.");
         }
         else
         {
-            // Asegurarse de que el "shake" no esté activo al inicio
+         
             noise.m_AmplitudeGain = 0f;
         }
     }
@@ -51,7 +50,6 @@ public class CameraController : MonoBehaviour
         framingTransposer.m_YDamping = Mathf.Lerp(framingTransposer.m_YDamping, targetDamping, Time.deltaTime / transitionTime);
     }
 
-    // Función para activar el "shake" de la cámara
     public void ShakeCamera()
     {
         if (noise != null)
@@ -64,10 +62,10 @@ public class CameraController : MonoBehaviour
     {
         if (noise != null)
         {
-            // Ajustar la intensidad del shake
-            noise.m_AmplitudeGain = 2f;  // Ajusta según lo que necesites
-            yield return new WaitForSeconds(0.1f);  // Duración del shake
-            noise.m_AmplitudeGain = 0f;  // Apagar el shake
+            
+            noise.m_AmplitudeGain = 2f;  
+            yield return new WaitForSeconds(0.1f);  
+            noise.m_AmplitudeGain = 0f;  
         }
     }
 }

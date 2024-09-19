@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
     public PlayerHealthData playerHealthData;
 
     private void Start()
     {
-       
         playerHealthData.InitializeValues();
     }
 
@@ -21,8 +19,6 @@ public class Player : MonoBehaviour
         {
             playerHealthData.currentHealth = playerHealthData.maxHealth;
         }
-
-        //Debug.Log("Salud del jugador: " + playerHealthData.currentHealth);
     }
 
     public void TakeDamage(int amount)
@@ -33,11 +29,8 @@ public class Player : MonoBehaviour
         {
             playerHealthData.currentHealth = 0;
         }
-
-        //Debug.Log("Salud del jugador: " + playerHealthData.currentHealth);
     }
 
-    
     public void UseEnergy(int amount)
     {
         playerHealthData.currentEnergy -= amount;
@@ -46,8 +39,6 @@ public class Player : MonoBehaviour
         {
             playerHealthData.currentEnergy = 0;
         }
-
-        //Debug.Log("Energía del jugador: " + playerHealthData.currentEnergy);
     }
 
     public void RestoreEnergy(int amount)
@@ -58,7 +49,10 @@ public class Player : MonoBehaviour
         {
             playerHealthData.currentEnergy = playerHealthData.maxEnergy;
         }
+    }
 
-        //Debug.Log("Energía del jugador: " + playerHealthData.currentEnergy);
+    public bool HasEnoughEnergy(int amount)
+    {
+        return playerHealthData.currentEnergy >= amount;
     }
 }
