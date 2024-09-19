@@ -63,9 +63,11 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Detectar habilidad
-        if (Input.GetKeyDown(KeyCode.Z) && skillWheel.skillActive != null)
+        if (Input.GetKeyDown(KeyCode.Q) && skillWheel.skillActive != null)
         {
             skillWheel.skillActive.Use();
+            StartCoroutine(TriggerHitstop());
+            cameraController.ShakeCamera();
         }
     }
 

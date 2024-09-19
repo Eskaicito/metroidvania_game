@@ -5,7 +5,8 @@ using UnityEngine;
 public class Skill1 : MonoBehaviour, ISkill
 {
     private Player player;
-    private int energyAmount = 10;
+    private int energyAmount = 60;
+    public int energySkill1 => energyAmount;
     private int damage = 30;
     private PlayerCombat combat;
 
