@@ -1129,7 +1129,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.170001, y: 1.4999998, z: -10}
+  m_LocalPosition: {x: -8.17, y: 1.4999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2784,7 +2784,7 @@ Transform:
   m_GameObject: {fileID: 1315573892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.170001, y: 1.4999998, z: -10}
+  m_LocalPosition: {x: -8.17, y: 1.4999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3571,6 +3571,7 @@ MonoBehaviour:
   dialogueController: {fileID: 643058718}
   npcDialogue: TELITA GOYO
   interactIcon: {fileID: 1259316099}
+  karmaSystem: {fileID: 0}
 --- !u!4 &1786715463
 Transform:
   m_ObjectHideFlags: 0
@@ -4317,6 +4318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2004031775}
+  - component: {fileID: 2004031776}
   m_Layer: 0
   m_Name: 'Karma System '
   m_TagString: Untagged
@@ -4339,6 +4341,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2004031776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004031774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ebb89d13cb9f34f97abac8f13a5b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  karmaSlider: {fileID: 0}
+  fillImage: {fileID: 0}
+  neutralColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &2010608116
 GameObject:
   m_ObjectHideFlags: 0
