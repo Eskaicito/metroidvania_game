@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 241831389}
   - component: {fileID: 241831391}
   - component: {fileID: 241831390}
+  - component: {fileID: 241831392}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -569,6 +570,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &241831392
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241831388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!224 &268285360 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6228693733352009641, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
@@ -2201,10 +2219,11 @@ MonoBehaviour:
     m_Bits: 128
   animator: {fileID: 988380354}
   attackDurations:
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.3
+  - 0.35
+  - 0.4
   hitstopDuration: 0.1
+  cameraController: {fileID: 595932115}
 --- !u!70 &988380356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
