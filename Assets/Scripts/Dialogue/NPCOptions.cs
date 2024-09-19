@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class NPCOptions : MonoBehaviour
 {
     [SerializeField] DialogueController dialogueController;
+    [SerializeField] KarmaSystem karmaSystem;  // Sistema de karma
     [SerializeField] string npcDialogue;
     [SerializeField] GameObject interactIcon;
-    [SerializeField] KarmaSystem karmaSystem;  // Sistema de karma
     private bool isPlayerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +41,7 @@ public class NPCOptions : MonoBehaviour
 
     public void Interact()
     {
-        // Inicia el diálogo con dos opciones y destruye el NPC después de la elección
+        // Inicia el diálogo con dos opciones y ajusta el karma
         dialogueController.StartDialogueWithOptions(
             npcDialogue,
             () => {
@@ -60,4 +57,3 @@ public class NPCOptions : MonoBehaviour
         );
     }
 }
-
