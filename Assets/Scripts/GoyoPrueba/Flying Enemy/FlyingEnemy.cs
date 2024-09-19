@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
 {
-    //private EnemyStateMachine enemyStateMachine;
-    //public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireRate;
+    [SerializeField] private float nextFire;
 
-    //[SerializeField] private Transform[] waypoints;
-    //public Transform[] Waypoints => waypoints;
+    private void Update()
+    {
+        if (Time.time >= nextFire)
+        {
+            Shoot();
+            nextFire = Time.time + fireRate;
+        }
+    }
 
-    //[SerializeField] private Transform playerTransform;
-    //public Transform PlayerTransform => playerTransform;
+    private void Shoot()
+    {
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
-    //private void Awake()
-    //{
-    //    //enemyStateMachine = new EnemyStateMachine(this);
-    //    enemyStateMachine.Initialize(enemyStateMachine.patrolState);
-    //}
-
-    //private void Update()
-    //{
-    //    enemyStateMachine.UpdateState();
-    //}
-
+        rb.velocity = -transform.up * 10f;
+    }
 }
