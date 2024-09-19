@@ -6,11 +6,14 @@ using UnityEngine;
 public class PatrolState : IStateEnemy
 {
     private EnemyGoyo enemyGoyo;
+    private FlyingEnemy flyingEnemy;
+
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
     private float moveSpeed = 2.0f;
 
-    [SerializeField] private float detectionRange = 5.0f; 
+    private float detectionRange = 5.0f; 
+
     private Transform playerTransform;
 
     public PatrolState(EnemyGoyo enemyGoyo)
