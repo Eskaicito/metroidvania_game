@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
 {
-    private EnemyStateMachine enemyStateMachine;
-    public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
+    //private EnemyStateMachine enemyStateMachine;
+    //public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
-    [SerializeField] private Transform[] waypoints;
-    public Transform[] Waypoints => waypoints;
+    //[SerializeField] private Transform[] waypoints;
+    //public Transform[] Waypoints => waypoints;
 
-    [SerializeField] private Transform playerTransform;
-    public Transform PlayerTransform => playerTransform;
+    //[SerializeField] private Transform playerTransform;
+    //public Transform PlayerTransform => playerTransform;
 
-    private void Awake()
-    {
-        //enemyStateMachine = new EnemyStateMachine(this);
-        enemyStateMachine.Initialize(enemyStateMachine.patrolState);
-    }
+    //private void Awake()
+    //{
+    //    //enemyStateMachine = new EnemyStateMachine(this);
+    //    enemyStateMachine.Initialize(enemyStateMachine.patrolState);
+    //}
 
-    private void Update()
-    {
-        enemyStateMachine.UpdateState();
-    }
+    //private void Update()
+    //{
+    //    enemyStateMachine.UpdateState();
+    //}
 
 }

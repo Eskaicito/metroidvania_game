@@ -68,8 +68,19 @@ public class PatrolState : IStateEnemy
         Vector2 targetPosition = waypoints[currentWaypointIndex].position;
         Vector2 currentPosition = enemyGoyo.transform.position;
 
-        // Solo mover en el eje X
-        float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, moveSpeed * Time.deltaTime);
-        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); // Mantener fija la Y
+        if (enemyGoyo.CompareTag("Ground"))
+        {
+            float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, moveSpeed * Time.deltaTime);
+            enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); // Mantener fija la Y
+        }
+        else if (enemyGoyo.CompareTag("Air"))
+        {
+            float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, moveSpeed * Time.deltaTime);
+            float fixedY = currentPosition.y;
+            enemyGoyo.transform.position = new Vector2(newX, fixedY);
+        }
+
+        
+        
     }
 }
