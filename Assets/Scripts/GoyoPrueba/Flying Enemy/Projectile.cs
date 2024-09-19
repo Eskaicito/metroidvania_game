@@ -11,10 +11,14 @@ public class Projectile : MonoBehaviour
             // Damage
             Destroy(gameObject);
         }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void Update()
     {
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1.5f);
     }
 }
