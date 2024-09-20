@@ -4,28 +4,35 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Player player;
+    private Transform player;
     private int damageAmount = 10;
 
 
     private void Start()
     {
-       player = GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").transform;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision != null)
-        {
-            if(collision.CompareTag("Player"))
-            {
-                player.TakeDamage(damageAmount);        
-            }
-        }
+        AttackPlayer();
 
     }
 
     private void Update()
     {
         Destroy(gameObject, 1.5f);
+    }
+
+    private void AttackPlayer()
+    {
+        if (player != null)
+        {
+            Player playerHealth = player.GetComponent<Player>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage((int)damageAmount);
+
+            }
+        }
     }
 }

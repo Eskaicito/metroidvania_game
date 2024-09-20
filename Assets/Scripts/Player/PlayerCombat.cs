@@ -97,15 +97,26 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnAttackHit()
     {
-     
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            
-            enemy.GetComponent<Enemy>().TakeDamage(comboDamage[comboStep]);
+            // Intentar detectar el script 'Enemy'
+            Enemy groundEnemy = enemy.GetComponent<Enemy>();
+            if (groundEnemy != null)
+            {
+                groundEnemy.TakeDamage(comboDamage[comboStep]);
+            }
 
-          
+            // Intentar detectar el script 'EnemyAir'
+            EnemyAir flyingEnemy = enemy.GetComponent<EnemyAir>();
+            if (flyingEnemy != null)
+            {
+                flyingEnemy.TakeDamage(comboDamage[comboStep]);
+            }
+
+            // Activar hitstop y sacudida de cámara
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
