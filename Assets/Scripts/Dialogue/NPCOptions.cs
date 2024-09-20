@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NPCOptions : MonoBehaviour
+public class NPCOptions : MonoBehaviour, IInteractible
 {
     [SerializeField] DialogueController dialogueController;
-    [SerializeField] KarmaSystem karmaSystem;  // Sistema de karma
+    [SerializeField] KarmaSystem karmaSystem;  
     [SerializeField] string npcDialogue;
     [SerializeField] GameObject interactIcon;
     private bool isPlayerInRange = false;
@@ -41,19 +41,19 @@ public class NPCOptions : MonoBehaviour
 
     public void Interact()
     {
-        // Inicia el diálogo con dos opciones y ajusta el karma
+        
         dialogueController.StartDialogueWithOptions(
             npcDialogue,
             () => {
                 Debug.Log("REDENCION");
-                karmaSystem.AddRedencionPoints(20);  // Aumenta redención
+                karmaSystem.AddRedencionPoints(20);  
                 Destroy(gameObject);
-            },  // Acción para la opción A
+            }, 
             () => {
                 Debug.Log("VENGANZA");
-                karmaSystem.AddVenganzaPoints(20);   // Aumenta venganza
+                karmaSystem.AddVenganzaPoints(20);  
                 Destroy(gameObject);
-            }   // Acción para la opción B
+            }   
         );
     }
 }
