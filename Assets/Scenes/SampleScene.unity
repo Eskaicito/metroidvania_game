@@ -3849,7 +3849,7 @@ MonoBehaviour:
   damage: 10
   attackCooldown: 2
   speed: 3
-  pushForce: 150
+  pushForce: 50
   id: groundEnemy
   potionFactory: {fileID: 1583163464}
   detectionRange: 3
