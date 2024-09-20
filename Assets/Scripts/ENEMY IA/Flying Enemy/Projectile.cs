@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private Player player;
+    private int damageAmount = 10;
+
+
+    private void Start()
+    {
+       player = GetComponent<Player>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision != null)
         {
-            // Damage
-            Destroy(gameObject);
+            if(collision.CompareTag("Player"))
+            {
+                player.TakeDamage(damageAmount);        
+            }
         }
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+
     }
 
     private void Update()

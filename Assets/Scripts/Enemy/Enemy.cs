@@ -10,18 +10,64 @@ public class Enemy : MonoBehaviour
     private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
-    public float Speed => speed; // Propiedad
+    [SerializeField] private float pushForce = 300f;
+    public float Speed => speed;
 
     [SerializeField] string id;
-    public string Id => id; // Propiedad
+    public string Id => id;
 
-    [SerializeField] private PotionFactory potionFactory; // Referencia al factory
+    [SerializeField] private PotionFactory potionFactory;
 
     [SerializeField] private float detectionRange = 3f;
-    [SerializeField] private bool isPlayerInRange = false;
+    [SerializeField] private Transform[] waypoints;
+    private int currentWaypointIndex = 0;
+
+    private bool isPlayerInRange = false;
+    private Transform player;
+    private bool isChasingPlayer = false;
+    private Vector2 lastWaypointPosition;
+
+    private Collider2D enemyCollider;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        lastWaypointPosition = waypoints[currentWaypointIndex].position; // Posición inicial del waypoint
+
+        // Ignorar colisiones entre el enemigo y el jugador
+        //Collider2D playerCollider = player.GetComponent<Collider2D>();
+        //enemyCollider = GetComponent<Collider2D>();
+        //if (playerCollider != null && enemyCollider != null)
+        //{
+        //    Physics2D.IgnoreCollision(playerCollider, enemyCollider);
+        //}
+    }
 
     private void Update()
     {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= detectionRange)
+        {
+            // Si el jugador está dentro del rango, comenzamos a perseguir
+            isChasingPlayer = true;
+        }
+        else if (isChasingPlayer)
+        {
+            // Si el jugador se ha alejado, teletransportamos al enemigo al último waypoint
+            isChasingPlayer = false;
+            TeleportToWaypoint();
+        }
+
+        if (isChasingPlayer)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            Patrol();
+        }
+
         if (isPlayerInRange)
         {
             if (Time.time >= nextAttackTime)
@@ -32,16 +78,64 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void ChasePlayer()
+    {
+        if (player != null)
+        {
+            // El enemigo solo se mueve en el eje X, manteniendo su posición Y
+            Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
+    }
+
+    private void Patrol()
+    {
+        if (waypoints.Length == 0) return;
+
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+
+        // Si llegamos al waypoint, avanzamos al siguiente
+        if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Ciclo a través de los waypoints
+            lastWaypointPosition = waypoints[currentWaypointIndex].position; // Guardamos la posición del waypoint
+        }
+    }
+
+    private void TeleportToWaypoint()
+    {
+        // Teletransporta al enemigo al último waypoint
+        transform.position = lastWaypointPosition;
+        isChasingPlayer = false;
+    }
+
     private void AttackPlayer()
     {
-        GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             Player playerHealth = player.GetComponent<Player>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
+                PushPlayerBack(); // Aplicar empuje al jugador
             }
+        }
+    }
+
+    private void PushPlayerBack()
+    {
+        // Empuja al jugador en la dirección opuesta al enemigo
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+
+        if (playerRb != null)
+        {
+            // Calculamos la dirección en la que empujaremos al jugador
+            Vector2 pushDirection = (player.position - transform.position).normalized;
+
+            // Aplicamos una pequeña fuerza hacia atrás en la dirección opuesta
+            // Puedes ajustar este valor para aumentar o reducir el empuje
+            playerRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
         }
     }
 
@@ -77,10 +171,9 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        DropPotion(); 
+        DropPotion();
     }
 
-    
     public void DropPotion()
     {
         if (potionFactory != null)
@@ -100,6 +193,7 @@ public class Enemy : MonoBehaviour
                 if (player != null)
                 {
                     player.TakeDamage((int)damage);
+                    PushPlayerBack(); // Aplicar empuje al jugador
                 }
 
                 nextAttackTime = Time.time + attackCooldown;

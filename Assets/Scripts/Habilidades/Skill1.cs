@@ -43,7 +43,7 @@ public class Skill1 : MonoBehaviour, ISkill
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyGoyo>().TakeDamage(damage);
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 }

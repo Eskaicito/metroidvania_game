@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             
-            enemy.GetComponent<EnemyGoyo>().TakeDamage(comboDamage[comboStep]);
+            enemy.GetComponent<Enemy>().TakeDamage(comboDamage[comboStep]);
 
           
             StartCoroutine(TriggerHitstop());
