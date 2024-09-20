@@ -118,23 +118,22 @@ public class Enemy : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
-                PushPlayerBack(); // Aplicar empuje al jugador
+                PushPlayerBack(); 
             }
         }
     }
 
     private void PushPlayerBack()
     {
-        // Empuja al jugador en la dirección opuesta al enemigo
+       
         Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
 
         if (playerRb != null)
         {
-            // Calculamos la dirección en la que empujaremos al jugador
+           
             Vector2 pushDirection = (player.position - transform.position).normalized;
 
-            // Aplicamos una pequeña fuerza hacia atrás en la dirección opuesta
-            // Puedes ajustar este valor para aumentar o reducir el empuje
+         
             playerRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
         }
     }

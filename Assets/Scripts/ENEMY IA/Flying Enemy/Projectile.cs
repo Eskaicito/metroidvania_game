@@ -14,7 +14,9 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        AttackPlayer();
+       if(collision.CompareTag("Player")) {
+            AttackPlayer();
+        }
 
     }
 
