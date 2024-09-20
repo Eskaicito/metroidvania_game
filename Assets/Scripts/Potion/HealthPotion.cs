@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthPotion : Potion, ICollectible
 {
-    public int healthAmount = 5;
+    public int healthAmount = 15;
 
     private Player playerHealth;
 

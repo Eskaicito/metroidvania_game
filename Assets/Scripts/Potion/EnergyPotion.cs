@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyPotion : Potion, ICollectible
 {
-    public int energyAmount = 10; 
+    public int energyAmount = 15; 
     private Player playerEnergy;
 
     private void Start()
