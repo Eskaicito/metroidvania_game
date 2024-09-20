@@ -68,11 +68,6 @@ public class PatrolState : IStateEnemy
     private void CheckPlayerInRange()
     {
        
-        if (enemyGoyo is FlyingEnemy)
-        {
-            detectionRange = detectionAirRange;
-        }
-
         if (Vector2.Distance(enemyGoyo.transform.position, playerTransform.position) <= detectionGroundRange)
         {
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.chaseState);

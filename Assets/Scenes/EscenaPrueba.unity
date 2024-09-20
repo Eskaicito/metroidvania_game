@@ -1725,8 +1725,8 @@ GameObject:
   - component: {fileID: 1905391932}
   - component: {fileID: 1905391931}
   - component: {fileID: 1905391933}
-  - component: {fileID: 1905391934}
   - component: {fileID: 1905391935}
+  - component: {fileID: 1905391934}
   m_Layer: 7
   m_Name: Flying Enemy
   m_TagString: Untagged
