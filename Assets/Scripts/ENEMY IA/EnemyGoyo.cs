@@ -13,6 +13,8 @@ public class EnemyGoyo : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     public Transform PlayerTransform => playerTransform;
 
+    [SerializeField] private float health;
+
     private void Awake()
     {
         enemyStateMachine = new EnemyStateMachine(this);
@@ -23,4 +25,25 @@ public class EnemyGoyo : MonoBehaviour
     {
         enemyStateMachine.UpdateState();
     }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Enemy died!");
+
+        Destroy(gameObject);
+
+    }
+
+    
 }

@@ -84,7 +84,6 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        DropHealthPotion();
     }
 
     public void DropHealthPotion()

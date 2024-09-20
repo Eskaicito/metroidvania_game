@@ -11,17 +11,12 @@ public class EnemyStateMachine : MonoBehaviour
     public ChaseState chaseState;
     public AttackState attackState;
     public PatrolState patrolState;
-    public EnemyIdleState enemyIdleState;
-   
-
-
+    
     public EnemyStateMachine(EnemyGoyo enemyGoyo)
     {
         this.chaseState = new ChaseState(enemyGoyo);
         this.patrolState = new PatrolState(enemyGoyo);
-
-        //this.attackState = new AttackState();
-        //this.enemyIdleState = new EnemyIdleState();
+        this.attackState = new AttackState(enemyGoyo);
     }
 
     public void Initialize(IStateEnemy enemyState)
