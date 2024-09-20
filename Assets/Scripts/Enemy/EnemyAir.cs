@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class EnemyAir : MonoBehaviour
 {
-    [SerializeField] private float speed = 3f; // Velocidad de movimiento entre waypoints
-    [SerializeField] private Transform[] waypoints; // Dos waypoints para el movimiento
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private Transform[] waypoints; 
     private int currentWaypointIndex = 0;
 
-    [SerializeField] private float detectionRange = 5f; // Rango de detección del jugador
+    [SerializeField] private PotionFactory potionFactory;
+
+    [SerializeField] private float detectionRange = 5f; 
     private Transform player;
 
-    [SerializeField] private GameObject projectilePrefab; // Prefab del proyectil
-    [SerializeField] private Transform firePoint; // Punto de donde salen los proyectiles
-    [SerializeField] private float projectileSpeed = 5f; // Velocidad del proyectil
-    [SerializeField] private float fireCooldown = 2f; // Tiempo de espera entre disparos
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint; 
+    [SerializeField] private float projectileSpeed = 5f; 
+    [SerializeField] private float fireCooldown = 2f; 
     private float nextFireTime;
 
-    [SerializeField] private float health = 100f; // Vida del enemigo
-    [SerializeField] private GameObject deathEffect; // Efecto al morir (opcional)
+    [SerializeField] private float health = 100f; 
+    [SerializeField] private GameObject deathEffect; 
 
     private void Start()
     {
@@ -33,9 +35,9 @@ public class EnemyAir : MonoBehaviour
 
     private void Update()
     {
-        MoveBetweenWaypoints(); // Mover el enemigo entre waypoints
+        MoveBetweenWaypoints(); 
 
-        DetectAndShootPlayer(); // Detectar al jugador y disparar si está en rango
+        DetectAndShootPlayer(); 
     }
 
     private void MoveBetweenWaypoints()
@@ -45,23 +47,23 @@ public class EnemyAir : MonoBehaviour
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-        // Si llegamos al waypoint, avanzamos al siguiente
+
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Alternar entre los dos waypoints
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
         }
     }
 
     private void DetectAndShootPlayer()
     {
-        // Calcula la distancia entre el enemigo y el jugador
+    
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Si el jugador está dentro del rango de detección
+       
         if (distanceToPlayer <= detectionRange && Time.time >= nextFireTime)
         {
-            ShootProjectile(); // Disparar un proyectil
-            nextFireTime = Time.time + fireCooldown; // Reiniciar el tiempo de espera para el próximo disparo
+            ShootProjectile(); 
+            nextFireTime = Time.time + fireCooldown;
         }
     }
 
@@ -69,10 +71,10 @@ public class EnemyAir : MonoBehaviour
     {
         if (projectilePrefab != null && firePoint != null)
         {
-            // Instanciar el proyectil en el punto de disparo
+           
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-            // Aplicar fuerza para mover el proyectil hacia el jugador
+          
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -82,12 +84,11 @@ public class EnemyAir : MonoBehaviour
         }
     }
 
-    // Función para recibir daño
     public void TakeDamage(float damage)
     {
         health -= damage;
 
-        // Si la vida llega a 0, el enemigo muere
+   
         if (health <= 0)
         {
             Die();
@@ -95,20 +96,24 @@ public class EnemyAir : MonoBehaviour
     }
 
     private void Die()
-    {
-        // Si hay un efecto de muerte, lo instanciamos
+    { 
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
-
-        // Destruimos el enemigo
+        DropPotion();
         Destroy(gameObject);
+    }
+    public void DropPotion()
+    {
+        if (potionFactory != null)
+        {
+            potionFactory.DropPotion(transform.position);
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Dibuja un círculo en el editor para visualizar el rango de detección
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }

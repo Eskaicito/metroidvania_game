@@ -49,12 +49,12 @@ public class Enemy : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange)
         {
-            // Si el jugador está dentro del rango, comenzamos a perseguir
+            
             isChasingPlayer = true;
         }
         else if (isChasingPlayer)
         {
-            // Si el jugador se ha alejado, teletransportamos al enemigo al último waypoint
+     
             isChasingPlayer = false;
             TeleportToWaypoint();
         }
@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
     {
         if (player != null)
         {
-            // El enemigo solo se mueve en el eje X, manteniendo su posición Y
+            
             Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
@@ -95,17 +95,17 @@ public class Enemy : MonoBehaviour
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-        // Si llegamos al waypoint, avanzamos al siguiente
+
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Ciclo a través de los waypoints
-            lastWaypointPosition = waypoints[currentWaypointIndex].position; // Guardamos la posición del waypoint
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
+            lastWaypointPosition = waypoints[currentWaypointIndex].position; 
         }
     }
 
     private void TeleportToWaypoint()
     {
-        // Teletransporta al enemigo al último waypoint
+    
         transform.position = lastWaypointPosition;
         isChasingPlayer = false;
     }
@@ -192,7 +192,7 @@ public class Enemy : MonoBehaviour
                 if (player != null)
                 {
                     player.TakeDamage((int)damage);
-                    PushPlayerBack(); // Aplicar empuje al jugador
+                    PushPlayerBack();
                 }
 
                 nextAttackTime = Time.time + attackCooldown;

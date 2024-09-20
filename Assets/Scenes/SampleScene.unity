@@ -2045,6 +2045,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 1996444931}
   - {fileID: 319434775}
+  potionFactory: {fileID: 1583163464}
   detectionRange: 4.33
   projectilePrefab: {fileID: 3553026633374568602, guid: 3939635098920544eb61f8f6a0dd6dbb, type: 3}
   firePoint: {fileID: 2091424319}
