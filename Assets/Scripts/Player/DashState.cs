@@ -13,7 +13,7 @@ public class DashState : IState
 
     public void Enter()
     {
-       
+      
     }
 
     public void Exit()

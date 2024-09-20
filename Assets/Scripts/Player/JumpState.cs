@@ -18,8 +18,7 @@ public class JumpState : IState
     }
 
     public void Exit()
-    {
-        
+    { 
     }
 
     public void UpdateState()

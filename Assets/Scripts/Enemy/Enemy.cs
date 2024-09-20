@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
-
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float detectionRange = 3f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private bool isPlayerInRange = false;
     private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
@@ -20,8 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] string id;
     public string Id => id; // Propiedad
 
-    [SerializeField] public GameObject healthPotion;
+    [SerializeField] private PotionFactory potionFactory; // Referencia al factory
 
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private bool isPlayerInRange = false;
 
     private void Update()
     {
@@ -44,7 +41,6 @@ public class Enemy : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
-                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.playerHealthData.currentHealth);
             }
         }
     }
@@ -54,7 +50,6 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            Debug.Log("Player entro en rango");
         }
     }
 
@@ -63,14 +58,12 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            Debug.Log("Player salio del rango");
         }
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
 
         if (health <= 0)
         {
@@ -84,45 +77,33 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
+        DropPotion(); 
     }
 
-    public void DropHealthPotion()
+    
+    public void DropPotion()
     {
-        if (healthPotion != null)
+        if (potionFactory != null)
         {
-            Instantiate(healthPotion, transform.position, Quaternion.identity);
+            potionFactory.DropPotion(transform.position);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Vector2.Distance(transform.position, collision.transform.position) <= attackRange)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (Time.time >= nextAttackTime)
             {
-                if (Time.time >= nextAttackTime)
+                Player player = collision.gameObject.GetComponent<Player>();
+
+                if (player != null)
                 {
-                    Player player = collision.gameObject.GetComponent<Player>();
-
-                    if (player != null)
-                    {
-                        player.TakeDamage((int)damage);
-                        Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
-                    }
-
-                    nextAttackTime = Time.time + attackCooldown;
+                    player.TakeDamage((int)damage);
                 }
+
+                nextAttackTime = Time.time + attackCooldown;
             }
-
         }
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange); // Rango de detección
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, attackRange); // Rango de ataque
     }
 }

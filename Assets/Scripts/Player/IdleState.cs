@@ -14,12 +14,12 @@ public class IdleState : IState
     public void Enter()
     {
         player.ChangeAnimationState(IDLE);
-        
+      
     }
 
     public void Exit()
     {
-        
+     
     }
 
     public void UpdateState()
