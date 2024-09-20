@@ -4726,7 +4726,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7feabbcc0a2d3cc4a94ffb14266b8ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: sword1
+    clip: {fileID: 8300000, guid: 6d294e6c88dc4a944b486b86154dadaa, type: 3}
+    volume: 0.52
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: sword2
+    clip: {fileID: 8300000, guid: 6fc721ddc9ca43e4e875553f6d911252, type: 3}
+    volume: 0.57
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: sword3
+    clip: {fileID: 8300000, guid: 1ed030eb4626e0a4f96e1dbd51739eb5, type: 3}
+    volume: 0.54
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: s1
+    clip: {fileID: 8300000, guid: c21d6d8b131944f4cba100af85f56687, type: 3}
+    volume: 0.54
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: s2
+    clip: {fileID: 8300000, guid: 4f14921434360d14ab848932d9b4b173, type: 3}
+    volume: 0.54
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: s3
+    clip: {fileID: 8300000, guid: 624a30de1a948934eb643e28314ac1ea, type: 3}
+    volume: 0.54
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   sceneMusics: []
 --- !u!1 &1466453988
 GameObject:

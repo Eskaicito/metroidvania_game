@@ -84,6 +84,8 @@ public class PlayerCombat : MonoBehaviour
         
         animator.SetTrigger("Attack" + currentCombo);
 
+        AudioManager.instance.PlaySound("s" + currentCombo);
+
       
         yield return new WaitForSeconds(attackDurations[comboStep]);
 
@@ -116,7 +118,7 @@ public class PlayerCombat : MonoBehaviour
                 flyingEnemy.TakeDamage(comboDamage[comboStep]);
             }
 
-            // Activar hitstop y sacudida de cámara
+            AudioManager.instance.PlaySound("sword" + currentCombo);
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
