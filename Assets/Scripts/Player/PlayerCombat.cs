@@ -89,6 +89,11 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             StartCoroutine(TriggerHitstop());
         }
+        foreach (Collider2D boss in hitEnemies)
+        {
+            boss.GetComponent<Boss>().TakeDamage(attackDamage);
+            StartCoroutine(TriggerHitstop());
+        }
     }
 
     private IEnumerator TriggerHitstop()
