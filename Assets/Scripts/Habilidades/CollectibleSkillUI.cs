@@ -33,7 +33,7 @@ public class CollectibleSkillUI : MonoBehaviour
 
     public void ShowSkillPanel(Sprite skillIcon, string description)
     {
-    
+        AudioManager.instance.PlaySound("bell");
         skillIconUI.sprite = skillIcon;
         skillDescriptionUI.text = description;
 

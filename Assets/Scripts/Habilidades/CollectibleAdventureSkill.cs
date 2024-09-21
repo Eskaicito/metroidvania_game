@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class CollectibleAdventureSkill : MonoBehaviour, ICollectible
 {
-    public string skillName; 
+    public string skillName;
+    public Sprite skillIcon;
+    public string skillDescription;
+    private CollectibleSkillUI skillUIManager;
 
-    
+
     public static Dictionary<string, bool> acquiredSkills = new Dictionary<string, bool>();
 
+    private void Start()
+    {
 
+        skillUIManager = FindObjectOfType<CollectibleSkillUI>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            
-                Collect();
+            AudioManager.instance.PlaySound("collect");
+            Collect();
             
         }
     }
@@ -25,6 +32,7 @@ public class CollectibleAdventureSkill : MonoBehaviour, ICollectible
     {
         if (!acquiredSkills.ContainsKey(skillName))
         {
+            skillUIManager.ShowSkillPanel(skillIcon, skillDescription);
             acquiredSkills.Add(skillName, true);
             Debug.Log($"Habilidad {skillName} recogida.");
         }

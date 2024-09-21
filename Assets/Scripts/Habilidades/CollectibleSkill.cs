@@ -7,14 +7,14 @@ public class CollectibleSkill : MonoBehaviour, ICollectible
     public string skillName;
     public MonoBehaviour skillScript;
     public Sprite skillIcon;
-    public string skillDescription; // Descripción que aparecerá en la UI
+    public string skillDescription; 
     private SkillWheel skillWheel;
     private CollectibleSkillUI skillUIManager;
 
     private void Start()
     {
         skillWheel = FindAnyObjectByType<SkillWheel>();
-        skillUIManager = FindObjectOfType<CollectibleSkillUI>(); // Encontramos el script de la UI
+        skillUIManager = FindObjectOfType<CollectibleSkillUI>(); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,6 +24,7 @@ public class CollectibleSkill : MonoBehaviour, ICollectible
             ICollectible collectible = GetComponent<ICollectible>();
             if (collectible != null)
             {
+                //AudioManager.instance.PlaySound("collect");
                 Collect();
             }
         }
@@ -34,8 +35,8 @@ public class CollectibleSkill : MonoBehaviour, ICollectible
         if (skillScript is ISkill skill)
         {
             skillWheel.AddSkill(skillName, skill, skillIcon);
-            skillUIManager.ShowSkillPanel(skillIcon, skillDescription); // Mostrar el mensaje en la UI
-            Destroy(gameObject); // Destruir el objeto luego de recogerlo
+            skillUIManager.ShowSkillPanel(skillIcon, skillDescription);
+            Destroy(gameObject); 
         }
     }
 }
