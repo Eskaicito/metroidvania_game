@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private PotionFactory potionFactory;
 
-    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private float detectionRange = 2f;
     [SerializeField] private Transform[] waypoints;
     private int currentWaypointIndex = 0;
 

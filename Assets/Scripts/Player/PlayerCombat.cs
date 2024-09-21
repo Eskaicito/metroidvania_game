@@ -102,6 +102,11 @@ public class PlayerCombat : MonoBehaviour
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
 
+        if (hitEnemies.Length == 0)
+        {
+            Debug.Log("No se golpeó a ningún enemigo.");
+        }
+
         foreach (Collider2D enemy in hitEnemies)
         {
             // Intentar detectar el script 'Enemy'
@@ -122,14 +127,14 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
-        foreach (Collider2D boss in hitEnemies)
-        {
-            boss.GetComponent<Boss>().TakeDamage(comboDamage[comboStep]);
-            StartCoroutine(TriggerHitstop());
-        }
+        //foreach (Collider2D boss in hitEnemies)
+        //{
+        //    boss.GetComponent<Boss>().TakeDamage(comboDamage[comboStep]);
+        //    StartCoroutine(TriggerHitstop());
+        //}
     }
 
-    private IEnumerator TriggerHitstop()
+    public IEnumerator TriggerHitstop()
     {
         isHitstopActive = true;
 
