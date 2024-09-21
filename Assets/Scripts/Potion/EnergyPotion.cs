@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyPotion : Potion, ICollectible
 {
-    public int energyAmount = 15; 
+    public int energyAmount = 30; 
     private Player playerEnergy;
 
     private void Start()
@@ -26,6 +26,7 @@ public class EnergyPotion : Potion, ICollectible
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySound("energy");
           Collect();
         }
     }
