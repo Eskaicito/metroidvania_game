@@ -12,12 +12,14 @@ public class RunState : IState
     }
     public void Enter()
     {
+        AudioManager.instance.PlaySound(RUN);
         player.ChangeAnimationState(RUN);
         
     }
 
     public void Exit()
     {
+        AudioManager.instance.StopSound(RUN);
     }
 
     public void UpdateState()
