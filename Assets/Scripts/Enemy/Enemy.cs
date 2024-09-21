@@ -27,20 +27,18 @@ public class Enemy : MonoBehaviour
     private bool isChasingPlayer = false;
     private Vector2 lastWaypointPosition;
 
+    private Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;
+
     private Collider2D enemyCollider;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
         lastWaypointPosition = waypoints[currentWaypointIndex].position; // Posición inicial del waypoint
 
-        // Ignorar colisiones entre el enemigo y el jugador
-        //Collider2D playerCollider = player.GetComponent<Collider2D>();
-        //enemyCollider = GetComponent<Collider2D>();
-        //if (playerCollider != null && enemyCollider != null)
-        //{
-        //    Physics2D.IgnoreCollision(playerCollider, enemyCollider);
-        //}
+       
     }
 
     private void Update()
