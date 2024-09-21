@@ -124,7 +124,7 @@ public class PlayerCombat : MonoBehaviour
         }
         foreach (Collider2D boss in hitEnemies)
         {
-            boss.GetComponent<Boss>().TakeDamage(attackDamage);
+            boss.GetComponent<Boss>().TakeDamage(comboDamage[comboStep]);
             StartCoroutine(TriggerHitstop());
         }
     }
