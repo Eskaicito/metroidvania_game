@@ -14,17 +14,17 @@ public class IdleState : IState
     public void Enter()
     {
         player.ChangeAnimationState(IDLE);
-        
+      
     }
 
     public void Exit()
     {
-        
+     
     }
 
     public void UpdateState()
     {
-        if (player.hInput != 0 && player.isGrounded)
+        if (player.hInput != 0 && player.isGrounded && !player.IDashing)
         {
             player.StateMachine.TransitionTo(player.StateMachine.runState);
         }
@@ -33,9 +33,9 @@ public class IdleState : IState
 
             player.StateMachine.TransitionTo(player.StateMachine.jumpState);
         }
-        if(player.IDashing == true)
-        {
-            player.StateMachine.TransitionTo(player.StateMachine.dashState);
-        }
+        //if(player.hInput != 0 && player.isGrounded && player.IDashing == true)
+        //{
+        //    player.StateMachine.TransitionTo(player.StateMachine.dashState);
+        //}
     }
 }

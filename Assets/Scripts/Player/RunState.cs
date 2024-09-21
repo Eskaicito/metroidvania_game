@@ -12,12 +12,14 @@ public class RunState : IState
     }
     public void Enter()
     {
+        AudioManager.instance.PlaySound(RUN);
         player.ChangeAnimationState(RUN);
         
     }
 
     public void Exit()
     {
+        AudioManager.instance.StopSound(RUN);
     }
 
     public void UpdateState()
@@ -31,9 +33,9 @@ public class RunState : IState
 
             player.StateMachine.TransitionTo(player.StateMachine.jumpState);
         }
-        if (player.IDashing == true)
-        {
-            player.StateMachine.TransitionTo(player.StateMachine.dashState);
-        }
+        //if ( player.IDashing == true)
+        //{
+        //    player.StateMachine.TransitionTo(player.StateMachine.dashState);
+        //}
     }
 }

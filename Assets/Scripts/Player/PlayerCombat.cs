@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Combat Settings")]
-    public float attackDamage = 10f;
     public float comboWindow = 0.5f;
     public int maxCombo = 3;
     public float attackRadius = 0.5f;
     public Transform attackPoint;
     public LayerMask enemyLayers;
+
+    [Header("Damage Settings")]
+    private float[] comboDamage = { 10f, 15f, 25f };  
 
     [Header("Animation Settings")]
     public Animator animator;
@@ -27,21 +29,26 @@ public class PlayerCombat : MonoBehaviour
     public float hitstopDuration = 0.1f;
     private bool isHitstopActive = false;
 
+    [Header("Camera Shake Settings")]
+    public CameraController cameraController;  
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private PlayerMovement playerMovement;
+    private SkillWheel skillWheel;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        playerMovement = GetComponent<PlayerMovement>();
+        skillWheel = FindAnyObjectByType<SkillWheel>();
     }
 
     void Update()
     {
+        
         if (Input.GetButtonDown("Fire1") && !isAttacking && !isHitstopActive)
         {
+            
             if (Time.time - lastAttackTime <= comboWindow && currentCombo < maxCombo)
             {
                 currentCombo++;
@@ -54,19 +61,32 @@ public class PlayerCombat : MonoBehaviour
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack());
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && skillWheel.skillActive != null)
+        {
+            skillWheel.skillActive.Use();
+            StartCoroutine(TriggerHitstop());
+            cameraController.ShakeCamera();
+        }
     }
 
     private IEnumerator PerformAttack()
     {
         isAttacking = true;
 
+      
         rb.velocity = new Vector2(0, rb.velocity.y);
 
+       
         comboStep = currentCombo - 1;
 
-        // Activa la animación correspondiente al ataque en el combo
+        
         animator.SetTrigger("Attack" + currentCombo);
 
+        AudioManager.instance.PlaySound("s" + currentCombo);
+
+      
         yield return new WaitForSeconds(attackDurations[comboStep]);
 
         isAttacking = false;
@@ -77,17 +97,30 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    // Este método será llamado desde un Animation Event
     public void OnAttackHit()
     {
-        // Ejecuta el ataque en el momento preciso de la animación
-        Vector2 attackDirection = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            // Intentar detectar el script 'Enemy'
+            Enemy groundEnemy = enemy.GetComponent<Enemy>();
+            if (groundEnemy != null)
+            {
+                groundEnemy.TakeDamage(comboDamage[comboStep]);
+            }
+
+            // Intentar detectar el script 'EnemyAir'
+            EnemyAir flyingEnemy = enemy.GetComponent<EnemyAir>();
+            if (flyingEnemy != null)
+            {
+                flyingEnemy.TakeDamage(comboDamage[comboStep]);
+            }
+
+            AudioManager.instance.PlaySound("sword" + currentCombo);
             StartCoroutine(TriggerHitstop());
+            cameraController.ShakeCamera();
         }
         foreach (Collider2D boss in hitEnemies)
         {
@@ -100,26 +133,22 @@ public class PlayerCombat : MonoBehaviour
     {
         isHitstopActive = true;
 
-        // Pausa el tiempo del juego brevemente
         Time.timeScale = 0f;
 
-        // Espera la duración del hitstop
         yield return new WaitForSecondsRealtime(hitstopDuration);
 
-        // Restaura el tiempo del juego
+       
         Time.timeScale = 1f;
 
         isHitstopActive = false;
     }
 
-    // Método visual para dibujar el radio de ataque en el editor
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius); // Rango de detección
-        
-        
+       
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
-
-

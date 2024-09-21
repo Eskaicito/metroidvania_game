@@ -4,20 +4,21 @@ using UnityEngine.UI;
 
 public class SkillWheel : MonoBehaviour
 {
-    public static SkillWheel Instance;
     public Canvas skillWheelCanvas;
     public Image wheelImage;
     public float wheelRadius = 200f;
     public float skillHighlightSize = 1.2f;
-    public Image activeSkillIconUI; // Referencia al ícono en la UI para mostrar la habilidad activa
+    public Image activeSkillIconUI; 
 
     private Dictionary<string, ISkill> skills = new Dictionary<string, ISkill>();
     private bool isWheelActive = false;
     private Image highlightedSkill;
     private ISkill activeSkill;
+    public ISkill skillActive => activeSkill;
     private RectTransform wheelRectTransform;
     private Vector2 wheelCenter;
     private List<SkillWheelButton> skillButtons = new List<SkillWheelButton>();
+
 
     [System.Serializable]
     public class SkillWheelButton
@@ -27,17 +28,6 @@ public class SkillWheel : MonoBehaviour
         public ISkill skillScript;
     }
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -67,11 +57,6 @@ public class SkillWheel : MonoBehaviour
         {
             HandleSkillWheel();
         }
-
-        if (Input.GetKeyDown(KeyCode.Z) && activeSkill != null)
-        {
-            activeSkill.Use();
-        }
     }
 
     private void HandleSkillWheel()
@@ -94,8 +79,7 @@ public class SkillWheel : MonoBehaviour
             float angleDifference = Mathf.Abs(angle - buttonAngle);
             angleDifference = Mathf.Min(angleDifference, 360f - angleDifference);
 
-            // Debugging
-            Debug.Log($"Button Angle: {buttonAngle}, Mouse Angle: {angle}, Angle Difference: {angleDifference}");
+          
 
             if (angleDifference < 360f / skillButtons.Count / 2)
             {
@@ -135,11 +119,12 @@ public class SkillWheel : MonoBehaviour
     {
         if (skills.ContainsKey(skillName))
         {
+            AudioManager.instance.PlaySound("collect");
             activeSkill = skills[skillName];
             Debug.Log("Selected skill: " + skillName);
             activeSkill.Activate();
 
-            // Mostrar el ícono de la habilidad activa en la UI
+           
             activeSkillIconUI.sprite = skillButtons.Find(button => button.skillName == skillName).skillIcon.sprite;
 
         }

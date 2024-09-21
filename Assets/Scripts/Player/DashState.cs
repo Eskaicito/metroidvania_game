@@ -6,6 +6,7 @@ using UnityEngine;
 public class DashState : IState
 {
     private PlayerMovement player;
+    const string DASH = "Dash";
     public DashState(PlayerMovement player)
     {
         this.player = player;
@@ -13,7 +14,7 @@ public class DashState : IState
 
     public void Enter()
     {
-       
+        player.ChangeAnimationState(DASH);
     }
 
     public void Exit()

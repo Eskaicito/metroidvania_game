@@ -14,12 +14,12 @@ public class JumpState : IState
     public void Enter()
     {
         player.ChangeAnimationState(JUMP);
+        AudioManager.instance.PlaySound(JUMP);
         
     }
 
     public void Exit()
-    {
-        
+    { 
     }
 
     public void UpdateState()

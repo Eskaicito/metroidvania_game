@@ -29,10 +29,12 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public bool isGrounded;
 
+    [Header("Double Jump")]
+    public int maxJumps = 2; 
+    private int jumpCount;     
 
     [Header("Sprite & Flip")]
     private bool facingRight = true;
-
 
     [Header("Animation")]
     public Animator animator;
@@ -57,16 +59,17 @@ public class PlayerMovement : MonoBehaviour
     private StateMachine stateMachine;
     public StateMachine StateMachine => stateMachine;
 
+
     private void Awake()
     {
-
         stateMachine = new StateMachine(this);
         stateMachine.Initialize(stateMachine.idleState);
     }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-      
+        jumpCount = maxJumps; 
     }
 
     void Update()
@@ -74,12 +77,10 @@ public class PlayerMovement : MonoBehaviour
         stateMachine.UpdateState();
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-     
-
-        
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+            jumpCount = maxJumps; 
         }
         else
         {
@@ -95,22 +96,15 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
 
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && !isJumping)
+     
+        if (jumpBufferCounter > 0 && (coyoteTimeCounter > 0 || jumpCount > 0))
         {
             Jump();
         }
 
-      
-       
-
         horizontalInput = Input.GetAxisRaw("Horizontal");
-
-       
-      
-       
         HandleSpriteFlip();
 
-       
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= dashCooldownTime)
         {
             StartDash();
@@ -148,8 +142,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity.y
             );
         }
-
-       
     }
 
     void StartDash()
@@ -158,7 +150,6 @@ public class PlayerMovement : MonoBehaviour
         dashTime = dashDuration;
         dashCooldownTime = Time.time + dashCooldown;
         rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, rb.velocity.y);
-     
     }
 
     void EndDash()
@@ -174,6 +165,8 @@ public class PlayerMovement : MonoBehaviour
 
         coyoteTimeCounter = 0f;
         jumpBufferCounter = 0f;
+
+        jumpCount--;  // Reducimos el contador de saltos
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -212,9 +205,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void ChangeAnimationState(string newState)
     {
-
         if (currentState == newState) return;
         animator.Play(newState);
         currentState = newState;
     }
 }
+

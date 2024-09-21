@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class HealthPotion : MonoBehaviour
+public class HealthPotion : Potion, ICollectible
 {
-    public int healthAmount = 5;
+    public int healthAmount = 15;
+
+    private Player playerHealth;
+
+   private void Start()
+    {
+        playerHealth = FindAnyObjectByType<Player>();
+    }
+    public void Collect()
+    {
+
+        if (playerHealth != null)
+        {
+
+            playerHealth.Heal(healthAmount);
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            
-            Player playerHealth = collision.GetComponent<Player>();
-            if (playerHealth != null)
-            {
-                
-                playerHealth.Heal(healthAmount);
-                Debug.Log("Player healed by " + healthAmount + ". Current Health: " + playerHealth.playerHealthData.currentHealth);
 
-                
-                Destroy(gameObject);
-            }
+            Collect();
         }
     }
 }

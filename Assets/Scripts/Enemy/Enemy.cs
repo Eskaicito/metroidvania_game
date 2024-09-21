@@ -2,29 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
-
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float detectionRange = 3f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private bool isPlayerInRange = false;
     private float nextAttackTime;
 
     [SerializeField] float speed = 3f;
-    public float Speed => speed; // Propiedad
+    [SerializeField] private float pushForce = 300f;
+    public float Speed => speed;
 
     [SerializeField] string id;
-    public string Id => id; // Propiedad
+    public string Id => id;
 
-    [SerializeField] public GameObject healthPotion;
+    [SerializeField] private PotionFactory potionFactory;
 
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private Transform[] waypoints;
+    private int currentWaypointIndex = 0;
+
+    private bool isPlayerInRange = false;
+    private Transform player;
+    private bool isChasingPlayer = false;
+    private Vector2 lastWaypointPosition;
+
+    private Collider2D enemyCollider;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        lastWaypointPosition = waypoints[currentWaypointIndex].position; // Posición inicial del waypoint
+
+        // Ignorar colisiones entre el enemigo y el jugador
+        //Collider2D playerCollider = player.GetComponent<Collider2D>();
+        //enemyCollider = GetComponent<Collider2D>();
+        //if (playerCollider != null && enemyCollider != null)
+        //{
+        //    Physics2D.IgnoreCollision(playerCollider, enemyCollider);
+        //}
+    }
 
     private void Update()
     {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= detectionRange)
+        {
+            
+            isChasingPlayer = true;
+        }
+        else if (isChasingPlayer)
+        {
+     
+            isChasingPlayer = false;
+            TeleportToWaypoint();
+        }
+
+        if (isChasingPlayer)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            Patrol();
+        }
+
         if (isPlayerInRange)
         {
             if (Time.time >= nextAttackTime)
@@ -35,17 +78,63 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void ChasePlayer()
+    {
+        if (player != null)
+        {
+            
+            Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
+    }
+
+    private void Patrol()
+    {
+        if (waypoints.Length == 0) return;
+
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+
+
+        if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; 
+            lastWaypointPosition = waypoints[currentWaypointIndex].position; 
+        }
+    }
+
+    private void TeleportToWaypoint()
+    {
+    
+        transform.position = lastWaypointPosition;
+        isChasingPlayer = false;
+    }
+
     private void AttackPlayer()
     {
-        GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             Player playerHealth = player.GetComponent<Player>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage((int)damage);
-                Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + playerHealth.playerHealthData.currentHealth);
+                PushPlayerBack(); 
             }
+        }
+    }
+
+    private void PushPlayerBack()
+    {
+       
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+
+        if (playerRb != null)
+        {
+           
+            Vector2 pushDirection = (player.position - transform.position).normalized;
+
+         
+            playerRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
         }
     }
 
@@ -54,7 +143,6 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            Debug.Log("Player entro en rango");
         }
     }
 
@@ -63,14 +151,12 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            Debug.Log("Player salio del rango");
         }
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
 
         if (health <= 0)
         {
@@ -84,46 +170,33 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        DropHealthPotion();
+        DropPotion();
     }
 
-    public void DropHealthPotion()
+    public void DropPotion()
     {
-        if (healthPotion != null)
+        if (potionFactory != null)
         {
-            Instantiate(healthPotion, transform.position, Quaternion.identity);
+            potionFactory.DropPotion(transform.position);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Vector2.Distance(transform.position, collision.transform.position) <= attackRange)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (Time.time >= nextAttackTime)
             {
-                if (Time.time >= nextAttackTime)
+                Player player = collision.gameObject.GetComponent<Player>();
+
+                if (player != null)
                 {
-                    Player player = collision.gameObject.GetComponent<Player>();
-
-                    if (player != null)
-                    {
-                        player.TakeDamage((int)damage);
-                        Debug.Log("Enemy attacked player for " + damage + " damage. Player's current health: " + player.playerHealthData.currentHealth);
-                    }
-
-                    nextAttackTime = Time.time + attackCooldown;
+                    player.TakeDamage((int)damage);
+                    PushPlayerBack();
                 }
+
+                nextAttackTime = Time.time + attackCooldown;
             }
-
         }
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange); // Rango de detección
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, attackRange); // Rango de ataque
     }
 }
