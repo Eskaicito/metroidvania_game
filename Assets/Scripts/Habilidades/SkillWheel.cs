@@ -119,6 +119,7 @@ public class SkillWheel : MonoBehaviour
     {
         if (skills.ContainsKey(skillName))
         {
+            AudioManager.instance.PlaySound("collect");
             activeSkill = skills[skillName];
             Debug.Log("Selected skill: " + skillName);
             activeSkill.Activate();
