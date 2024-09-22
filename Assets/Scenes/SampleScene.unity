@@ -725,14 +725,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 610423579}
   - {fileID: 1749431867}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &14611460
 GameObject:
   m_ObjectHideFlags: 0
@@ -7030,14 +7032,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1675181585}
   - {fileID: 879782405}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &187778394
 GameObject:
   m_ObjectHideFlags: 0
@@ -7488,14 +7492,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1172102365}
   - {fileID: 1808983679}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &201978937
 GameObject:
   m_ObjectHideFlags: 0
@@ -10169,14 +10175,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 2089068083}
   - {fileID: 143028785}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &278322392
 GameObject:
   m_ObjectHideFlags: 0
@@ -11386,14 +11394,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1205729666}
   - {fileID: 1935786329}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &327532640
 GameObject:
   m_ObjectHideFlags: 0
@@ -12104,14 +12114,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 215657730}
   - {fileID: 588501777}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &345134384
 GameObject:
   m_ObjectHideFlags: 0
@@ -14679,14 +14691,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 612617668}
   - {fileID: 2049934434}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &428058551
 GameObject:
   m_ObjectHideFlags: 0
@@ -16949,14 +16963,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1542137926}
   - {fileID: 1956647759}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &530169559
 GameObject:
   m_ObjectHideFlags: 0
@@ -21628,14 +21644,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 713736074}
   - {fileID: 183744827}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &662889241
 GameObject:
   m_ObjectHideFlags: 0
@@ -25390,14 +25408,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 802725675}
   - {fileID: 1872691674}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &754936398
 GameObject:
   m_ObjectHideFlags: 0
@@ -26245,14 +26265,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1231950278}
   - {fileID: 1618026030}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &773498660
 GameObject:
   m_ObjectHideFlags: 0
@@ -27115,14 +27137,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 187778395}
   - {fileID: 2141589483}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &789342694
 GameObject:
   m_ObjectHideFlags: 0
@@ -28353,14 +28377,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 98344338}
   - {fileID: 573382248}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &820711388
 GameObject:
   m_ObjectHideFlags: 0
@@ -29102,14 +29128,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 722025705}
   - {fileID: 702592297}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &855311697
 GameObject:
   m_ObjectHideFlags: 0
@@ -30005,14 +30033,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 984205530}
   - {fileID: 1118684295}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &873246894
 GameObject:
   m_ObjectHideFlags: 0
@@ -33536,14 +33566,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1771325703}
   - {fileID: 1662770231}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &953879853
 GameObject:
   m_ObjectHideFlags: 0
@@ -34084,14 +34116,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 916708072}
   - {fileID: 1136311336}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &979951380
 GameObject:
   m_ObjectHideFlags: 0
@@ -36387,14 +36421,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1746226685}
   - {fileID: 415090014}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1038538092
 GameObject:
   m_ObjectHideFlags: 0
@@ -36569,14 +36605,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 2099825959}
   - {fileID: 163698089}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1038937265
 GameObject:
   m_ObjectHideFlags: 0
@@ -36950,14 +36988,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1308048782}
   - {fileID: 1742705448}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1057376387
 GameObject:
   m_ObjectHideFlags: 0
@@ -40465,14 +40505,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1311473572}
   - {fileID: 885964060}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1128631799
 GameObject:
   m_ObjectHideFlags: 0
@@ -41572,14 +41614,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 366286774}
   - {fileID: 1350570836}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1149889870
 GameObject:
   m_ObjectHideFlags: 0
@@ -42565,14 +42609,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 193743607}
   - {fileID: 340996705}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1169840978
 GameObject:
   m_ObjectHideFlags: 0
@@ -43742,14 +43788,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 726129484}
   - {fileID: 2138897754}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1202237495
 GameObject:
   m_ObjectHideFlags: 0
@@ -46122,14 +46170,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
-  pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
+  patrolSpeed: 10
+  chaseSpeed: 12
+  pushForce: 250
   detectionRange: 2
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1693817582}
   - {fileID: 1941791654}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!61 &1245998340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46574,14 +46624,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1632783574}
   - {fileID: 1358843934}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1254889239
 GameObject:
   m_ObjectHideFlags: 0
@@ -46928,14 +46980,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1999006564}
   - {fileID: 1203300022}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1256831074
 GameObject:
   m_ObjectHideFlags: 0
@@ -47408,14 +47462,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 767213624}
   - {fileID: 614528935}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1261490616
 GameObject:
   m_ObjectHideFlags: 0
@@ -49828,14 +49884,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1508909408}
   - {fileID: 1250929916}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1315573892
 GameObject:
   m_ObjectHideFlags: 0
@@ -50442,14 +50500,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 402891510}
   - {fileID: 530169560}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1327575565
 GameObject:
   m_ObjectHideFlags: 0
@@ -58011,14 +58071,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 490874155}
   - {fileID: 482159158}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1608511361
 GameObject:
   m_ObjectHideFlags: 0
@@ -58851,14 +58913,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1512516465}
   - {fileID: 1829782609}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1620796801
 GameObject:
   m_ObjectHideFlags: 0
@@ -59408,14 +59472,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1475689556}
   - {fileID: 290520415}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1625434273
 GameObject:
   m_ObjectHideFlags: 0
@@ -60847,14 +60913,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 2038024979}
   - {fileID: 52957618}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1685606358
 GameObject:
   m_ObjectHideFlags: 0
@@ -61360,14 +61428,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1515852528}
   - {fileID: 1621091100}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1693300636
 GameObject:
   m_ObjectHideFlags: 0
@@ -61939,14 +62009,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 449824757}
   - {fileID: 842560948}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1705657011
 GameObject:
   m_ObjectHideFlags: 0
@@ -63925,14 +63997,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 618716544}
   - {fileID: 213207565}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1784220122
 GameObject:
   m_ObjectHideFlags: 0
@@ -69663,14 +69737,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1482316168}
   - {fileID: 2040720193}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1907596426
 GameObject:
   m_ObjectHideFlags: 0
@@ -69845,14 +69921,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 641290524}
   - {fileID: 68816556}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1909207250
 GameObject:
   m_ObjectHideFlags: 0
@@ -70241,14 +70319,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1693980782}
   - {fileID: 696213804}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1925600065
 GameObject:
   m_ObjectHideFlags: 0
@@ -70423,14 +70503,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 2
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1128631800}
   - {fileID: 1311941807}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1926793112
 GameObject:
   m_ObjectHideFlags: 0
@@ -70895,14 +70977,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 163232698}
   - {fileID: 812647977}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1935786328
 GameObject:
   m_ObjectHideFlags: 0
@@ -71145,14 +71229,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 2122348557}
   - {fileID: 552042471}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1939126690
 GameObject:
   m_ObjectHideFlags: 0
@@ -72822,14 +72908,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 1823113186}
   - {fileID: 2085694411}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1982836366
 GameObject:
   m_ObjectHideFlags: 0
@@ -73189,14 +73277,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 914852810}
   - {fileID: 1561704121}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &1990578070
 GameObject:
   m_ObjectHideFlags: 0
@@ -73777,14 +73867,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 2031161951}
   - {fileID: 1638492721}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &2009232354
 GameObject:
   m_ObjectHideFlags: 0
@@ -74414,14 +74506,16 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  speed: 3
+  patrolSpeed: 3
+  chaseSpeed: 4.5
   pushForce: 50
-  id: groundEnemy
-  potionFactory: {fileID: 1583163464}
   detectionRange: 3
+  losePlayerRange: 4
   waypoints:
   - {fileID: 350169085}
   - {fileID: 800829806}
+  id: groundEnemy
+  potionFactory: {fileID: 1583163464}
 --- !u!1 &2027912488
 GameObject:
   m_ObjectHideFlags: 0

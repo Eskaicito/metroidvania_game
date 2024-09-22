@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour
     private Transform player;
     private int damageAmount = 10;
 
-
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
