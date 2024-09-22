@@ -16530,7 +16530,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.550709, y: -10.132513, z: -9.994715}
+  m_LocalPosition: {x: 30.550728, y: -10.132493, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35029,7 +35029,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
-  forceHit: 100
+  forceHit: 400
   animator: {fileID: 988380354}
   attackDurations:
   - 0.3
@@ -46172,7 +46172,7 @@ MonoBehaviour:
   attackCooldown: 2
   patrolSpeed: 10
   chaseSpeed: 12
-  pushForce: 250
+  pushForce: 300
   detectionRange: 2
   losePlayerRange: 4
   waypoints:
