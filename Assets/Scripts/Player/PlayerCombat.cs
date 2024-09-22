@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRadius = 0.5f;
     public Transform attackPoint;
     public LayerMask enemyLayers;
+    [SerializeField] private int forceHit = 10;
 
     [Header("Damage Settings")]
     private float[] comboDamage = { 10f, 15f, 25f };  
@@ -35,9 +37,11 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private SkillWheel skillWheel;
+    public VFXMANAGER vfxManager;
 
     void Start()
     {
+        vfxManager = FindAnyObjectByType<VFXMANAGER>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         skillWheel = FindAnyObjectByType<SkillWheel>();
@@ -84,6 +88,8 @@ public class PlayerCombat : MonoBehaviour
         
         animator.SetTrigger("Attack" + currentCombo);
 
+        AudioManager.instance.PlaySound("s" + currentCombo);
+
       
         yield return new WaitForSeconds(attackDurations[comboStep]);
 
@@ -97,21 +103,68 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnAttackHit()
     {
-     
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
+
+        if (hitEnemies.Length == 0)
+        {
+            Debug.Log("No se golpeó a ningún enemigo.");
+        }
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            
-            enemy.GetComponent<EnemyGoyo>().TakeDamage(comboDamage[comboStep]);
+       
+            Enemy groundEnemy = enemy.GetComponent<Enemy>();
+            if (groundEnemy != null)
+            {
+                groundEnemy.TakeDamage(comboDamage[comboStep]);
 
-          
+         
+                Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
+
+
+                if (groundEnemy.Rb != null)
+                {
+                    groundEnemy.Rb.AddForce(new Vector2(forceHit, 0), ForceMode2D.Impulse);
+                }
+
+      
+                StartCoroutine(ReenableCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>()));
+            }
+
+       
+            EnemyAir flyingEnemy = enemy.GetComponent<EnemyAir>();
+            if (flyingEnemy != null)
+            {
+                flyingEnemy.TakeDamage(comboDamage[comboStep]);
+                //Physics2D.IgnoreCollision(flyingEnemy.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
+                //if (flyingEnemy.Rb != null)
+                //{
+                //    flyingEnemy.Rb.AddForce(new Vector2(forceHit, 0), ForceMode2D.Impulse);
+                //}
+                //StartCoroutine(ReenableCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>()));
+            }
+            vfxManager.PlayVFX(0, attackPoint.position);
+            AudioManager.instance.PlaySound("sword" + currentCombo);
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
+        //foreach (Collider2D boss in hitEnemies)
+        //{
+        //    boss.GetComponent<Boss>().TakeDamage(comboDamage[comboStep]);
+        //    StartCoroutine(TriggerHitstop());
+        //}
     }
 
-    private IEnumerator TriggerHitstop()
+    private IEnumerator ReenableCollision(Collider2D enemyCollider, Collider2D playerCollider)
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+
+        Physics2D.IgnoreCollision(enemyCollider, playerCollider, false);
+    }
+
+    public IEnumerator TriggerHitstop()
     {
         isHitstopActive = true;
 

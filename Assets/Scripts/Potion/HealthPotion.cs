@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthPotion : Potion, ICollectible
 {
-    public int healthAmount = 5;
+    public int healthAmount = 30;
 
     private Player playerHealth;
 
@@ -28,6 +28,7 @@ public class HealthPotion : Potion, ICollectible
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySound("heal");
 
             Collect();
         }

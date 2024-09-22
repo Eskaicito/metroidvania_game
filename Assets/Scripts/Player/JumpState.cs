@@ -14,6 +14,7 @@ public class JumpState : IState
     public void Enter()
     {
         player.ChangeAnimationState(JUMP);
+        AudioManager.instance.PlaySound(JUMP);
         
     }
 

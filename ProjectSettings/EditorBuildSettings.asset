@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zona2.unity
     guid: 334cf96bcf330aa4ca7148d7f25898b8
+  - enabled: 1
+    path: Assets/Scenes/DefeatScene.unity
+    guid: 48479ba6519a3644e9191c7c18237d0d
+  - enabled: 1
+    path: Assets/Scenes/VictoryScene.unity
+    guid: 586705f9a876b2b4b8ba386af5336a2c
   m_configObjects: {}
