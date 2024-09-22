@@ -20,11 +20,14 @@ public class EnemyAir : MonoBehaviour
     private float nextFireTime;
 
     [SerializeField] private float health = 100f; 
-    [SerializeField] private GameObject deathEffect; 
+    [SerializeField] private GameObject deathEffect;
+
+    private Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;
 
     private void Start()
     {
-        // Inicializamos el jugador
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
 
         if (waypoints.Length < 2)

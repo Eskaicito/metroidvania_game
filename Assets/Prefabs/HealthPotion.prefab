@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  healthAmount: 5
+  healthAmount: 25
 --- !u!61 &1292754629214161154
 BoxCollider2D:
   m_ObjectHideFlags: 0
