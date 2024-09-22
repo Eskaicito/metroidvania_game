@@ -16487,7 +16487,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.550797, y: -10.132453, z: -9.994715}
+  m_LocalPosition: {x: 30.550838, y: -10.132413, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50894,7 +50894,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c1ee4077eecd2d14ebdac096a6808161, type: 3}
     volume: 0.845
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   sceneMusics:
   - sceneName: SampleScene
