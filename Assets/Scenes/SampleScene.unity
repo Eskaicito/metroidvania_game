@@ -845,8 +845,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -7964,8 +7964,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -8621,8 +8621,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -11573,7 +11573,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -19, y: -25}
-  m_SizeDelta: {x: 299.02844, y: 25.7529}
+  m_SizeDelta: {x: 578.1635, y: 80.4194}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &273369809
 MonoBehaviour:
@@ -11832,8 +11832,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -13989,8 +13989,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -14887,8 +14887,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -18305,8 +18305,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -18747,7 +18747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.20759583, y: 0}
+  m_AnchoredPosition: {x: -0.20758057, y: 0}
   m_SizeDelta: {x: 9.5805, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &441407456
@@ -21696,7 +21696,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.28443, y: -7.064603, z: -9.994715}
+  m_LocalPosition: {x: -33.84973, y: -7.069523, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21840,7 +21840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: B
+  m_text: No ayudar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21867,8 +21867,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22238,8 +22238,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -28382,8 +28382,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -33100,8 +33100,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -34135,7 +34135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 643058718}
-  npcDialogue: TELITA MAXI
+  npcDialogue: "\"He perdido a mi hijo. Por favor, si lo encuentras, tr\xE1elo de
+    vuelta a mis brazos. Te lo suplico\""
   interactIcon: {fileID: 822852859}
 --- !u!1 &769727698
 GameObject:
@@ -34259,8 +34260,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -35170,8 +35171,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -36011,7 +36012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vfxPrefabs:
   - {fileID: 6872821127241998704, guid: 1d8a84dfa0312504db2fac995a8f6d1c, type: 3}
-  - {fileID: 6872821127241998704, guid: 1d8a84dfa0312504db2fac995a8f6d1c, type: 3}
+  - {fileID: 4431626374093924875, guid: 8ac74da7d275b3c47bc1bcc68cfdb658, type: 3}
 --- !u!4 &801950802
 Transform:
   m_ObjectHideFlags: 0
@@ -37230,8 +37231,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -37702,8 +37703,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -39180,8 +39181,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -39991,8 +39992,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.947, y: 22.802}
-  m_SizeDelta: {x: 826.3319, y: 45.604}
+  m_AnchoredPosition: {x: -0.000010967, y: 48.107666}
+  m_SizeDelta: {x: 1126.697, y: 74.2101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889956833
 MonoBehaviour:
@@ -40041,8 +40042,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 41
+  m_fontSizeBase: 41
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -40288,7 +40289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 643058718}
-  npcDialogue: TELITA MAXI
+  npcDialogue: "\"La ciudad de Vesperia ha visto mejores d\xEDas. Espero que tu estancia
+    aqu\xED sea corta, viajero\""
   interactIcon: {fileID: 145967504}
 --- !u!1 &900381375
 GameObject:
@@ -40408,8 +40410,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.92026, y: 82}
-  m_SizeDelta: {x: 82.7297, y: 82.7297}
+  m_AnchoredPosition: {x: 0.000015259, y: 170}
+  m_SizeDelta: {x: 146.0476, y: 146.0476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900488545
 MonoBehaviour:
@@ -42628,8 +42630,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -43399,8 +43401,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -43630,7 +43632,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 643058718}
   karmaSystem: {fileID: 2004031776}
-  npcDialogue: TELITA GOYO
+  npcDialogue: "\"He estado esperando a entrar a la zona corrompida. Necesito de
+    un valiente guerrero que me gu\xEDe\""
   interactIcon: {fileID: 1335281842}
 --- !u!114 &979951385
 MonoBehaviour:
@@ -44056,7 +44059,7 @@ Transform:
   m_GameObject: {fileID: 988380348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.3, y: -2.6, z: 0}
+  m_LocalPosition: {x: -32.6, y: -2.2, z: 0}
   m_LocalScale: {x: 3.1136, y: 3.1136, z: 3.1136}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45746,8 +45749,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -45878,8 +45881,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -46138,7 +46141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 643058718}
-  npcDialogue: TELITA MAXI
+  npcDialogue: "\"No avances, los monstruos de la Orden Pagana han contaminado la
+    ciudad. Este distrito es de los pocos que a\xFAn est\xE1n seguros\""
   interactIcon: {fileID: 1608511361}
 --- !u!1 &1050264298
 GameObject:
@@ -46377,8 +46381,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -47977,7 +47981,8 @@ MonoBehaviour:
   skillName: Redemption
   skillScript: {fileID: 1077251634}
   skillIcon: {fileID: 21300000, guid: 90671eaa3308512439ae7226dc183c9b, type: 3}
-  skillDescription: PLIPLIPLI
+  skillDescription: "\"La habilidad de la redenci\xF3n, exclusiva para los que recorran
+    la senda del bien. Por ahora, no tiene ning\xFAn uso\""
 --- !u!4 &1077251633
 Transform:
   m_ObjectHideFlags: 0
@@ -50140,8 +50145,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -50281,7 +50286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: hook
   skillIcon: {fileID: 21300000, guid: 9d24a2679601e7247a0131e183a34571, type: 3}
-  skillDescription: HOOKIE
+  skillDescription: "\"Una habilidad de aventura. Col\xF3cate sobre un punto de interacci\xF3n
+    de esta habilidad y presiona la E para usarla. No olvides saltar al final\""
 --- !u!61 &1132913387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51059,7 +51065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 31, y: 30}
-  m_SizeDelta: {x: 120.9216, y: 120.9216}
+  m_SizeDelta: {x: 234.5554, y: 234.5554}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1143027246
 MonoBehaviour:
@@ -51751,8 +51757,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -52300,8 +52306,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -53746,8 +53752,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -56005,7 +56011,8 @@ MonoBehaviour:
   skillName: Vengeance
   skillScript: {fileID: 1242363100}
   skillIcon: {fileID: 21300000, guid: 364cefd805f67494bb62ffcf7db19fef, type: 3}
-  skillDescription: PLOPLOPLO
+  skillDescription: '"La habilidad de venganza. Solo para aquellos que recorren este
+    camino. Por ahora, no hace nada"'
 --- !u!4 &1242363099
 Transform:
   m_ObjectHideFlags: 0
@@ -56222,8 +56229,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 12
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 100
   detectionRange: 2
   losePlayerRange: 4
@@ -56734,8 +56741,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -56900,8 +56907,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -57201,8 +57208,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -59353,8 +59360,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -59560,7 +59567,7 @@ Transform:
   m_GameObject: {fileID: 1315573892}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.299507, y: -10.646612, z: -9.994715}
+  m_LocalPosition: {x: -39.599506, y: -10.246613, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60243,8 +60250,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -60795,8 +60802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218.99998, y: -25.3}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -399, y: -72.137}
+  m_SizeDelta: {x: 246.5884, y: 63.6733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1340704381
 MonoBehaviour:
@@ -60949,7 +60956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A
+  m_text: Ayudar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -60976,8 +60983,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -62679,7 +62686,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: violin
     clip: {fileID: 8300000, guid: d3cf2640bc01d7342bf49aff0ee7418e, type: 3}
-    volume: 0.452
+    volume: 0.39
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -62688,6 +62695,12 @@ MonoBehaviour:
     volume: 0.845
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: hurt
+    clip: {fileID: 8300000, guid: c42b6987f96008146897b008d6b551ac, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
   sceneMusics:
   - sceneName: SampleScene
@@ -67596,8 +67609,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36.33
+  m_fontSizeBase: 36.33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -70598,8 +70611,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -71459,8 +71472,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -71700,8 +71713,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -71938,7 +71951,7 @@ Transform:
   m_GameObject: {fileID: 1633175434}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.5, y: -8, z: -9.291592}
+  m_LocalPosition: {x: 35.626, y: -7.65, z: -9.291592}
   m_LocalScale: {x: 0.27789673, y: 0.27789673, z: 0.27789673}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71959,7 +71972,9 @@ MonoBehaviour:
   skillName: Masia
   skillScript: {fileID: 1633175441}
   skillIcon: {fileID: 21300000, guid: 310693e9bf6d9e74b94e00c9d5a8893c, type: 3}
-  skillDescription: PLEPLEPLE
+  skillDescription: '"La habilidad de todo condottiero. Abre tu rueda de habilidades
+    con el CLICK DERECHO, selecciona la habilidad, y cerca de un enemigo presiona
+    la Q para activarla"'
 --- !u!61 &1633175439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73991,8 +74006,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -74625,8 +74640,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -74732,7 +74747,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 293.1407, y: 293.1407}
+  m_SizeDelta: {x: 635.9122, y: 635.9122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694069694
 MonoBehaviour:
@@ -74894,8 +74909,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -75023,7 +75038,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 76.5233, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713629503
 MonoBehaviour:
@@ -78028,8 +78043,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -78651,7 +78666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 643058718}
   karmaSystem: {fileID: 2004031776}
-  npcDialogue: TELITA GOYO
+  npcDialogue: "\"Por favor, ay\xFAdeme. No puedo salir de aqu\xED. Los monstruos
+    quieren asesinarme\""
   interactIcon: {fileID: 1259316099}
 --- !u!4 &1786715463
 Transform:
@@ -80136,7 +80152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
+  m_AnchoredPosition: {x: -5.000061, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1822460487
@@ -81552,8 +81568,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 12
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 100
   detectionRange: 2
   losePlayerRange: 4
@@ -81594,10 +81610,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1898699718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000023842, y: -0.0000076294}
-  m_SizeDelta: {x: 574.46, y: 272.7028}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844700390
 MonoBehaviour:
@@ -83034,8 +83050,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000023842, y: -0.00001508}
-  m_SizeDelta: {x: 539.5029, y: 47.9067}
+  m_AnchoredPosition: {x: 0.000030518, y: -0.000019073}
+  m_SizeDelta: {x: 1006.8086, y: 116.2623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888476445
 MonoBehaviour:
@@ -83084,8 +83100,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 38.3
+  m_fontSizeBase: 38.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -83120,7 +83136,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 4.522949, w: -0.39294434}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -83553,8 +83569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000081062, y: 0.0000076294}
-  m_SizeDelta: {x: 576.5799, y: 273.7495}
+  m_AnchoredPosition: {x: 0, y: 0.000015259}
+  m_SizeDelta: {x: 1089.908, y: 545.1124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1905154880
 GameObject:
@@ -83787,8 +83803,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -83919,8 +83935,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -84459,8 +84475,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -84722,8 +84738,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 2
   losePlayerRange: 4
@@ -85207,8 +85223,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -85705,8 +85721,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -86171,11 +86187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764604637938529931, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 361.7152
+      value: 644.9617
       objectReference: {fileID: 0}
     - target: {fileID: 7764604637938529931, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 31.611115
+      value: 64.6566
       objectReference: {fileID: 0}
     - target: {fileID: 7764604637938529931, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -86183,7 +86199,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764604637938529931, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28
+      value: -20.9188
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -22.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -21.061
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.3552856
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163922142725195718, guid: 455466279ce3c88458a6ab3d66ee4713, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.8582993
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -87881,8 +87929,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 223, y: -25.3}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 415, y: -63}
+  m_SizeDelta: {x: 242.6403, y: 63.674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1969137931
 MonoBehaviour:
@@ -88458,8 +88506,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -89027,8 +89075,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -90189,8 +90237,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -90236,8 +90284,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000030994, y: -220}
-  m_SizeDelta: {x: 659.5258, y: 113.2405}
+  m_AnchoredPosition: {x: 0, y: -314}
+  m_SizeDelta: {x: 1222.0878, y: 275.0212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2010608118
 MonoBehaviour:
@@ -90762,8 +90810,8 @@ MonoBehaviour:
   health: 70
   damage: 10
   attackCooldown: 2
-  patrolSpeed: 10
-  chaseSpeed: 4.5
+  patrolSpeed: 4
+  chaseSpeed: 6
   pushForce: 50
   detectionRange: 3
   losePlayerRange: 4
@@ -91293,8 +91341,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 198.06, y: -95}
-  m_SizeDelta: {x: 118.642, y: 22.6475}
+  m_AnchoredPosition: {x: 398, y: -225}
+  m_SizeDelta: {x: 232.9826, y: 47.5042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034937313
 MonoBehaviour:
@@ -96694,8 +96742,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2744000032718438685, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 641.9102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744000032718438685, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20.917694
+      value: 67.5005
       objectReference: {fileID: 0}
     - target: {fileID: 2744000032718438685, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -96703,7 +96755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2744000032718438685, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -78.54111
+      value: -92.7496
       objectReference: {fileID: 0}
     - target: {fileID: 5622598030684313777, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
       propertyPath: m_Layer
@@ -96797,6 +96849,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20.3926
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -30.5891
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2744751
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163238185079777155, guid: 91b94666461c27348a3a4a01a2ed8652, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.5491028
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -96810,6 +96894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061999637040628472, guid: 08b120cb66ca59f4ebda507e2e87c7ef, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5674827032863017349, guid: 08b120cb66ca59f4ebda507e2e87c7ef, type: 3}
       propertyPath: m_Name
       value: VICTORY
