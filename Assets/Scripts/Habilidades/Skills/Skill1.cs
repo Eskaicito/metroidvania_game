@@ -26,7 +26,6 @@ public class Skill1 : MonoBehaviour, ISkill
         if (player.HasEnoughEnergy(energyAmount))
         {
             SkillDamage();
-            player.UseEnergy(energyAmount);
             Debug.Log("Skill1 Used");
         }
         else
@@ -55,6 +54,7 @@ public class Skill1 : MonoBehaviour, ISkill
             if (groundEnemy != null)
             {
                 groundEnemy.TakeDamage(damage);
+                player.UseEnergy(energyAmount);
             }
 
             // Intentar detectar el script 'EnemyAir'
@@ -62,6 +62,7 @@ public class Skill1 : MonoBehaviour, ISkill
             if (flyingEnemy != null)
             {
                 flyingEnemy.TakeDamage(damage);
+                player.UseEnergy(energyAmount);
             }
 
             AudioManager.instance.PlaySound("skill1");
