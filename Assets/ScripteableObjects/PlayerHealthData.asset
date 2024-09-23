@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerHealthData
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
+  currentHealth: 80
   maxEnergy: 100
   currentEnergy: 100

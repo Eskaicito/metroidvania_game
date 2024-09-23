@@ -21356,7 +21356,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.62538, y: -8.168813, z: -9.994715}
+  m_LocalPosition: {x: -33.224583, y: -8.1675625, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43617,7 +43617,7 @@ Transform:
   m_GameObject: {fileID: 988380348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.3, y: -2.6, z: 0}
+  m_LocalPosition: {x: -32.65, y: -3.2, z: 0}
   m_LocalScale: {x: 3.1136, y: 3.1136, z: 3.1136}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59174,7 +59174,7 @@ Transform:
   m_GameObject: {fileID: 1315573892}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.299507, y: -10.646612, z: -9.994715}
+  m_LocalPosition: {x: -39.64951, y: -11.246613, z: -9.994715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62206,7 +62206,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c1ee4077eecd2d14ebdac096a6808161, type: 3}
     volume: 0.845
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   sceneMusics:
   - sceneName: SampleScene
