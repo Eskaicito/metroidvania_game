@@ -55837,7 +55837,7 @@ MonoBehaviour:
   damage: 10
   attackCooldown: 2
   patrolSpeed: 10
-  chaseSpeed: 12
+  chaseSpeed: 15
   pushForce: 100
   detectionRange: 2
   losePlayerRange: 4
