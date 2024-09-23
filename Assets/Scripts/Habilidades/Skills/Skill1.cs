@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Skill1 : MonoBehaviour, ISkill
 {
@@ -9,9 +10,11 @@ public class Skill1 : MonoBehaviour, ISkill
     private int damage = 30;
     private PlayerCombat combat;
     public CameraController cameraController;
+    private VFXMANAGER vfxManager;
 
     private void Start()
     {
+        vfxManager = FindAnyObjectByType<VFXMANAGER>();
         player = FindAnyObjectByType<Player>();
         combat = FindAnyObjectByType<PlayerCombat>();
     }
@@ -64,7 +67,7 @@ public class Skill1 : MonoBehaviour, ISkill
                 flyingEnemy.TakeDamage(damage);
                 player.UseEnergy(energyAmount);
             }
-
+            vfxManager.PlayVFX(1, combat.attackPoint.position);
             AudioManager.instance.PlaySound("skill1");
             StartCoroutine(combat.TriggerHitstop());
             cameraController.ShakeCamera();

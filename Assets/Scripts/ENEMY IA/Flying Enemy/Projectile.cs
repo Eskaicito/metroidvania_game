@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviour
             Player playerHealth = player.GetComponent<Player>();
             if (playerHealth != null)
             {
+                AudioManager.instance.PlaySound("hurt");
                 playerHealth.TakeDamage((int)damageAmount);
 
             }

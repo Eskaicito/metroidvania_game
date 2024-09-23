@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 2f;
     private float nextAttackTime;
 
-    [SerializeField] private float patrolSpeed = 10f; // Velocidad de patrulla más rápida
-    [SerializeField] private float chaseSpeed = 15f;
+    [SerializeField] private float patrolSpeed = 4f; // Velocidad de patrulla más rápida
+    [SerializeField] private float chaseSpeed = 6f;
     [SerializeField] private float pushForce = 300f;
 
     [SerializeField] private float detectionRange = 2f;
@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
         {
             if (Time.time >= nextAttackTime)
             {
+               
                 AttackPlayer();
                 nextAttackTime = Time.time + attackCooldown;
             }
@@ -127,6 +128,7 @@ public class Enemy : MonoBehaviour
             Player playerHealth = player.GetComponent<Player>();
             if (playerHealth != null)
             {
+                
                 playerHealth.TakeDamage((int)damage);
                 PushPlayerBack(true); // Empujón más fuerte al atacar
             }
@@ -149,6 +151,7 @@ public class Enemy : MonoBehaviour
             // Ajustar la fuerza de empuje horizontal según la dirección
             float clampedForce = Mathf.Clamp(pushForce, 0, 500f);
             playerRb.AddForce(pushDirection * clampedForce, ForceMode2D.Impulse);
+            AudioManager.instance.PlaySound("hurt");
         }
     }
 
