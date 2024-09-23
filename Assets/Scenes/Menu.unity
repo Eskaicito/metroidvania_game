@@ -347,7 +347,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c1ee4077eecd2d14ebdac096a6808161, type: 3}
     volume: 0.845
     pitch: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: hurt
     clip: {fileID: 8300000, guid: c42b6987f96008146897b008d6b551ac, type: 3}
@@ -361,11 +361,19 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: video
+    clip: {fileID: 8300000, guid: d5b18d137c272c6439065ff54214a9f6, type: 3}
+    volume: 0.13
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   sceneMusics:
   - sceneName: SampleScene
     musicName: violin
   - sceneName: Menu
     musicName: menu
+  - sceneName: CINEMATICA1
+    musicName: video
 --- !u!4 &471925774
 Transform:
   m_ObjectHideFlags: 0
