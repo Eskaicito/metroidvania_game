@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - Air
   - Boss
-  - 
+  - Parallax
   - 
   - 
   - 
@@ -45,4 +45,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background parralax
+    uniqueID: 4038797129
+    locked: 0
+  - name: objetos escenarios
+    uniqueID: 4035566627
     locked: 0

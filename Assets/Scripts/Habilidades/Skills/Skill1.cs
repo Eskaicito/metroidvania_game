@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Skill1 : MonoBehaviour, ISkill
 {
@@ -8,9 +9,12 @@ public class Skill1 : MonoBehaviour, ISkill
     private int energyAmount = 60;
     private int damage = 30;
     private PlayerCombat combat;
+    public CameraController cameraController;
+    private VFXMANAGER vfxManager;
 
     private void Start()
     {
+        vfxManager = FindAnyObjectByType<VFXMANAGER>();
         player = FindAnyObjectByType<Player>();
         combat = FindAnyObjectByType<PlayerCombat>();
     }
@@ -25,7 +29,6 @@ public class Skill1 : MonoBehaviour, ISkill
         if (player.HasEnoughEnergy(energyAmount))
         {
             SkillDamage();
-            player.UseEnergy(energyAmount);
             Debug.Log("Skill1 Used");
         }
         else
@@ -39,11 +42,36 @@ public class Skill1 : MonoBehaviour, ISkill
 
     private void SkillDamage()
     {
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(combat.attackPoint.position, combat.attackRadius, combat.enemyLayers);
+
+        if (hitEnemies.Length == 0)
+        {
+            Debug.Log("No se golpeó a ningún enemigo.");
+        }
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            // Intentar detectar el script 'Enemy'
+            Enemy groundEnemy = enemy.GetComponent<Enemy>();
+            if (groundEnemy != null)
+            {
+                groundEnemy.TakeDamage(damage);
+                player.UseEnergy(energyAmount);
+            }
+
+            // Intentar detectar el script 'EnemyAir'
+            EnemyAir flyingEnemy = enemy.GetComponent<EnemyAir>();
+            if (flyingEnemy != null)
+            {
+                flyingEnemy.TakeDamage(damage);
+                player.UseEnergy(energyAmount);
+            }
+            vfxManager.PlayVFX(1, combat.attackPoint.position);
+            AudioManager.instance.PlaySound("skill1");
+            StartCoroutine(combat.TriggerHitstop());
+            cameraController.ShakeCamera();
         }
+      
     }
 }
