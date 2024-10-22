@@ -52,7 +52,7 @@ public class Skill1 : MonoBehaviour, ISkill
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Intentar detectar el script 'Enemy'
+            
             Enemy groundEnemy = enemy.GetComponent<Enemy>();
             if (groundEnemy != null)
             {
@@ -60,7 +60,7 @@ public class Skill1 : MonoBehaviour, ISkill
                 player.UseEnergy(energyAmount);
             }
 
-            // Intentar detectar el script 'EnemyAir'
+            
             EnemyAir flyingEnemy = enemy.GetComponent<EnemyAir>();
             if (flyingEnemy != null)
             {
