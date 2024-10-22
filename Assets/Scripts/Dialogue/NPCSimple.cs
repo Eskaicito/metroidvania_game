@@ -40,7 +40,7 @@ public class NPCSimple : MonoBehaviour
 
     public void Interact()
     {
-        // Inicia un diálogo simple sin opciones
+        
         dialogueController.StartSimpleDialogue(npcDialogue);
     }
 }

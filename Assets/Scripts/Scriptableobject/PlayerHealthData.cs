@@ -11,26 +11,26 @@ public class PlayerHealthData : ScriptableObject
     public int maxEnergy = 100;
     public int currentEnergy;
 
-    // Variable para saber si los valores ya fueron inicializados
+   
     private bool initialized = false;
 
-    // Método para inicializar la salud y la energía solo al inicio del juego
+    
     public void InitializeValues()
     {
-        // Solo resetear si no ha sido inicializado (primera vez)
+       
         if (!initialized)
         {
             currentHealth = maxHealth;
             currentEnergy = maxEnergy;
-            initialized = true; // Marcar como inicializado
+            initialized = true; 
         }
     }
 
-    // Método para forzar el reset (por ejemplo, si se quiere reiniciar completamente el juego)
+    
     public void ForceResetValues()
     {
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
-        initialized = true; // Marcar como inicializado después del reset
+        initialized = true; 
     }
 }

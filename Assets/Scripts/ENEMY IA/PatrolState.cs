@@ -29,10 +29,10 @@ public class PatrolState : IStateEnemy
     {
         Debug.Log("Entrando a estado de PATRULLA");
 
-        // Asegurarse de que el enemigo no se teletransporte al waypoint al volver al patrullaje
+        
         if (waypoints.Length > 0)
         {
-            // Si es la primera vez que entra en patrullaje, establecer la posición en el waypoint actual
+            
             if (currentWaypointIndex == 0)
             {
                 enemyGoyo.transform.position = waypoints[currentWaypointIndex].position;

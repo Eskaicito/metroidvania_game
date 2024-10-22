@@ -48,17 +48,17 @@ public class ChaseState : IStateEnemy
         Vector2 playerPosition = enemyGoyo.PlayerTransform.position;
         Vector2 currentPosition = enemyGoyo.transform.position;
 
-        // Mantener la posición Y fija
+      
         float newX = Mathf.MoveTowards(currentPosition.x, playerPosition.x, chaseSpeed * Time.deltaTime);
-        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); // La Y se mantiene fija
+        enemyGoyo.transform.position = new Vector2(newX, currentPosition.y); 
     }
 
     private void CheckAttackCollider()
     {
         float distanceToPlayer = Vector2.Distance(attackColliderTransform.position, playerTransform.position);
 
-        // Asumiendo que quieres que cuando estén muy cerca cambie al estado de ataque
-        if (distanceToPlayer < 0.5f) // Ajusta el valor según la cercanía que quieras
+       
+        if (distanceToPlayer < 0.5f) 
         {
             Debug.Log("Entrando en rango de ataque");
             enemyGoyo.EnemyStateMachine.TransitionTo(enemyGoyo.EnemyStateMachine.attackState);

@@ -9,11 +9,11 @@ public class ZoneChanger : MonoBehaviour
     [SerializeField] private LevelConnection _connection;
     [SerializeField] private string _targetZoneName;
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private Image fadeImage;  // Usaremos una imagen en lugar de un CanvasGroup
+    [SerializeField] private Image fadeImage;  
 
     private void Start()
     {
-        // Asegúrate de que la imagen esté desactivada al inicio
+       
         if (fadeImage != null)
         {
             fadeImage.gameObject.SetActive(false);
@@ -22,7 +22,7 @@ public class ZoneChanger : MonoBehaviour
         if (_connection == LevelConnection.ActiveConnecttion)
         {
             FindObjectOfType<PlayerMovement>().transform.position = _spawnPoint.position;
-            StartCoroutine(FadeIn()); // Fade in si es la escena correcta
+            StartCoroutine(FadeIn()); 
         }
     }
 
@@ -37,7 +37,7 @@ public class ZoneChanger : MonoBehaviour
 
     private IEnumerator TransitionToZone()
     {
-        // Activar la imagen negra y hacer el fade out
+        
         if (fadeImage != null)
         {
             fadeImage.gameObject.SetActive(true);
@@ -45,25 +45,25 @@ public class ZoneChanger : MonoBehaviour
             yield return StartCoroutine(FadeOut());
         }
 
-        // Cargar la nueva zona
+        
         SceneManager.LoadScene(_targetZoneName);
 
-        // Esperar un frame para que la nueva escena cargue
+        
         yield return null;
 
-        // Reposicionar al jugador en la nueva zona
+        
         var player = FindObjectOfType<PlayerMovement>();
         if (player != null)
         {
             player.transform.position = _spawnPoint.position;
         }
 
-        // Hacer el fade in y luego desactivar la imagen
+       
         if (fadeImage != null)
         {
             yield return StartCoroutine(FadeIn());
             fadeImage.gameObject.SetActive(false);
-            Destroy(fadeImage.gameObject);  // Destruir la imagen después del fade in
+            Destroy(fadeImage.gameObject);  
         }
     }
 

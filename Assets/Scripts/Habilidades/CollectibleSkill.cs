@@ -24,7 +24,7 @@ public class CollectibleSkill : MonoBehaviour, ICollectible
             ICollectible collectible = GetComponent<ICollectible>();
             if (collectible != null)
             {
-                //AudioManager.instance.PlaySound("collect");
+                
                 Collect();
             }
         }

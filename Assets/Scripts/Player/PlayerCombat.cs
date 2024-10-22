@@ -137,23 +137,15 @@ public class PlayerCombat : MonoBehaviour
             if (flyingEnemy != null)
             {
                 flyingEnemy.TakeDamage(comboDamage[comboStep]);
-                //Physics2D.IgnoreCollision(flyingEnemy.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
-                //if (flyingEnemy.Rb != null)
-                //{
-                //    flyingEnemy.Rb.AddForce(new Vector2(forceHit, 0), ForceMode2D.Impulse);
-                //}
-                //StartCoroutine(ReenableCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>()));
+             
             }
             vfxManager.PlayVFX(0, attackPoint.position);
             AudioManager.instance.PlaySound("sword" + currentCombo);
             StartCoroutine(TriggerHitstop());
             cameraController.ShakeCamera();
         }
-        //foreach (Collider2D boss in hitEnemies)
-        //{
-        //    boss.GetComponent<Boss>().TakeDamage(comboDamage[comboStep]);
-        //    StartCoroutine(TriggerHitstop());
-        //}
+      
+     
     }
 
     private IEnumerator ReenableCollision(Collider2D enemyCollider, Collider2D playerCollider)

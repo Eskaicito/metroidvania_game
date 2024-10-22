@@ -33,9 +33,6 @@ public class RunState : IState
 
             player.StateMachine.TransitionTo(player.StateMachine.jumpState);
         }
-        //if ( player.IDashing == true)
-        //{
-        //    player.StateMachine.TransitionTo(player.StateMachine.dashState);
-        //}
+     
     }
 }

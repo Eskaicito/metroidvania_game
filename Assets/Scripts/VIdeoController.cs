@@ -12,8 +12,7 @@ public class VIdeoController : MonoBehaviour
 
     void Start()
     {
-        //Scene currentScene = SceneManager.GetActiveScene();
-        //scenePath = currentScene.name;
+       
 
         videoPlayer = FindObjectOfType<VideoPlayer>();
         if (videoPlayer == null)
@@ -31,24 +30,5 @@ public class VIdeoController : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    //public void SkipCinematic(GameObject button)
-    //{
-    //    if (videoPlayer != null)
-    //    {
-    //        videoPlayer.Stop(); 
-    //        AudioSource audioSource = videoPlayer.GetComponent<AudioSource>();
-    //        if (audioSource != null)
-    //        {
-    //            audioSource.Stop(); 
-    //        }
-    //    }
-    //    if (!string.IsNullOrEmpty(sceneName) && sceneLoader != null)
-    //    {
-    //        sceneLoader.SkipCinematic(sceneName, button);
-    //        if (scenePath == "FINALBOSS")
-    //        {
-    //            sceneLoader.SkipCinematic("MENU", button);
-    //        }
-    //    }
-    //}
+
 }

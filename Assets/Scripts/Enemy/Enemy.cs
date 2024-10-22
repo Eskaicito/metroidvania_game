@@ -9,12 +9,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 2f;
     private float nextAttackTime;
 
-    [SerializeField] private float patrolSpeed = 4f; // Velocidad de patrulla más rápida
+    [SerializeField] private float patrolSpeed = 4f; 
     [SerializeField] private float chaseSpeed = 6f;
     [SerializeField] private float pushForce = 300f;
 
     [SerializeField] private float detectionRange = 2f;
-    [SerializeField] private float losePlayerRange = 4f; // Distancia a la que deja de seguir al jugador
+    [SerializeField] private float losePlayerRange = 4f; 
     [SerializeField] private Transform[] waypoints;
     private int currentWaypointIndex = 0;
 
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     private bool isChasingPlayer = false;
     private bool returningToPatrol = false;
 
-    private float detectionCooldown = 1f; // Tiempo para decidir si deja de perseguir al jugador
+    private float detectionCooldown = 1f; 
     private float detectionCooldownTimer;
 
 
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate; // Mejora suavidad en el movimiento
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate; 
         player = GameObject.FindWithTag("Player").transform;
     }
 
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
             if (detectionCooldownTimer >= detectionCooldown)
             {
                 isChasingPlayer = false;
-                returningToPatrol = true; // Iniciar retorno a patrullaje
+                returningToPatrol = true; 
                 detectionCooldownTimer = 0f;
             }
         }
@@ -111,13 +111,13 @@ public class Enemy : MonoBehaviour
 
     private void ReturnToPatrol()
     {
-        // Continúa desde donde está el enemigo para volver a patrullar
+        
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         rb.MovePosition(Vector2.MoveTowards(rb.position, targetWaypoint.position, patrolSpeed * Time.deltaTime));
 
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            returningToPatrol = false; // Ha regresado al patrullaje normal
+            returningToPatrol = false; 
         }
     }
 
@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
             {
                 
                 playerHealth.TakeDamage((int)damage);
-                PushPlayerBack(true); // Empujón más fuerte al atacar
+                PushPlayerBack(true); 
             }
         }
     }
@@ -142,13 +142,12 @@ public class Enemy : MonoBehaviour
         {
             Vector2 pushDirection = (player.position - transform.position).normalized;
 
-            // Limitar la fuerza si el empuje es hacia arriba (evita que salga volando)
+            
             if (pushDirection.y > 0)
             {
-                pushDirection.y *= 0.3f; // Reduces la fuerza vertical
+                pushDirection.y *= 0.3f; 
             }
 
-            // Ajustar la fuerza de empuje horizontal según la dirección
             float clampedForce = Mathf.Clamp(pushForce, 0, 500f);
             playerRb.AddForce(pushDirection * clampedForce, ForceMode2D.Impulse);
             AudioManager.instance.PlaySound("hurt");

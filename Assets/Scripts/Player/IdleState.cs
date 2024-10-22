@@ -33,9 +33,6 @@ public class IdleState : IState
 
             player.StateMachine.TransitionTo(player.StateMachine.jumpState);
         }
-        //if(player.hInput != 0 && player.isGrounded && player.IDashing == true)
-        //{
-        //    player.StateMachine.TransitionTo(player.StateMachine.dashState);
-        //}
+      
     }
 }
